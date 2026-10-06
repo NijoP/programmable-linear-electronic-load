@@ -1,0 +1,18 @@
+# Ignore generated results
+results/generated/
+
+# Ignore raw measurements
+measurements/raw/
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore Python cache
+__pycache__
+*.py[cod]
+*$py.class
+
+# Ignore MATLAB generated files (optional)
+*.mat
+*.fig

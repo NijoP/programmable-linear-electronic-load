@@ -1,0 +1,1593 @@
+DESIGN AND DEVELOPMENT OF A PROGRAMMABLE
+                  LINEAR DC ELECTRONIC LOAD
+
+                   ESP32-WROOM-32 Based Two-Layer PCB Prototype
+              Engineering Design and Mathematical Documentation
+
+                            Final-Year Electrical Engineering Project
+
+                                      Student 1: Goutham Haridas
+                                      Student 2: Afnan Muhammad
+
+                                             September 2026
+Programmable Linear DC Electronic Load     Goutham Haridas and Afnan Muhammad
+
+Contents
+
+                                        1
+Programmable Linear DC Electronic Load  Goutham Haridas and Afnan Muhammad
+
+1 Abstract
+
+This document presents the first-pass engineering design of a programmable linear DC electronic load
+intended as a compact laboratory test instrument for DC power sources and batteries. The product
+receives electrical power from an external DC source and electronically controls the amount of current
+absorbed by a MOSFET power stage. The project does not use a DC–DC converter, an AC–DC
+converter, an inverter, solar-energy conversion, or an Internet-of-Things subsystem.
+The proposed prototype is designed for a nominal input range of 10–15 V, a controlled current range
+of approximately 0.1–2 A, and a maximum electrical loading target of 30 W. Four BUZ11 N-channel
+power MOSFETs are used in parallel and operated in the linear region so that the input electrical
+power is intentionally dissipated as heat. Current is sensed using a 0.01 Ω shunt and an INA180A3
+current-sense amplifier with a nominal gain of 100 V/V. A 12-bit MCP4725 DAC generates the
+commanded current reference. An LM358B analog feedback stage performs the fast current regulation,
+while an ESP32-WROOM-32 module, soldered directly onto the custom two-layer PCB, provides the
+user interface, measurement, supervisory logic, protection logic, and display control.
+The user operates the instrument using a rotary encoder, push buttons, and an OLED display. The
+proposed operating modes are constant current, constant power, and constant resistance. A battery
+discharge and capacity-test application can also use the same hardware. The design intentionally uses
+moderate current and power so that the high-current paths are practical on a two-layer PCB. The
+most important physical validation tasks are MOSFET linear safe-operating-area verification, thermal
+characterization, control-loop stability testing, current-sensing calibration, and verification of the exact
+components purchased from the selected supplier.
+
+2 Introduction
+
+A DC source such as a laboratory power supply or battery must often be tested under a known electrical
+load. A conventional resistor can provide a load, but its current is determined by Ohm’s law and
+changes directly with source voltage. A rheostat allows manual adjustment of the resistance, but it
+still requires the operator to make changes when the source operating point changes.
+A programmable electronic load is an active power sink. It uses a power semiconductor as a controllable
+element and feedback to produce a desired current or power characteristic.
+The proposed project is therefore an instrumentation-oriented power-electronics product. The power
+stage consists of MOSFETs operating in their linear region. The controller and measurement subsystem
+is implemented with an ESP32-WROOM-32 mounted directly on the PCB. The final PCB is intended
+to look like a self-contained laboratory instrument rather than a development-board assembly.
+
+3 Project Objectives
+
+The objectives of the project are:
+
+   1. Design a programmable linear DC electronic load.
+
+   2. Implement the design on a custom two-layer PCB.
+
+   3. Solder the ESP32-WROOM-32 module directly to the PCB.
+
+   4. Use power MOSFETs as the active load element.
+
+   5. Implement closed-loop constant-current regulation.
+
+   6. Implement constant-power operation through supervisory digital control.
+
+                                                                  2
+Programmable Linear DC Electronic Load                 Goutham Haridas and Afnan Muhammad
+
+ 7. Implement constant-resistance emulation.
+ 8. Measure source voltage, load current, power, and temperature.
+ 9. Provide an OLED-based user interface.
+10. Provide rotary-encoder input and push-button control.
+11. Provide thermal protection and current/power limiting.
+12. Provide a battery-discharge measurement application.
+13. Maintain an all-inclusive project budget target below approximately INR 10,000.
+
+4 Scope and Exclusions
+
+The first prototype explicitly excludes the following:
+
+   1. Solar energy conversion.
+   2. Internet-of-Things or cloud communication.
+   3. DC–DC power conversion as the main power-processing function.
+   4. AC–DC conversion.
+   5. Inverter operation.
+   6. Circuit-breaker or electronic-fuse functionality.
+
+The control electronics may use linear voltage regulators for their local supply rails. This does not
+constitute the power-processing function of the project.
+
+5 Difference Between a Normal Resistor, Rheostat, and Electronic Load
+
+A conventional resistor implements
+
+                                                              I = V . (1)
+                                                                    R
+
+For a fixed resistor, the resistance does not change automatically. For a rheostat, resistance may be
+adjusted manually, but the terminal behavior is still approximately
+
+                                                              I = V . (2)
+                                                                    R
+
+The electronic load instead uses an active control loop to force a desired operating characteristic.
+In constant-current operation,
+
+                                        ILOAD ≈ ISET.                                (3)
+
+In constant-power operation,
+
+                                        PLOAD ≈ PSET,                                (4)
+
+                                        3
+Programmable Linear DC Electronic Load     Goutham Haridas and Afnan Muhammad
+
+with the required current approximately
+
+                                                         ISET = PSET . (5)
+                                                                     VIN
+
+In constant-resistance operation,
+
+                                                         REQ = VIN . (6)
+                                                                   ILOAD
+
+The fundamental distinction is therefore that a resistor provides a physical resistance whereas the
+proposed product provides a programmable and regulated electrical characteristic.
+
+5.1 Numerical Comparison
+For a 10 Ω resistor connected to a 24 V source,
+
+                                                        I = 24 = 2.4 A (7)
+                                                              10
+
+and
+
+                              P = V I = 24(2.4) = 57.6 W.  (8)
+
+If the source falls to 12 V,
+
+                                                        I = 12 = 1.2 A. (9)
+                                                              10
+
+The resistor cannot preserve a 2.4 A load.
+With a programmable electronic load in constant-current mode, a 2 A command can remain approxi-
+mately 2 A over the valid operating range.
+
+6 Product Description
+
+The proposed product is a small laboratory instrument that can be connected between an external DC
+source and the instrument input terminals.
+The user provides:
+
+   • a DC source voltage;
+   • the desired operating mode;
+   • a current, power, or resistance setpoint;
+   • a start or stop command.
+
+The product provides:
+
+   • controlled electrical loading;
+   • measured voltage;
+
+                                        4
+Programmable Linear DC Electronic Load                 Goutham Haridas and Afnan Muhammad
+
+• measured current;
+• calculated power;
+• measured temperature;
+• protection action;
+• visual information through the OLED.
+
+7 End-to-End Workflow
+
+7.1 Step 1: Apply External DC Power
+
+The input is supplied by an external regulated or laboratory DC supply.
+The target design range is
+
+                                        VIN = 10 − −15 V.                (10)
+
+The preferred initial development source is a current-limited laboratory power supply or an equivalent
+regulated adapter capable of at least 2 A.
+
+7.2 Step 2: Connect the Source to the PCB
+
+The positive source terminal is connected to the PCB input positive terminal and the negative source
+terminal is connected to the PCB input negative terminal.
+The electrical path is intentionally routed through the main current shunt and MOSFET power stage.
+
+7.3 Step 3: Turn on the Product
+
+The ESP32 starts in a safe state. The MOSFET command defaults to zero so the load remains
+effectively disabled until the system completes its self-check.
+
+7.4 Step 4: User Selects a Mode
+The user selects one of the following:
+
+   a. CC: constant current;
+   b. CP: constant power;
+   c. CR: constant resistance.
+
+7.5 Step 5: User Enters the Setpoint
+
+The rotary encoder is rotated to change the desired value. Pressing the encoder confirms the selection.
+Examples are:
+
+                                        ISET = 1.5 A,                    (11)
+
+                                        5
+Programmable Linear DC Electronic Load                Goutham Haridas and Afnan Muhammad
+
+                                        PSET = 20 W,                              (12)
+
+or
+
+                                        RSET = 15 Ω.                              (13)
+
+7.6 Step 6: Reference Generation
+The ESP32 writes the setpoint to the MCP4725 DAC. The DAC creates the analog control reference.
+
+7.7 Step 7: Closed-Loop Regulation
+
+The current-sense circuit measures the actual load current. The LM358B compares the desired reference
+against the measured current and adjusts the MOSFET gate command.
+
+7.8 Step 8: Power Absorption
+
+The MOSFETs operate in the linear region and dissipate the source power as heat.
+At the design maximum,
+
+    PIN = VINILOAD = 15 V × 2 A = 30 W.                                           (14)
+
+7.9 Step 9: Measurement and Display
+The ESP32 reads voltage, current, and temperature and calculates power using
+
+                                       PLOAD = VINILOAD.                          (15)
+
+The OLED displays the measured state.
+
+8 System and Subsystem “Jigsaw Puzzle”
+
+The complete product is divided into the following major systems.
+
+8.1 System A: Input and Protection
+
+Purpose: Connect the external DC source and provide basic protection.
+Parts:
+
+   • two-pin input terminal;
+   • input fuse;
+   • input bulk capacitor;
+   • input ceramic decoupling capacitor;
+   • optional reverse-polarity protection;
+   • optional transient protection.
+
+                                                                  6
+Programmable Linear DC Electronic Load     Goutham Haridas and Afnan Muhammad
+
+8.2 System B: MOSFET Power Stage
+Purpose: Absorb and control the electrical load power.
+Parts:
+
+   • four BUZ11 MOSFETs;
+   • four source ballast resistors;
+   • four gate resistors;
+   • four gate-source pull-down resistors;
+   • four gate-source protection zeners;
+   • common heatsink;
+   • cooling fan.
+
+8.3 System C: Current Measurement
+Purpose: Convert load current into a measurement and feedback signal.
+Parts:
+
+   • 0.01 Ω shunt;
+   • INA180A3 current-sense amplifier;
+   • current-sense filter;
+   • Kelvin-sense PCB routing.
+
+8.4 System D: Analog Control Loop
+Purpose: Provide fast current feedback.
+Parts:
+
+   • LM358B;
+   • MCP4725 DAC reference;
+   • RC compensation/filtering;
+   • gate-drive resistors.
+
+8.5 System E: Microcontroller
+Purpose: User interface, reference generation, measurement, protection, and test management.
+Parts:
+
+   • ESP32-WROOM-32;
+   • 3.3 V LDO;
+
+                                        7
+Programmable Linear DC Electronic Load                Goutham Haridas and Afnan Muhammad
+
+• reset/EN network;
+• GPIO0 boot network;
+• UART programming header;
+• local bypass capacitors.
+
+8.6 System F: User Interface
+
+Purpose: Human-machine interaction.
+Parts:
+
+   • 0.96-inch SSD1306 OLED;
+   • EC11 rotary encoder;
+   • encoder push switch;
+   • START/STOP button;
+   • RESET button;
+   • status LEDs.
+
+8.7 System G: Temperature and Cooling
+
+Purpose: Monitor thermal condition and prevent excessive heating.
+Parts:
+
+   • 10 kΩ NTC;
+   • 10 kΩ reference resistor;
+   • cooling fan;
+   • fan transistor;
+   • heatsink.
+
+8.8 System H: Low-Voltage Rails
+
+Purpose: Supply the electronic control section.
+The first-pass architecture is
+
+                                     VIN → L7805 → 5 V             (16)
+
+followed by
+
+                            5 V → 3.3 V LDO → 3.3 V.               (17)
+
+These regulators only power the control electronics.
+
+                                                 8
+Programmable Linear DC Electronic Load                   Goutham Haridas and Afnan Muhammad
+
+9 Frozen Electrical Specification
+
+            Parameter                               Prototype target
+
+            Input voltage                   target  10–15 VDC
+            Maximum controlled current              2.0 A
+            Peak load power                         30 W
+            Recommended initial continuous          24 W
+            CC current range                        0.1–2.0 A
+            CP range                                approximately 5–30 W
+            CR useful range                         approximately 5–150 Ω
+            Number of MOSFETs                       4
+            Power MOSFET                            BUZ11
+            Main current shunt                      0.01 Ω, 3 W, 1%
+            Current-sense gain                      100 V/V
+            DAC                                     MCP4725, 12 bit
+            Control op-amp                          LM358B
+            Microcontroller                         ESP32-WROOM-32
+            Display                                 0.96-inch SSD1306 OLED
+            PCB                                     two-layer FR-4
+            Preferred copper                        2 oz if budget permits
+            Target PCB size                         approximately 100 mm×100 mm
+
+                       Table 1: First-pass prototype specification.
+
+10 Maximum Power Calculation
+
+The maximum electrical loading point is
+
+                                         VIN,max = 15 V                          (18)
+
+and
+
+                                         IMAX = 2 A.                             (19)
+
+Therefore,
+
+                       PMAX = VIN,maxIMAX = 15 × 2 = 30 W .                      (20)
+
+The 30 W point is a peak design target. A continuous 30 W rating should only be claimed after thermal
+validation.
+
+11 Current Shunt Design
+
+Select
+
+                                         RSH = 0.01 Ω.                           (21)
+
+At 2 A,
+
+                                            9
+Programmable Linear DC Electronic Load                      Goutham Haridas and Afnan Muhammad
+
+                                   VSH = IRSH = 2(0.01) = 20 mV .   (22)
+
+The shunt power is
+
+                                   PSH = I2R = 22(0.01) = 0.04 W .  (23)
+
+If a 3 W shunt is used, the nominal power-rating margin is
+
+                                                       MP = 3 = 75. (24)
+                                                                0.04
+
+The high margin reduces thermal stress and leaves room for transient conditions.
+
+12 Current-Sense Amplifier
+
+The INA180A3 is selected with a nominal gain
+
+                                         GCS = 100 V/V.             (25)
+
+Therefore,
+
+                                         VSENSE = GCSVSH.           (26)
+
+Substituting the selected shunt,
+
+                                   VSENSE = 100(I)(0.01) = I.       (27)
+
+Thus the ideal transfer relationship is
+
+                                         VSENSE[V] ≈ I[A] .         (28)
+
+The resulting nominal values are:
+
+                                   I = 0.1 A ⇒ VSENSE ≈ 0.1 V,      (29)
+
+                                   I = 0.5 A ⇒ VSENSE ≈ 0.5 V,      (30)
+
+                                   I = 1.0 A ⇒ VSENSE ≈ 1.0 V,      (31)
+
+                                   I = 1.5 A ⇒ VSENSE ≈ 1.5 V,      (32)
+
+                                   I = 2.0 A ⇒ VSENSE ≈ 2.0 V.      (33)
+
+The exact error requires calibration because amplifier offset, gain error, shunt tolerance, shunt temper-
+ature coefficient, ADC error, and PCB resistance all contribute.
+
+13 MCP4725 DAC Calculation
+
+The MCP4725 is a 12-bit DAC.
+The number of codes is
+
+                                              10
+Programmable Linear DC Electronic Load                 Goutham Haridas and Afnan Muhammad
+
+                              N = 212 = 4096.                                              (34)
+
+For a nominal 3.3 V supply, the ideal code step is
+
+                                               ∆VDAC = 3.3 = 0.806 mV . (35)
+                                                             4095
+
+Because the selected analog loop is scaled so that
+
+                                        VSET ≈ ISET,                                       (36)
+
+the ideal command resolution is approximately
+
+                          ∆ICMD ≈ 0.806 mA/LSB .                                           (37)
+
+For 2 A, the DAC output is approximately 2 V. The code is therefore
+
+                                                  NMAX = 4095 2.0 ≈ 2482. (38)
+                                                                    3.3
+
+The firmware can clamp the DAC code to
+
+                                        NMAX = 2482 .                                      (39)
+
+The digital resolution should not be interpreted as guaranteed absolute current accuracy.
+
+14 Input Voltage Measurement
+
+Use a resistive divider:
+
+                                        R1 = 33 kΩ                                         (40)
+
+and
+
+                                        R2 = 7.5 kΩ.                                       (41)
+
+The ADC input is
+
+                                                    VADC = VIN R2 . (42)
+                                                                     R1 + R2
+
+The division ratio is
+
+                                                        7.5 = 0.185185. (43)
+                                                     33 + 7.5
+At 15 V,
+
+                          VADC,max = 15(0.185185) = 2.778 V .                              (44)
+
+The divider current is
+
+                                               11
+Programmable Linear DC Electronic Load                               Goutham Haridas and Afnan Muhammad
+
+                                       IDIV = 15 = 15 ≈ 0.370 mA . (45)
+                                                 33k + 7.5k 40.5k
+
+The total divider power is
+
+                                 PDIV =           152  ≈ 5.56 mW .   (46)
+
+                                         40.5k
+
+Therefore the divider does not have a significant thermal burden.
+
+14.1 Voltage-Measurement Filter
+The divider Thevenin resistance is
+
+                                 RTH = R1 ∥ R2 ≈ 6.11 kΩ.            (47)
+
+Using
+
+                                        CADC = 47 nF,                (48)
+
+the nominal corner frequency is
+
+                                 fc = 1 ≈ 554 Hz . (49)
+                                        2πRTHCADC
+
+15 Current-Feedback Filter
+
+For a first-pass current-feedback filter, choose
+
+                                         RF = 10 kΩ                  (50)
+
+and
+
+                                        CF = 100 nF.                 (51)
+
+The nominal cutoff is
+
+                                   fc,I = 1 = 1 ≈ 159 Hz . (52)
+                                            2πRF CF 2π(10k)(100nF )
+
+This filtering is intended to reject unwanted high-frequency electrical noise and help the analog loop
+remain stable.
+
+The actual compensation must be verified by simulation and laboratory measurements. The calculated
+RC corner is not a substitute for phase-margin verification.
+
+16 MOSFET Selection and Number
+
+Four BUZ11 N-channel MOSFETs are proposed.
+At the maximum current,
+
+                                                                 12
+Programmable Linear DC Electronic Load                 Goutham Haridas and Afnan Muhammad
+
+                                        ITOTAL = 2 A.      (53)
+
+For ideal equal sharing,
+
+                                                      IFET = 2 = 0.5 A . (54)
+                                                                4
+
+The number of MOSFETs is selected mainly because of thermal and linear-mode stress considerations.
+If one device were used, it would need to absorb approximately 30 W.
+For two devices,
+
+                                        PFET ≈ 15 W        (55)
+
+per device.
+For four devices,
+
+                                        PFET ≈ 7.5 W       (56)
+
+per device.
+
+Therefore four devices provide a more practical thermal distribution for a student prototype.
+
+The final MOSFET choice must be validated using the manufacturer’s linear safe-operating-area data
+at the actual VDS and ID operating point. The headline switching-current rating is not sufficient
+evidence for continuous linear operation.
+
+17 Source Ballast Resistors
+
+Use
+
+                                        RS = 0.1 Ω         (57)
+
+for each MOSFET source.
+At 0.5 A,
+
+                          VRS = IRS = 0.5(0.1) = 50 mV .   (58)
+
+The resistor power is
+
+                          PRS = I2R = 0.52(0.1) = 25 mW .  (59)
+
+A 3 W resistor therefore has large power margin.
+
+The ballast resistor introduces local negative feedback and improves current sharing between parallel
+MOSFETs.
+
+18 MOSFET Power Balance
+
+At the maximum input point,
+
+                                        13
+Programmable Linear DC Electronic Load                     Goutham Haridas and Afnan Muhammad
+
+                                            PIN = 30 W.                            (60)
+
+The shunt loss is
+
+                                            PSH = 0.04 W.                          (61)
+
+The four ballast resistors dissipate approximately
+
+                       PBAL,total = 4(0.025 W) = 0.10 W .                          (62)
+
+Therefore the approximate MOSFET-bank dissipation is
+
+                       PMOS,total ≈ 30 − 0.04 − 0.10 = 29.86 W .                   (63)
+
+For four devices,
+
+                                               PMOS,each ≈ 29.86 = 7.47 W . (64)
+                                                                  4
+
+The value is an ideal equal-sharing estimate. Actual device-to-device variation must be checked
+experimentally.
+
+19 Thermal Design
+
+The dominant physical constraint of a linear electronic load is heat dissipation.
+The thermal path is
+
+                       PMOS → TJ → TC → THS → TA.                                  (65)
+
+For a preliminary calculation, assume
+
+                                          RθJC ≈ 1.67 ◦C/W.                        (66)
+
+At 7.47 W per MOSFET,
+
+                       ∆TJC = 7.47(1.67) ≈ 12.47 ◦C .                              (67)
+
+Assuming
+
+                                          RθCS = 0.5 ◦C/W,                         (68)
+
+the case-to-heatsink temperature rise is
+
+                       ∆TCS = 7.47(0.5) = 3.74 ◦C .                                (69)
+
+For an illustrative ambient temperature of
+
+                                            TA = 35 ◦C                             (70)
+
+                                            14
+Programmable Linear DC Electronic Load                 Goutham Haridas and Afnan Muhammad
+
+and a preliminary junction target of
+
+                                        TJ = 100 ◦C,                              (71)
+
+the total junction-to-ambient thermal resistance for one branch would be
+
+                                         RθJA,target = 100 − 35 = 8.70 ◦C/W . (72)
+                                                              7.47
+
+Because the MOSFETs share one heatsink, a common heatsink should be evaluated for approxi-
+mately 30 W total dissipation. If a heatsink temperature of 80 ◦C is accepted at 35 ◦C ambient, the
+corresponding shared-heatsink target is
+
+                                           RθSA,shared ≤ 80 − 35 = 1.5 ◦C/W . (73)
+                                                                 30
+
+This is a target for design and measurement, not a guaranteed property of a particular retail heatsink.
+
+20 MOSFET Gate Network
+
+For each MOSFET use:
+
+                                        RG = 1 kΩ,                                (74)
+
+                                        RGS = 100 kΩ,                             (75)
+
+and an approximately 8.2 V gate-source zener for transient protection.
+At an assumed 5 V gate-drive level, the initial resistor-limited gate current is
+
+                                      IG,initial ≈ 5 = 5 mA                       (76)
+                                        1k
+
+per gate branch.
+
+The static pull-down current is
+
+                                                   IP D = 5 = 50 µA . (77)
+                                                             100k
+
+The gate pull-down ensures that the MOSFET tends toward an OFF state when the control signal
+becomes high impedance.
+
+21 Analog Current-Control Loop
+
+The desired current is represented by the DAC output VSET. The current-sense circuit produces
+VSENSE.
+
+The loop error is
+
+                                      VE = VSET − VSENSE.                         (78)
+
+The analog controller adjusts the MOSFET gate voltage to reduce this error.
+
+                                        15
+Programmable Linear DC Electronic Load                  Goutham Haridas and Afnan Muhammad
+
+At steady state,
+
+                                        VE → 0.                                       (79)
+
+Therefore,
+
+                                        VSET ≈ VSENSE.                                (80)
+
+Using the selected sensor transfer,
+
+                                     VSENSE ≈ ILOAD,                                  (81)
+
+so
+
+                                        ILOAD ≈ VSET                                  (82)
+
+when the units are represented numerically as amperes and volts.
+For example,
+
+                                        VSET = 1.5 V                                  (83)
+
+corresponds ideally to
+
+                                        ILOAD ≈ 1.5 A.                                (84)
+
+22 Constant-Current Mode
+
+In CC mode,
+
+                                        ICMD = ISET.                                  (85)
+
+For
+
+                                        ISET = 1.5 A,                                 (86)
+
+the analog loop attempts to keep
+
+                                        ILOAD ≈ 1.5 A.                                (87)
+
+At 15 V,
+
+                                     P = 15(1.5) = 22.5 W .                           (88)
+
+At 12 V,
+
+                                     P = 12(1.5) = 18 W .                             (89)
+
+The current is approximately constant while the absorbed power changes with voltage.
+
+                                        16
+Programmable Linear DC Electronic Load                                    Goutham Haridas and Afnan Muhammad
+
+23 Constant-Power Mode
+
+In CP mode, the user specifies
+
+                                        PSET.                                          (90)
+                                                                                       (91)
+The ESP32 calculates                                                                   (92)
+                                                                                       (93)
+                                                         IREQ = PSET .                 (94)
+                                                                     VIN               (95)
+                                                                                       (96)
+The command must be restricted by both the maximum current and maximum power:
+                                                                                       (97)
+                                           ICMD = min IMAX, PMAX , PSET .              (98)
+                                                                        VIN VIN        (99)
+                                                                                      (100)
+For
+
+                                        PSET = 20 W,
+
+the requested currents are:
+
+                                           VIN = 15 V ⇒ IREQ = 20 = 1.333 A,
+                                                                         15
+
+                                           VIN = 12 V ⇒ IREQ = 20 = 1.667 A,
+                                                                         12
+
+                                           VIN = 10 V ⇒ IREQ = 20 = 2 A.
+                                                                         10
+
+At voltages below 10 V, the 2 A maximum prevents true 20 W constant-power operation.
+
+24 Constant-Resistance Mode
+
+For a requested equivalent resistance
+
+                                        RSET,
+
+the current command is
+
+                                                         IREQ = VIN .
+                                                                    RSET
+
+The final command is restricted by the hardware limits:
+
+                                ICMD = min IMAX, PMAX , VIN .
+                                                            VIN RSET
+
+For example, at
+
+                                                           VIN = 15 V
+and
+
+                                                                 17
+Programmable Linear DC Electronic Load                  Goutham Haridas and Afnan Muhammad
+
+the ideal current is           RSET = 15 Ω,                                                (101)
+and the power is               I = 15 = 1 A                                                (102)
+                                                                                           (103)
+                                     15
+                            P = 15(1) = 15 W.
+
+25 Useful Equivalent Resistance Range                                                      (104)
+                                                                                           (105)
+At the lower design voltage of 10 V and the maximum current of 2 A,                        (106)
+                                                      RMIN = 10 = 5 Ω .
+                                                                  2
+
+At 15 V and a practical minimum regulated current of 0.1 A,
+                                                   RMAX = 15 = 150 Ω .
+                                                                0.1
+
+Thus a reasonable first-pass specification is
+
+                                                      REQ ≈ 5 − −150 Ω
+subject to the simultaneous current and power constraints.
+The exact useful range must be experimentally characterized.
+
+26 Temperature Measurement
+
+A 10 kΩ NTC with a nominal B-coefficient near 3950 K is used for temperature measurement.
+At 25 ◦C,
+
+                                        RNTC ≈ 10 kΩ.                                      (107)
+                                                                                           (108)
+With a 3.3 V divider using a 10 kΩ reference resistor,                                     (109)
+
+                            VNTC = 3.3 10 = 1.65 V .
+                                           10 + 10
+
+The beta-model equation is
+
+                                              R(T ) = R0 exp B 1 − 1 ,
+                                                                         T T0
+
+where T and T0 are in kelvin.
+Suggested firmware thresholds are:
+
+                                        18
+Programmable Linear DC Electronic Load  Goutham Haridas and Afnan Muhammad
+
+                T < 60 ◦C :             normal cooling,                         (110)
+     60 ◦C ≤ T < 75 ◦C :                fan at high speed,                      (111)
+     75 ◦C ≤ T < 85 ◦C :                power derating,                         (112)
+                                        shutdown.                               (113)
+                T ≥ 85 ◦C :
+
+These are engineering control thresholds and must be verified against the measured thermal behavior
+of the final assembly.
+
+27 Low-Voltage Electronics Rails
+
+The LM358B control section is powered from the input-side electronics rail. The ESP32 is powered
+from a regulated 3.3 V rail.
+
+A simple first-pass control-power architecture is:
+
+     VIN → L7805 → 5 V                                                          (114)
+
+and
+
+     5 V → 3.3 V LDO → 3.3 V.                                                   (115)
+
+Assume a 5 V rail current of approximately 150 mA. At 15 V input, the L7805 power dissipation is
+
+                                             P7805 = (15 − 5)(0.15) = 1.5 W .   (116)
+Therefore the 7805 requires a suitable thermal path.
+For the 3.3 V rail at approximately 150 mA,
+
+                                            P3.3 = (5 − 3.3)(0.15) = 0.255 W .  (117)
+This is a comparatively small thermal burden.
+
+28 ESP32-WROOM-32 Hardware
+
+The ESP32-WROOM-32 is soldered directly to the custom PCB.
+The PCB provides:
+
+   • 3.3 V supply;
+   • EN/reset circuitry;
+   • GPIO0 boot circuitry;
+   • UART programming header;
+   • local decoupling capacitors;
+   • appropriate antenna keep-out area;
+   • continuous ground reference where appropriate.
+
+No ESP32 development board is used.
+
+                                                                 19
+Programmable Linear DC Electronic Load  Goutham Haridas and Afnan Muhammad
+
+28.1 Suggested GPIO Assignment
+
+Function                                ESP32 GPIO
+
+OLED SDA and MCP4725 SDA                GPIO21
+OLED SCL and MCP4725 SCL                GPIO22
+Current ADC                             GPIO35
+Input-voltage ADC                       GPIO34
+NTC ADC                                 GPIO39
+Encoder A                               GPIO18
+Encoder B                               GPIO19
+Encoder push                            GPIO23
+START/STOP                              GPIO25
+Fan control                             GPIO26
+Fault input                             GPIO27
+UART TX                                 GPIO1
+UART RX                                 GPIO3
+BOOT                                    GPIO0
+RESET                                   EN
+
+Table 2: Suggested ESP32 pin assignment.
+
+GPIO34, GPIO35, and GPIO39 are input-only pins on the classic ESP32 and are therefore suitable for
+ADC measurements.
+
+29 User Input and Display
+
+The user interacts with the product through a rotary encoder and push controls.
+The interaction sequence is:
+
+   1. Power on the instrument.
+   2. Select CC, CP, or CR.
+   3. Rotate the encoder to change the setpoint.
+   4. Press the encoder to confirm.
+   5. Press START.
+   6. Observe voltage, current, power, and temperature.
+   7. Press STOP to disable the load.
+
+An example CC display is:
+
+PROGRAMMABLE DC LOAD
+
+VIN : 15.00 V
+I : 1.500 A
+P : 22.50 W
+TEMP: 43.2 C
+
+MODE: CC
+SET : 1.500 A
+
+                                                                 20
+Programmable Linear DC Electronic Load                Goutham Haridas and Afnan Muhammad
+
+An example CP display is:
+
+PROGRAMMABLE DC LOAD
+
+VIN : 12.50 V
+I : 1.600 A
+P : 20.00 W
+TEMP: 41.9 C
+
+MODE: CP
+SET : 20.00 W
+
+30 Battery Discharge and Capacity-Test Application
+
+The same hardware can perform a controlled battery-discharge test.
+The user selects a discharge current and a cutoff voltage.
+For example,
+
+                                                      IDISCHARGE = 1 A.    (118)
+
+The ESP32 records the voltage, current, elapsed time, charge, and energy.
+The delivered charge is
+
+For sampled values,                     Q = I(t) dt.                       (119)
+The delivered energy is                                                    (120)
+                                                  N
+
+                                        Q ≈ Ik∆t.
+
+                                                 k=1
+
+                                    E = V (t)I(t) dt                       (121)
+
+and numerically,
+
+                                              N                            (122)
+
+                                    E ≈ VkIk∆t.
+
+                                            k=1
+
+The displayed capacity is therefore a measured capacity under the chosen discharge current and cutoff
+condition.
+
+31 Protection Strategy
+
+The first revision should include:
+   1. Input fuse.
+
+                                        21
+Programmable Linear DC Electronic Load      Goutham Haridas and Afnan Muhammad
+
+   2. Default-off gate pull-downs.
+   3. Gate-source zener protection.
+   4. Current-limit clamping.
+   5. Power-limit clamping.
+   6. Thermal shutdown.
+   7. Fan operation.
+   8. Sensor plausibility checks.
+   9. Fault latch.
+
+A future revision can add an independent analog over-current comparator so that a hardware path can
+disable the power stage without relying solely on firmware.
+
+32 Two-Layer PCB Design                                                (123)
+
+The project uses a two-layer FR-4 PCB.
+The layout should be divided into:
+
+   1. user-interface region;
+   2. ESP32 and low-voltage electronics region;
+   3. current-sensing and analog-feedback region;
+   4. MOSFET power region;
+   5. input and shunt region.
+
+The current rating is only
+
+                                                          IMAX = 2 A,
+which is moderate for a properly designed two-layer PCB.
+The principal routing rules are:
+
+   • use wide copper for the main current path;
+   • keep the current path short;
+   • avoid narrow trace necks;
+   • use copper pours where appropriate;
+   • use via stitching if current changes layers;
+   • route Kelvin sense lines separately;
+   • keep the ESP32 and ADC area away from noisy power-node regions;
+   • provide sufficient copper beneath thermal components.
+
+                                        22
+Programmable Linear DC Electronic Load                   Goutham Haridas and Afnan Muhammad
+
+32.1 Kelvin Shunt Connection
+At the maximum current, the useful shunt signal is only
+
+                                        VSH = 20 mV.                                        (124)
+
+Therefore the current-sense lines must not share the high-current copper path unnecessarily.
+
+A four-terminal/Kelvin concept is recommended so that the INA180 measures the intended shunt
+voltage rather than the voltage drop in the surrounding PCB copper and solder joints.
+
+33 Approximate PCB Trace Resistance
+
+For illustration, assume a 5 mm-wide, 0.035 mm-thick copper trace with a length of 100 mm.
+The copper cross-sectional area is
+
+                                                 A = 5(0.035) = 0.175 mm2.                  (125)
+With copper resistivity approximately
+
+                                                    ρ ≈ 1.724 × 10−8 Ω m,                   (126)
+the approximate resistance of the trace is                                                  (127)
+
+         R ≈ ρ L ≈ 9.85 mΩ.
+                 A
+
+At 2 A,
+
+                                         VDROP = IR ≈ 2(0.00985) = 19.7 mV .                (128)
+The associated copper loss is
+
+         PTRACE = I2R ≈ 4(0.00985) = 39.4 mW .                                              (129)
+
+This calculation illustrates that wide, short traces are desirable, especially because the trace drop can
+be comparable with the 20 mV full-scale shunt signal.
+
+34 Input Supply and Development Setup
+
+The electronic load does not generate the power being measured. The power comes from the external
+device under test.
+During development, the preferred source is a current-limited bench power supply.
+A suitable development sequence is:
+
+   1. Set the laboratory supply to 10 V.
+   2. Set a low current limit.
+   3. Verify the control electronics.
+
+                                                                 23
+Programmable Linear DC Electronic Load                               Goutham Haridas and Afnan Muhammad
+
+   4. Increase the load gradually.
+   5. Increase the source voltage only after the previous step is stable.
+
+A regulated 15 V source capable of at least 2 A can be used for the final prototype test.
+The external source is therefore the input of the product, while the product’s output is the controlled
+current sink path.
+
+35 Design Verification
+
+The following quantities are analytically determined:
+
+Parameter                               Calculated result            Verification
+
+Maximum electrical power                30 W                         V I measurement
+Shunt voltage at 2 A                    20 mV                        DMM/scope
+Current-sense voltage at 2 A            approximately 2 V            DMM/scope
+DAC step                                approximately 0.806 mV       analytical
+Command resolution                      approximately 0.806 mA       analytical
+Ideal MOSFET branch current             0.5 A                        branch-current mea-
+                                                                     surement
+Approximate branch dissipation          7.47 W                       VDS ID
+Voltage-divider output at 15 V          2.778 V                      DMM
+Current filter corner                   approximately 159 Hz         RC calculation
+Voltage filter corner                   approximately 554 Hz         RC calculation
+Thermal performance                     To be measured               thermocouple/IR/NTC
+MOSFET SOA margin                       To be verified               manufacturer data +
+                                                                     test
+Control-loop stability                  To be verified               SPICE + oscilloscope
+Absolute current accuracy               To be calibrated             reference-current test
+
+Table 3: Analytical values and required physical verification.
+
+36 Prototype Bring-Up Procedure
+
+The hardware must be brought up progressively.
+
+36.1 Stage 1: Control Electronics Only
+With the main MOSFETs removed, verify:
+
+   • 5 V rail;
+   • 3.3 V rail;
+   • ESP32 programming;
+   • OLED;
+   • encoder;
+   • DAC;
+   • ADC inputs;
+   • temperature sensor.
+
+                                                                 24
+Programmable Linear DC Electronic Load                                   Goutham Haridas and Afnan Muhammad
+
+36.2 Stage 2: Current Measurement
+
+Use a safe external current path to verify the shunt and current-sense amplifier.
+Expected nominal values include:
+
+                                               I = 0.5 A ⇒ VSENSE ≈ 0.5 V,         (130)
+                                               I = 1.0 A ⇒ VSENSE ≈ 1.0 V,         (131)
+                                               I = 1.5 A ⇒ VSENSE ≈ 1.5 V.         (132)
+
+Perform zero-current calibration first.                                            (133)
+                                                                                   (134)
+36.3 Stage 3: One-MOSFET Test                                                      (135)
+Install one MOSFET and operate at a low-power point:
+                                                                                   (136)
+                                                           VIN = 10 V              (137)
+and                                                                                (138)
+
+                                         I = 0.2 A.
+
+Therefore,
+
+                                                      P = 10(0.2) = 2 W.
+Verify loop stability and temperature.
+
+36.4 Stage 4: Four-MOSFET Test
+Install all four MOSFETs and gradually increase the operating point:
+
+                                                            10 V, 0.5 A
+then
+
+                                                            12 V, 1 A,
+then
+
+                                         15 V, 1.5 A,
+
+and only then the 15 V, 2 A peak point.
+
+36.5 Stage 5: Thermal Characterization
+Measure:
+
+   • each MOSFET case temperature;
+                                                                 25
+Programmable Linear DC Electronic Load        Goutham Haridas and Afnan Muhammad
+
+   • heatsink temperature;
+   • PCB temperature;
+   • shunt temperature;
+   • regulator temperature;
+   • fan behavior.
+
+Only after thermal validation should the final continuous-power specification be stated.
+
+37 Firmware State Machine
+
+A simple state machine is proposed:
+
+   1. POWER ON;
+   2. SELF TEST;
+   3. STANDBY;
+   4. SETTING;
+   5. ACTIVE;
+   6. FAULT;
+   7. RESET.
+
+In POWER ON and SELF TEST states, the load command remains zero.
+During SETTING, the user selects the operating mode and setpoint.
+During ACTIVE, the ESP32 reads the sensors, computes the commanded current, updates the DAC,
+updates the OLED, and executes the protection rules.
+During FAULT, the command is forced to zero and the user is informed of the fault condition.
+
+38 Component Selection and Robu Availability Basis
+
+The following parts were selected because corresponding products or product families are listed by
+Robu during the design study.
+
+Component               Qty.            Role                  Selection basis
+ESP32-WROOM-32
+                        1               MCU                   Direct PCB-mounted
+INA180A3                                                      module
+MCP4725A0T-E/CH         1               Current sensing       100 V/V nominal gain
+                                                              12-bit setpoint genera-
+BUZ11                   1               DAC                   tion
+                                                              Linear-stage candidate
+0.01 Ω shunt            4 fitted        Power MOSFET bank
+0.1 Ω ballast resistor  + spares                              Low insertion loss
+                        1               Main current sensing  Stabilizes parallel shar-
+                        4               Branch balancing      ing
+
+                                        26
+Programmable Linear DC Electronic Load                               Goutham Haridas and Afnan Muhammad
+
+LM358B                  1               Analog feedback              Low-voltage control am-
+
+                                                                     plifier
+
+0.96-inch SSD1306 OLED  1               Display                      Local user interface
+
+EC11 rotary encoder     1               User input                   Setpoint selection
+
+L7805                   1               5 V regulator                Controller supply
+
+3.3 V LDO               1               ESP32 supply                 3.3 V rail
+
+10 kΩ NTC               1               Thermal sensing              Heatsink temperature
+
+TO-220 heatsink         1               Thermal management Common MOSFET cool-
+
+                                                                     ing
+
+Cooling fan             1               Forced air                   Thermal management
+
+Fuse                    1–2             Input protection             Fault protection
+
+Screw terminals         2               Power connections            Input/output connection
+
+The exact SKU, current inventory quantity, and price must be checked again immediately before
+placing the order because online inventory is dynamic.
+
+39 Robu Reference Links
+
+   1. ESP32 modules:
+       https://robu.in/product-category/esp-wifi-module/
+
+   2. MOSFET category:
+       https://robu.in/product-category/mosfet/
+
+   3. Current and voltage sensors:
+       https://robu.in/product-category/current-and-voltage-sensor/
+
+   4. Current-sense resistors:
+       https://robu.in/product-category/current-sense-resistors/
+
+   5. OLED displays:
+       https://robu.in/product-category/oled-display/
+
+   6. Aluminium heatsinks:
+       https://robu.in/product-category/aluminium-heat-sink/
+
+   7. Cooling fans:
+       https://robu.in/product-category/5v-cooling-fans/
+
+   8. PCB manufacturing service:
+       https://robu.in/product/online-pcb-manufacturing-service/
+
+40 Project Budget
+
+The project budget must include:
+
+   1. PCB fabrication.
+   2. ESP32 module.
+   3. Power MOSFETs and spare devices.
+   4. Current-sense amplifier.
+   5. DAC.
+
+                                                                 27
+Programmable Linear DC Electronic Load      Goutham Haridas and Afnan Muhammad
+
+ 6. Op-amp.
+ 7. OLED.
+ 8. Rotary encoder and switches.
+ 9. Shunt and ballast resistors.
+10. All passive components.
+11. Protection components.
+12. Cooling hardware.
+13. Connectors.
+14. Prototype-source allowance.
+15. Shipping.
+16. Spare components.
+
+A conservative planning budget is:
+
+Category                                    Planning allowance (INR)
+
+ESP32-WROOM-32                                                           500
+Six BUZ11 devices including spares                                       300
+INA180A3 and MCP4725                                                     200
+LM358B and other control ICs                                             150
+OLED and encoder                                                         300
+Shunt and ballast resistors                                              100
+Other passive components                                                 500
+Connectors, fuse, buttons, LEDs                                          400
+Cooling and heatsink                                                     350
+PCB fabrication allowance                                               1500
+External DC source allowance                                            1000
+Spare/contingency allowance                                             1500
+Shipping allowance                                                       800
+
+Total planning allowance                                      INR 7,600
+
+                        Table 5: Conservative budget planning target.
+
+The project ceiling is
+
+                        Total Project Cost ≤ INR 10,000 .                     (139)
+
+The remaining margin is intended for price variation, shipping variation, spare components, and
+possible PCB re-fabrication.
+
+                                        28
+Programmable Linear DC Electronic Load                  Goutham Haridas and Afnan Muhammad
+
+41 Engineering Risk Register
+
+Risk                            Possible effect            Mitigation
+MOSFET thermal overload         Device failure
+                                                           Four devices, heatsink, fan,
+Unequal MOSFET         current  Local hot spots            power derating
+sharing                                                    Source ballast resistors
+Shunt wiring error              Current-measurement error
+Sensor offset                   Low-current error          Kelvin routing
+Loop oscillation                Unstable load              Zero-current calibration
+                                                           RC filtering and oscilloscope
+Gate overvoltage                MOSFET damage              verification
+PCB hotspot                     Local heating              Gate-source zener protection
+                                                           Wide copper and short power
+Regulator heating               Controller instability     paths
+                                                           Heat sinking and current bud-
+Device-lot variation            SOA uncertainty            geting
+                                                           Use exact manufacturer’s
+Insufficient heatsink           Thermal shutdown           datasheet
+                                                           Measure heatsink temperature
+
+                       Table 6: Primary engineering risks and mitigations.
+
+42 Final Demonstration Plan
+
+42.1 Demonstration 1: Constant Current
+Set
+
+                                        ISET = 1 A.                                        (140)
+
+Apply 15 V.
+The expected load power is
+
+                                                     P ≈ 15 × 1 = 15 W.                    (141)
+Then reduce the source to 12 V and observe whether the current remains approximately 1 A.
+
+42.2 Demonstration 2: Constant Power
+Set
+
+                                        PSET = 20 W.                                       (142)
+                                                                                           (143)
+At 15 V,
+
+                                        I ≈ 1.333 A.
+
+At 12 V,
+
+                                        29
+Programmable Linear DC Electronic Load                    Goutham Haridas and Afnan Muhammad
+
+                                                          I ≈ 1.667 A.           (144)
+The display should show approximately constant power while the current changes.
+
+42.3 Demonstration 3: Constant Resistance
+Set
+
+                                        RSET = 15 Ω.                             (145)
+                                                                                 (146)
+At 15 V,                                                                         (147)
+
+                                        I ≈ 1A
+
+and at 12 V,
+
+                                        I ≈ 0.8 A.
+
+42.4 Demonstration 4: Temperature Protection
+
+Increase the absorbed power while observing temperature.
+When
+
+                                        T ≥ TTRIP,                               (148)
+                                                                                 (149)
+the firmware sets
+
+                                        ICMD = 0.
+
+The OLED reports the thermal fault.
+
+43 Research Basis
+
+Programmable electronic loads are established laboratory instruments for testing DC power supplies,
+batteries, adapters, and other power sources. The engineering literature includes designs using power
+MOSFETs as controllable current sinks, current sensing, analog feedback, digital control, and battery
+discharge measurement.
+The literature review for the final project should focus on:
+
+   • programmable electronic load architectures;
+   • linear-region operation of power MOSFETs;
+   • current-sense amplifier design;
+   • closed-loop current regulation;
+   • battery discharge and capacity measurement;
+   • electro-thermal behavior of MOSFETs;
+
+                                                                 30
+Programmable Linear DC Electronic Load                                 Goutham Haridas and Afnan Muhammad
+
+   • PCB power-current and thermal design.
+
+IEEE Xplore and peer-reviewed sources should be used to select the final references for the academic
+report.
+
+44 Important Engineering Limitations
+
+The following points must be treated as design-validation requirements rather than assumptions.
+
+44.1 MOSFET Linear SOA
+
+The BUZ11 headline current rating is not sufficient for this project because the MOSFET is used in its
+linear region. The exact manufacturer’s forward-bias safe-operating-area curve must be checked at the
+actual voltage-current operating point.
+
+44.2 Thermal Rating
+
+The 30 W peak value is a calculated electrical design point. The continuous rating depends on the actual
+heatsink, airflow, ambient temperature, thermal interface, MOSFET package, and PCB arrangement.
+
+44.3 Current Accuracy                                                  (150)
+The nominal relationship
+
+                                                           VSENSE ≈ I
+is an ideal transfer. Real accuracy requires calibration.
+
+44.4 Control-Loop Stability
+
+The selected RC values are first-pass values. The completed circuit should be simulated and then
+evaluated experimentally with an oscilloscope.
+
+44.5 PCB Current Handling
+
+A properly routed two-layer PCB is suitable for a 2 A current path, but the final trace width, copper
+thickness, connector selection, via structure, and thermal rise must be checked against the final PCB
+fabrication specification.
+
+45 Conclusion
+
+The proposed product is a programmable linear DC electronic load rather than a conventional fixed
+resistor or manually adjusted rheostat. The key engineering function is to control the current absorbed
+from an external DC source through a closed-loop power-semiconductor stage.
+The first-pass architecture uses:
+
+ESP32-WROOM-32 + MCP4725 + INA180A3 + LM358B + 4 × BUZ11 + Current Shunt + OLED
+                                                                                                                             (151)
+
+                                                               31
+Programmable Linear DC Electronic Load  Goutham Haridas and Afnan Muhammad
+
+The principal electrical specifications are:                             (152)
+                                                       VIN = 10 − −15 V
+
+ILOAD,max = 2 A                                                          (153)
+
+                                                      PLOAD,max = 30 W   (154)
+and a practical constant-resistance emulation range of approximately
+
+REQ ≈ 5 − −150 Ω                                                         (155)
+
+subject to the simultaneous voltage, current, power, and thermal limits.
+
+The two-layer PCB is feasible because the maximum load current is only 2 A. The dominant engineering
+challenge is thermal dissipation and linear safe-operating-area verification of the MOSFET bank.
+
+The design is intentionally structured so that the ESP32 is not the power converter. The ESP32 provides
+user interaction, setpoint generation, measurement, protection logic, and test sequencing, while the
+analog current loop performs the fast current control. This separation improves the power-electronics
+content of the project and provides a clear academic basis for discussing semiconductor operation,
+sensing, feedback control, thermal design, and PCB engineering.
+
+46 References
+
+   1. Espressif Systems, ESP32-WROOM-32 Datasheet.
+       https://documentation.espressif.com/esp32-wroom-32_datasheet_en.html
+
+   2. Espressif Systems, ESP32 Hardware Design Guidelines.
+       https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/
+
+   3. Texas Instruments, INA180 Low- and High-Side Voltage Output Current-Sense Amplifier.
+       https://www.ti.com/product/INA180
+
+   4. Microchip Technology, MCP4725 12-bit Digital-to-Analog Converter.
+       https://www.microchip.com/
+
+   5. Texas Instruments, LM358B Operational Amplifier Documentation.
+       https://www.ti.com/
+
+   6. Power MOSFET manufacturer documentation for BUZ11, including absolute maximum ratings
+       and forward-bias safe-operating-area data. The exact manufacturer’s datasheet for the purchased
+       device shall be used for final qualification.
+
+   7. Robu.in, ESP32 Modules.
+       https://robu.in/product-category/esp-wifi-module/
+
+   8. Robu.in, MOSFET Products.
+       https://robu.in/product-category/mosfet/
+
+   9. Robu.in, Current and Voltage Sensors.
+       https://robu.in/product-category/current-and-voltage-sensor/
+
+  10. Robu.in, Current-Sense Resistors.
+       https://robu.in/product-category/current-sense-resistors/
+
+                                                                 32
+Programmable Linear DC Electronic Load      Goutham Haridas and Afnan Muhammad
+
+11. Robu.in, OLED Displays.
+     https://robu.in/product-category/oled-display/
+
+12. Robu.in, Aluminium Heatsinks.
+     https://robu.in/product-category/aluminium-heat-sink/
+
+13. Robu.in, PCB Manufacturing Service.
+     https://robu.in/product/online-pcb-manufacturing-service/
+
+14. IEEE Xplore, literature search topics: programmable electronic load, MOSFET active load,
+     battery discharge electronic load, and DC power-source testing.
+     https://ieeexplore.ieee.org/
+
+                                        33
+

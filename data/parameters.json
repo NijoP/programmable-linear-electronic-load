@@ -1,0 +1,1448 @@
+{
+  "schema_version": 1,
+  "parameters": [
+    {
+      "id": "vin_min_V",
+      "value": 10,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Nominal input operating range lower bound; not a battery chemistry cutoff."
+    },
+    {
+      "id": "vin_max_V",
+      "value": 15,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Nominal input operating range upper bound; not an absolute maximum component rating."
+    },
+    {
+      "id": "current_max_A",
+      "value": 2,
+      "unit": "A",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Maximum controlled current target, subject to simultaneous power/thermal/SOA constraints."
+    },
+    {
+      "id": "power_peak_W",
+      "value": 30,
+      "unit": "W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9-10",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Peak electrical target only. Peak duration and physical qualification are unresolved."
+    },
+    {
+      "id": "power_initial_continuous_W",
+      "value": 24,
+      "unit": "W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Recommended initial continuous target, NOT a validated continuous rating."
+    },
+    {
+      "id": "cc_current_min_A",
+      "value": 0.1,
+      "unit": "A",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Practical minimum regulated-current target. Do not force smaller requests upward."
+    },
+    {
+      "id": "cp_range_min_W",
+      "value": 5,
+      "unit": "W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Approximate CP setpoint range lower bound; achievable current/power depends on Vin."
+    },
+    {
+      "id": "cr_range_min_ohm",
+      "value": 5,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Approximate useful range lower bound; simultaneous limits apply."
+    },
+    {
+      "id": "cr_range_max_ohm",
+      "value": 150,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Approximate useful range upper bound; low-current performance requires measurement."
+    },
+    {
+      "id": "num_mosfets",
+      "value": 4,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Four fitted devices. Equal sharing is a modeling case, not guaranteed behavior."
+    },
+    {
+      "id": "mosfet_part",
+      "value": "BUZ11",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Linear-stage candidate; exact manufacturer, authenticity and DC SOA require qualification."
+    },
+    {
+      "id": "shunt_ohm",
+      "value": 0.01,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "nominal",
+      "notes": "Nominal resistance, not measured/calibrated resistance."
+    },
+    {
+      "id": "shunt_power_rating_W",
+      "value": 3,
+      "unit": "W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Specified shunt rating; supplier and mounting derating still need verification."
+    },
+    {
+      "id": "shunt_tolerance_percent",
+      "value": 1,
+      "unit": "%",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Specified resistance tolerance; temperature coefficient is not specified."
+    },
+    {
+      "id": "sense_part",
+      "value": "INA180A3",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "12",
+        "physical_page": 11
+      },
+      "context": "specification",
+      "notes": "Nominal gain is corroborated by TI SBOS741H; see docs/DATASHEET_EVIDENCE.md."
+    },
+    {
+      "id": "sense_gain_V_V",
+      "value": 100,
+      "unit": "V/V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "12, eq. 25",
+        "physical_page": 11
+      },
+      "context": "nominal",
+      "notes": "Nominal gain only; real offset/gain error and calibration are separate."
+    },
+    {
+      "id": "dac_part",
+      "value": "MCP4725",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "EEPROM startup state is a hardware safety concern; see evidence E-002."
+    },
+    {
+      "id": "dac_bits",
+      "value": 12,
+      "unit": "bit",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "13",
+        "physical_page": 11
+      },
+      "context": "specification",
+      "notes": "Code count is derived as 2^12; representable codes are 0 through 4095."
+    },
+    {
+      "id": "dac_supply_V",
+      "value": 3.3,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "13, eq. 35",
+        "physical_page": 12
+      },
+      "context": "nominal",
+      "notes": "Nominal Vdd used as DAC reference; actual supply/tolerance must be measured."
+    },
+    {
+      "id": "dac_code_cap",
+      "value": 2482,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "13, eq. 39",
+        "physical_page": 12
+      },
+      "context": "provisional",
+      "notes": "Proposed code cap agrees with floor(2*4096/3.3)=2482. No tolerance-aware hardware limit is implied."
+    },
+    {
+      "id": "dac_transfer_denominator",
+      "value": 4096,
+      "unit": "1",
+      "classification": "DATASHEET",
+      "source": {
+        "document": "https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf",
+        "section": "DS22039D 5.1, eq. 5-1; evidence E-001",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "Vout=Vdd*code/4096. Corrects PDF eqs. 35/38; the archived PDF is unchanged."
+    },
+    {
+      "id": "divider_high_ohm",
+      "value": 33000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "14, eq. 40",
+        "physical_page": 12
+      },
+      "context": "nominal",
+      "notes": "R1 from input to ADC node."
+    },
+    {
+      "id": "divider_low_ohm",
+      "value": 7500,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "14, eq. 41",
+        "physical_page": 12
+      },
+      "context": "nominal",
+      "notes": "R2 from ADC node to reference ground."
+    },
+    {
+      "id": "voltage_filter_F",
+      "value": 4.7e-08,
+      "unit": "F",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "14.1, eq. 48",
+        "physical_page": 13
+      },
+      "context": "provisional",
+      "notes": "47 nF first-pass voltage filter; ADC source-impedance behavior not qualified."
+    },
+    {
+      "id": "current_filter_ohm",
+      "value": 10000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "15, eq. 50",
+        "physical_page": 13
+      },
+      "context": "provisional",
+      "notes": "First-pass feedback filter resistor; RC corner is not a stability result."
+    },
+    {
+      "id": "current_filter_F",
+      "value": 1e-07,
+      "unit": "F",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "15, eq. 51",
+        "physical_page": 13
+      },
+      "context": "provisional",
+      "notes": "100 nF first-pass feedback filter capacitor; loop topology/compensation require validation."
+    },
+    {
+      "id": "ballast_ohm",
+      "value": 0.1,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "17, eq. 57",
+        "physical_page": 14
+      },
+      "context": "nominal",
+      "notes": "One source ballast resistor per MOSFET."
+    },
+    {
+      "id": "ballast_power_rating_W",
+      "value": 3,
+      "unit": "W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "17",
+        "physical_page": 14
+      },
+      "context": "provisional",
+      "notes": "PDF proposes a 3 W resistor; exact supplier rating/derating must be checked."
+    },
+    {
+      "id": "gate_ohm",
+      "value": 1000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "20, eq. 74",
+        "physical_page": 16
+      },
+      "context": "provisional",
+      "notes": "One gate resistor per MOSFET; gate transient response remains unqualified."
+    },
+    {
+      "id": "gate_pulldown_ohm",
+      "value": 100000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "20, eq. 75",
+        "physical_page": 16
+      },
+      "context": "provisional",
+      "notes": "Pull-down only tends OFF when drive is high impedance; does not override active drive."
+    },
+    {
+      "id": "gate_zener_V",
+      "value": 8.2,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "20",
+        "physical_page": 16
+      },
+      "context": "provisional",
+      "notes": "Approximate gate-source zener voltage; tolerances and surge power unresolved."
+    },
+    {
+      "id": "gate_drive_example_V",
+      "value": 5,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "20, eqs. 76-77",
+        "physical_page": 16
+      },
+      "context": "illustrative",
+      "notes": "Assumed gate-drive example, NOT guaranteed LM358B output swing."
+    },
+    {
+      "id": "opamp_part",
+      "value": "LM358B",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Supply arrangement/output headroom and compensation remain unresolved."
+    },
+    {
+      "id": "mcu_part",
+      "value": "ESP32-WROOM-32",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Module soldered directly to custom PCB, not a development board."
+    },
+    {
+      "id": "display_part",
+      "value": "SSD1306 OLED",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "0.96-inch display; exact module and electrical interface to be verified."
+    },
+    {
+      "id": "display_diagonal_in",
+      "value": 0.96,
+      "unit": "in",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "nominal",
+      "notes": "Source display size, not a PCB footprint dimension."
+    },
+    {
+      "id": "encoder_part",
+      "value": "EC11",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "8.6",
+        "physical_page": 9
+      },
+      "context": "specification",
+      "notes": "Encoder with push switch; exact variant/footprint unresolved."
+    },
+    {
+      "id": "regulator_5V_part",
+      "value": "L7805",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "27",
+        "physical_page": 20
+      },
+      "context": "provisional",
+      "notes": "Input-powered control rail; heat and regulator current budget require validation."
+    },
+    {
+      "id": "rail_5V_V",
+      "value": 5,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "27, eq. 114",
+        "physical_page": 20
+      },
+      "context": "nominal",
+      "notes": "Nominal output rail; not a selected tolerance specification."
+    },
+    {
+      "id": "rail_3V3_V",
+      "value": 3.3,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "27, eq. 115",
+        "physical_page": 20
+      },
+      "context": "nominal",
+      "notes": "Nominal 3.3 V LDO output; part and peak current budget unresolved."
+    },
+    {
+      "id": "rail_current_example_A",
+      "value": 0.15,
+      "unit": "A",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "27, eqs. 116-117",
+        "physical_page": 20
+      },
+      "context": "illustrative",
+      "notes": "Assumed rail current for loss examples, NOT measured ESP32/fan current or a complete cascade budget."
+    },
+    {
+      "id": "rjc_example_K_per_W",
+      "value": 1.67,
+      "unit": "K/W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 66",
+        "physical_page": 15
+      },
+      "context": "illustrative",
+      "notes": "Preliminary assumed junction-to-case resistance; actual purchased device not identified."
+    },
+    {
+      "id": "rcs_example_K_per_W",
+      "value": 0.5,
+      "unit": "K/W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 68",
+        "physical_page": 15
+      },
+      "context": "illustrative",
+      "notes": "Assumed thermal-interface resistance; material, mounting and measurement unresolved."
+    },
+    {
+      "id": "ambient_example_C",
+      "value": 35,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 70",
+        "physical_page": 15
+      },
+      "context": "illustrative",
+      "notes": "Illustrative ambient temperature, not environment measurement."
+    },
+    {
+      "id": "junction_target_C",
+      "value": 100,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 71",
+        "physical_page": 16
+      },
+      "context": "provisional",
+      "notes": "Preliminary junction design target, not BUZ11 absolute maximum."
+    },
+    {
+      "id": "heatsink_target_C",
+      "value": 80,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 73",
+        "physical_page": 16
+      },
+      "context": "illustrative",
+      "notes": "Illustrative accepted sink temperature at 35 C ambient; not a sensor trip threshold."
+    },
+    {
+      "id": "rsa_shared_target_K_per_W",
+      "value": 1.5,
+      "unit": "K/W",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 73",
+        "physical_page": 16
+      },
+      "context": "provisional",
+      "notes": "Shared-heatsink design target <=1.5 K/W at approx.30 W, not a guaranteed retail heatsink property."
+    },
+    {
+      "id": "ntc_r0_ohm",
+      "value": 10000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 107",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "NTC nominal resistance at 25 C; tolerance and purchased part TBD."
+    },
+    {
+      "id": "ntc_t0_C",
+      "value": 25,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 107",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "Reference temperature; beta equation converts to kelvin explicitly."
+    },
+    {
+      "id": "ntc_beta_K",
+      "value": 3950,
+      "unit": "K",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 109",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "Approximate beta coefficient; usable range and accuracy require exact datasheet/calibration."
+    },
+    {
+      "id": "ntc_reference_ohm",
+      "value": 10000,
+      "unit": "ohm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 108",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "Divider reference resistor; divider orientation is not specified."
+    },
+    {
+      "id": "ntc_supply_V",
+      "value": 3.3,
+      "unit": "V",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 108",
+        "physical_page": 19
+      },
+      "context": "nominal",
+      "notes": "Nominal temperature divider supply."
+    },
+    {
+      "id": "t_fan_high_C",
+      "value": 60,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eqs. 110-111",
+        "physical_page": 20
+      },
+      "context": "provisional",
+      "notes": "Suggested fan high threshold. Hysteresis, placement and fan PWM are unresolved."
+    },
+    {
+      "id": "t_derating_C",
+      "value": 75,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 112",
+        "physical_page": 20
+      },
+      "context": "provisional",
+      "notes": "Suggested derating start; law not specified. Software baseline must disable rather than invent a law."
+    },
+    {
+      "id": "t_shutdown_C",
+      "value": 85,
+      "unit": "C",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 113",
+        "physical_page": 20
+      },
+      "context": "provisional",
+      "notes": "Suggested shutdown at or above threshold; assembly validation required."
+    },
+    {
+      "id": "pcb_layers",
+      "value": 2,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Two-layer PCB target."
+    },
+    {
+      "id": "pcb_material",
+      "value": "FR-4",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "specification",
+      "notes": "Exact stackup, board thickness and material grade TBD."
+    },
+    {
+      "id": "pcb_width_target_mm",
+      "value": 100,
+      "unit": "mm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "provisional",
+      "notes": "Approximate board width target."
+    },
+    {
+      "id": "pcb_height_target_mm",
+      "value": 100,
+      "unit": "mm",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "provisional",
+      "notes": "Approximate board height target."
+    },
+    {
+      "id": "pcb_copper_preferred_oz",
+      "value": 2,
+      "unit": "oz/ft^2",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "9, Table 1",
+        "physical_page": 10
+      },
+      "context": "provisional",
+      "notes": "Preferred copper weight if budget permits; not frozen fabrication stackup."
+    },
+    {
+      "id": "trace_length_example_m",
+      "value": 0.1,
+      "unit": "m",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "33",
+        "physical_page": 24
+      },
+      "context": "illustrative",
+      "notes": "100 mm trace example, not actual routing length."
+    },
+    {
+      "id": "trace_width_example_m",
+      "value": 0.005,
+      "unit": "m",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "33",
+        "physical_page": 24
+      },
+      "context": "illustrative",
+      "notes": "5 mm trace example, not an ampacity qualification."
+    },
+    {
+      "id": "trace_thickness_example_m",
+      "value": 3.5e-05,
+      "unit": "m",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "33",
+        "physical_page": 24
+      },
+      "context": "illustrative",
+      "notes": "35 um example, distinct from preferred 2 oz copper."
+    },
+    {
+      "id": "copper_resistivity_example_ohm_m",
+      "value": 1.724e-08,
+      "unit": "ohm*m",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "33, eq. 126",
+        "physical_page": 24
+      },
+      "context": "illustrative",
+      "notes": "Approximate resistivity used by source example; temperature coefficient not specified."
+    },
+    {
+      "id": "gpio_i2c_sda",
+      "value": 21,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested shared OLED/MCP4725 SDA."
+    },
+    {
+      "id": "gpio_i2c_scl",
+      "value": 22,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested shared OLED/MCP4725 SCL."
+    },
+    {
+      "id": "gpio_adc_current",
+      "value": 35,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested current ADC input-only GPIO."
+    },
+    {
+      "id": "gpio_adc_vin",
+      "value": 34,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested input voltage ADC input-only GPIO."
+    },
+    {
+      "id": "gpio_adc_ntc",
+      "value": 39,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested temperature ADC input-only GPIO."
+    },
+    {
+      "id": "gpio_enc_a",
+      "value": 18,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested encoder A."
+    },
+    {
+      "id": "gpio_enc_b",
+      "value": 19,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested encoder B."
+    },
+    {
+      "id": "gpio_enc_push",
+      "value": 23,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested encoder push."
+    },
+    {
+      "id": "gpio_start_stop",
+      "value": 25,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested START/STOP button."
+    },
+    {
+      "id": "gpio_fan",
+      "value": 26,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested fan control."
+    },
+    {
+      "id": "gpio_fault",
+      "value": 27,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested fault input; independent comparator is only a future revision in source."
+    },
+    {
+      "id": "gpio_uart_tx",
+      "value": 1,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested UART TX."
+    },
+    {
+      "id": "gpio_uart_rx",
+      "value": 3,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested UART RX."
+    },
+    {
+      "id": "gpio_boot",
+      "value": 0,
+      "unit": "1",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Suggested BOOT GPIO0; strapping requirements need schematic review."
+    },
+    {
+      "id": "reset_pin",
+      "value": "EN",
+      "unit": "text",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1, Table 2",
+        "physical_page": 21
+      },
+      "context": "provisional",
+      "notes": "Known named enable/reset pin, NOT a missing GPIO number."
+    },
+    {
+      "id": "budget_ceiling_INR",
+      "value": 10000,
+      "unit": "INR",
+      "classification": "FROZEN_FROM_PDF",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "40, eq. 139",
+        "physical_page": 29
+      },
+      "context": "specification",
+      "notes": "All-inclusive approximate project ceiling, not current procurement pricing."
+    },
+    {
+      "id": "peak_duration_s",
+      "value": null,
+      "unit": "s",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "10; 44.2",
+        "physical_page": 10
+      },
+      "context": "unknown",
+      "notes": "No allowable peak duration supplied. No hardware authorization for 30 W follows from the analytical target."
+    },
+    {
+      "id": "continuous_qualified_W",
+      "value": null,
+      "unit": "W",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.2",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Requires actual cooling, ambient, mounting, SOA and stability evidence."
+    },
+    {
+      "id": "mosfet_manufacturer",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.1",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Exact purchased BUZ11 manufacturer/lot not supplied."
+    },
+    {
+      "id": "mosfet_soa_margin",
+      "value": null,
+      "unit": "1",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "35, Table 3",
+        "physical_page": 25
+      },
+      "context": "unknown",
+      "notes": "Need exact device DC SOA, actual case temperature, Vds/Id, duration and unequal sharing."
+    },
+    {
+      "id": "rjc_actual_K_per_W",
+      "value": null,
+      "unit": "K/W",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19; 44.2",
+        "physical_page": 15
+      },
+      "context": "unknown",
+      "notes": "Actual purchased device datasheet evidence required; illustrative value is separate."
+    },
+    {
+      "id": "rcs_actual_K_per_W",
+      "value": null,
+      "unit": "K/W",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19; 44.2",
+        "physical_page": 15
+      },
+      "context": "unknown",
+      "notes": "Actual thermal interface/mounting characterization required."
+    },
+    {
+      "id": "rsa_actual_K_per_W",
+      "value": null,
+      "unit": "K/W",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19, eq. 73",
+        "physical_page": 16
+      },
+      "context": "unknown",
+      "notes": "Actual shared sink resistance at defined airflow/ambient is not measured."
+    },
+    {
+      "id": "thermal_capacitance_J_per_K",
+      "value": null,
+      "unit": "J/K",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "19; 36.5",
+        "physical_page": 26
+      },
+      "context": "unknown",
+      "notes": "No dynamic thermal parameters supplied; cannot predict transient thermal time constants."
+    },
+    {
+      "id": "ntc_orientation",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 108",
+        "physical_page": 19
+      },
+      "context": "unknown",
+      "notes": "Equal-value 25 C divider example does not establish which leg is the NTC."
+    },
+    {
+      "id": "ntc_placement",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "8.7; 26",
+        "physical_page": 19
+      },
+      "context": "unknown",
+      "notes": "Heatsink temperature sensing is proposed; physical location/contact and lag require assembly definition."
+    },
+    {
+      "id": "thermal_hysteresis_C",
+      "value": null,
+      "unit": "C",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eqs. 110-113",
+        "physical_page": 20
+      },
+      "context": "unknown",
+      "notes": "No threshold hysteresis is specified."
+    },
+    {
+      "id": "derating_policy",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "26, eq. 112",
+        "physical_page": 20
+      },
+      "context": "unknown",
+      "notes": "No derating curve is specified. Disabling when policy is absent is a separate conservative software decision."
+    },
+    {
+      "id": "adc_attenuation",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "28.1; 44.3",
+        "physical_page": 21
+      },
+      "context": "unknown",
+      "notes": "ADC attenuation/range/configuration is not supplied. Do not assume ideal 3.3 V full scale."
+    },
+    {
+      "id": "adc_gain_V_per_code",
+      "value": null,
+      "unit": "V/code",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.3",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Each channel needs characterized transfer and range; this unresolved placeholder is not a universal calibration."
+    },
+    {
+      "id": "adc_offset_V",
+      "value": null,
+      "unit": "V",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.3",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "ADC channel offset calibration is not supplied."
+    },
+    {
+      "id": "current_sense_offset_V",
+      "value": null,
+      "unit": "V",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "12; 36.2",
+        "physical_page": 26
+      },
+      "context": "unknown",
+      "notes": "Zero-current calibration required before gain calibration."
+    },
+    {
+      "id": "current_sense_calibrated_V_per_A",
+      "value": null,
+      "unit": "V/A",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.3",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Nominal gain*shunt product is not a measured transfer."
+    },
+    {
+      "id": "shunt_temperature_coefficient_per_K",
+      "value": null,
+      "unit": "1/K",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "12",
+        "physical_page": 11
+      },
+      "context": "unknown",
+      "notes": "Source identifies TCR error but supplies no coefficient."
+    },
+    {
+      "id": "current_accuracy_A",
+      "value": null,
+      "unit": "A",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "35, Table 3",
+        "physical_page": 25
+      },
+      "context": "unknown",
+      "notes": "Requires reference-current calibration and uncertainty budget over specified range/conditions."
+    },
+    {
+      "id": "loop_bandwidth_Hz",
+      "value": null,
+      "unit": "Hz",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "15; 44.4",
+        "physical_page": 13
+      },
+      "context": "unknown",
+      "notes": "RC corner does not determine closed-loop bandwidth."
+    },
+    {
+      "id": "loop_phase_margin_deg",
+      "value": null,
+      "unit": "deg",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.4",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Requires schematic/device model and loop measurement; no stability margin invented."
+    },
+    {
+      "id": "opamp_supply_V",
+      "value": null,
+      "unit": "V",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "27",
+        "physical_page": 20
+      },
+      "context": "unknown",
+      "notes": "Input-side electronics rail is mentioned but exact op-amp supply/drive arrangement is unresolved."
+    },
+    {
+      "id": "startup_inhibit_circuit",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "7.3; 31; 37",
+        "physical_page": 27
+      },
+      "context": "unknown",
+      "notes": "Default-off software intention does not prove safe MCP4725 EEPROM startup; see datasheet E-002."
+    },
+    {
+      "id": "fault_reset_policy",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "31; 37",
+        "physical_page": 27
+      },
+      "context": "unknown",
+      "notes": "Fault latch is required; precise reset/clear conditions are not defined."
+    },
+    {
+      "id": "fuse_rating_A",
+      "value": null,
+      "unit": "A",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "31",
+        "physical_page": 22
+      },
+      "context": "unknown",
+      "notes": "Fuse type/rating/time-current curve and coordination not supplied."
+    },
+    {
+      "id": "fan_current_A",
+      "value": null,
+      "unit": "A",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "8.7",
+        "physical_page": 9
+      },
+      "context": "unknown",
+      "notes": "Fan part, rail, running/startup current and airflow are unresolved."
+    },
+    {
+      "id": "battery_cutoff_V",
+      "value": null,
+      "unit": "V",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "30",
+        "physical_page": 22
+      },
+      "context": "unknown",
+      "notes": "User-selected chemistry-dependent cutoff; no example value is specified; hardware range still applies."
+    },
+    {
+      "id": "current_measurement_boundary",
+      "value": null,
+      "unit": "text",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "18; 27; 30",
+        "physical_page": 22
+      },
+      "context": "unknown",
+      "notes": "Whether auxiliaries pass through the shunt is unresolved; distinguish controlled branch and source terminal charge/energy."
+    },
+    {
+      "id": "sample_period_s",
+      "value": null,
+      "unit": "s",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "30; 37",
+        "physical_page": 27
+      },
+      "context": "unknown",
+      "notes": "No firmware sample period supplied. Battery integration accepts explicit timestamps/intervals."
+    },
+    {
+      "id": "pcb_copper_actual_m",
+      "value": null,
+      "unit": "m",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "44.5",
+        "physical_page": 32
+      },
+      "context": "unknown",
+      "notes": "Actual fabrication copper thickness differs from preference and illustrative trace example."
+    },
+    {
+      "id": "pcb_trace_actual_ohm",
+      "value": null,
+      "unit": "ohm",
+      "classification": "TBD",
+      "source": {
+        "document": "docs/source/design-source.pdf",
+        "section": "33; 44.5",
+        "physical_page": 24
+      },
+      "context": "unknown",
+      "notes": "Actual geometry, temperature, vias and connections require layout/measurement."
+    }
+  ]
+}
