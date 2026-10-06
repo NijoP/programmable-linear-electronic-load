@@ -82,51 +82,58 @@ function test_electrical()
         sprintf('CP command at 12 V: expected %.4f A, got %g A', expected, Icmd));
     fprintf('PASS: CP command at 12 V = %.4f A (expected %.4f A)\n', Icmd, expected);
 
-    % Test 10: CR command
+    % Test 11: CP command at 10 V
+    Icmd = plel_cp_command(20, 2, 30, 10);
+    expected = 20/10;
+    assert(abs(Icmd - expected) < 1e-9, ...
+        sprintf('CP command at 10 V: expected %.4f A, got %g A', expected, Icmd));
+    fprintf('PASS: CP command at 10 V = %.4f A (expected %.4f A)\n', Icmd, expected);
+
+    % Test 12: CR command
     % Source §24: At Vin=15V, Rset=15 ohm: Ireq = 15/15 = 1 A
     Icmd = plel_cr_command(15, 15, 2, 30);
     assert(abs(Icmd - 1.0) < 1e-15, ...
         sprintf('CR command: expected 1.0 A, got %g A', Icmd));
     fprintf('PASS: CR command at 15 V, 15 ohm = %.5f A (expected 1.0 A)\n', Icmd);
 
-    % Test 11: NTC resistance
+    % Test 13: NTC resistance
     % Source §26: R0=10k at 25°C, beta=3950 K. At 25°C (same temp): R=10k
     R = plel_ntc_resistance(10000, 3950, 298.15, 298.15);
     assert(abs(R - 10000) < 1, ...
         sprintf('NTC resistance: expected ~10000 ohms, got %g ohms', R));
     fprintf('PASS: NTC resistance at 25°C = %.1f ohms (expected 10000)\n', R);
 
-    % Test 12: NTC resistance at 0°C (approximate)
+    % Test 14: NTC resistance at 0°C (approximate)
     R = plel_ntc_resistance(10000, 3950, 298.15, 273.15);
     fprintf('INFO: NTC resistance at 0°C = %.1f ohms\n', R);
 
-    % Test 13: Temperature from NTC
+    % Test 15: Temperature from NTC
     T_K = plel_temperature_from_ntc(10000, 10000, 3950, 298.15);
     assert(abs(T_K - 298.15) < 0.01, ...
         sprintf('Temperature from NTC: expected 298.15 K, got %g K', T_K));
     T_C = T_K - 273.15;
     fprintf('PASS: Temperature from NTC = %.2f°C (expected 25.00°C)\n', T_C);
 
-    % Test 14: Derating logic - normal range
+    % Test 16: Derating logic - normal range
     [Icmd, state, reason] = plel_derating_logic(1.5, 30, 85, 75, 60);
     assert(strcmp(state, 'active'), ...
         sprintf('Derating: expected state active, got %s', state));
     fprintf('PASS: Derating logic at 30°C = state %s\n', state);
 
-    % Test 15: Derating logic - shutdown
+    % Test 17: Derating logic - shutdown
     [Icmd, state, reason] = plel_derating_logic(1.5, 90, 85, 75, 60);
     assert(strcmp(state, 'shutdown'), ...
         sprintf('Derating: expected state shutdown, got %s', state));
     assert(abs(Icmd) < 1e-15, sprintf('Derating: expected Icmd=0, got %g', Icmd));
     fprintf('PASS: Derating logic at 90°C = state %s, Icmd = %g\n', state, Icmd);
 
-    % Test 16: Derating logic - derating region
+    % Test 18: Derating logic - derating region
     [Icmd, state, reason] = plel_derating_logic(1.5, 75, 85, 75, 60);
     assert(strcmp(state, 'derating'), ...
         sprintf('Derating: expected state derating, got %s', state));
     fprintf('PASS: Derating logic at 75°C = state %s, Icmd = %.4f A\n', state, Icmd);
 
-    % Test 17: Derating logic - fan high
+    % Test 19: Derating logic - fan high
     [Icmd, state, reason] = plel_derating_logic(1.5, 65, 85, 75, 60);
     assert(strcmp(state, 'fan_high'), ...
         sprintf('Derating: expected state fan_high, got %s', state));

@@ -1,0 +1,571 @@
+[
+  {
+    "component": "BUZ11 MOSFET",
+    "requirements": [
+      {
+        "parameter": "VDS(max)",
+        "required_min": 20,
+        "required_unit": "V",
+        "required_notes": "Must withstand at least 20 V with margin",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 50 V VDS(max)"
+      },
+      {
+        "parameter": "ID(max)",
+        "required_min": 2,
+        "required_unit": "A",
+        "required_notes": "Per device, with sharing",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 38 A ID(max)"
+      },
+      {
+        "parameter": "RDS(on)",
+        "required_max": 0.1,
+        "required_unit": "Ω",
+        "required_notes": "Low enough to minimize conduction loss",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows typical 0.03 Ω"
+      },
+      {
+        "parameter": "VGS(th)",
+        "required_min": 2,
+        "required_max": 4,
+        "required_unit": "V",
+        "required_notes": "Compatible with gate drive",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 2-4 V range"
+      },
+      {
+        "parameter": "RθJC",
+        "required_max": 2,
+        "required_unit": "K/W",
+        "required_notes": "Lower is better for thermal",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 1.67 K/W"
+      },
+      {
+        "parameter": "DC SOA",
+        "required_notes": "Must cover operating point: VDS≈15 V, ID≈0.5 A per device, continuous",
+        "satisfied": false,
+        "satisfaction_notes": "Datasheet provides SOA curve; needs evaluation at actual case temperature and duration"
+      },
+      {
+        "parameter": "TJ(max)",
+        "required_min": 150,
+        "required_unit": "°C",
+        "required_notes": "Sufficient margin",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 175 °C"
+      }
+    ],
+    "overall_status": "REQUIRES SOA EVALUATION"
+  },
+  {
+    "component": "Shunt Resistor",
+    "requirements": [
+      {
+        "parameter": "Resistance",
+        "required_value": 0.01,
+        "required_unit": "Ω",
+        "required_tolerance": 1,
+        "required_notes": "Nominal value with tolerance",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Power Rating",
+        "required_min": 3,
+        "required_unit": "W",
+        "required_notes": "Must handle I^2*R at 2 A",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Temperature Coefficient",
+        "required_max": 100,
+        "required_unit": "ppm/°C",
+        "required_notes": "Low drift preferred",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Current Sense Amplifier",
+    "requirements": [
+      {
+        "parameter": "Gain",
+        "required_value": 100,
+        "required_unit": "V/V",
+        "required_tolerance": 0.5,
+        "required_notes": "Nominal gain with tolerance",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet confirms 100 V/V for A3 version"
+      },
+      {
+        "parameter": "Offset Voltage",
+        "required_max": 500,
+        "required_unit": "µV",
+        "required_notes": "Low offset for accuracy",
+        "satisfied": false,
+        "satisfaction_notes": "Exact offset not known from datasheet without operating point"
+      },
+      {
+        "parameter": "Gain Error",
+        "required_max": 0.5,
+        "required_unit": "%",
+        "required_notes": "Gain accuracy",
+        "satisfied": false,
+        "satisfaction_notes": "Exact gain error not known"
+      },
+      {
+        "parameter": "Bandwidth",
+        "required_min": 100,
+        "required_unit": "kHz",
+        "required_notes": "Sufficient for control loop",
+        "satisfied": false,
+        "satisfaction_notes": "Bandwidth not specified in requirement; need to check datasheet"
+      },
+      {
+        "parameter": "Input Common-Mode Range",
+        "required_notes": "Must include common-mode voltage from shunt",
+        "satisfied": false,
+        "satisfaction_notes": "Need to verify range"
+      },
+      {
+        "parameter": "Output Swing",
+        "required_notes": "Must be able to drive ADC input range",
+        "satisfied": false,
+        "satisfaction_notes": "Need to verify swing"
+      }
+    ],
+    "overall_status": "REQUIRES ERROR BUDGET CHARACTERIZATION"
+  },
+  {
+    "component": "DAC",
+    "requirements": [
+      {
+        "parameter": "Resolution",
+        "required_value": 12,
+        "required_unit": "bits",
+        "required_notes": "As specified",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet confirms 12-bit"
+      },
+      {
+        "parameter": "Supply Voltage",
+        "required_value": 3.3,
+        "required_unit": "V",
+        "required_tolerance": 0.1,
+        "required_notes": "Nominal supply",
+        "satisfied": false,
+        "satisfaction_notes": "Supply tolerance not verified"
+      },
+      {
+        "parameter": "Power-on Reset State",
+        "required_value": 0,
+        "required_unit": "code",
+        "required_notes": "Preferred zero to ensure safe startup",
+        "satisfied": false,
+        "satisfaction_notes": "Datasheet shows EEPROM default midscale; requires hardware inhibit or firmware mitigation"
+      },
+      {
+        "parameter": "Integral Nonlinearity",
+        "required_max": 4,
+        "required_unit": "LSB",
+        "required_notes": "Good linearity",
+        "satisfied": false,
+        "satisfaction_notes": "INL not verified"
+      }
+    ],
+    "overall_status": "REQUIRES STARTUP SAFETY MITIGATION"
+  },
+  {
+    "component": "Op-Amp",
+    "requirements": [
+      {
+        "parameter": "Supply Voltage",
+        "required_notes": "Must be sufficient for gate drive",
+        "satisfied": false,
+        "satisfaction_notes": "Supply arrangement not defined"
+      },
+      {
+        "parameter": "Input Common-Mode Range",
+        "required_notes": "Must include negative supply or ground sensing",
+        "satisfied": false,
+        "satisfaction_notes": "Need to verify"
+      },
+      {
+        "parameter": "Output Swing",
+        "required_notes": "Must be able to swing gate voltage required for MOSFET",
+        "satisfied": false,
+        "satisfaction_notes": "Need to verify against gate drive requirements"
+      },
+      {
+        "parameter": "GBW",
+        "required_min": 1,
+        "required_unit": "MHz",
+        "required_notes": "Sufficient for control loop bandwidth",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 1 MHz typical"
+      },
+      {
+        "parameter": "Slew Rate",
+        "required_min": 0.5,
+        "required_unit": "V/µs",
+        "required_notes": "Sufficient for gate charging",
+        "satisfied": false,
+        "satisfaction_notes": "Datasheet shows 0.3 V/µs typical; may be insufficient"
+      }
+    ],
+    "overall_status": "REQUIRES SUPPLY AND HEADROOM VALIDATION; SLEW RATE MAY BE INADEQUATE"
+  },
+  {
+    "component": "Microcontroller",
+    "requirements": [
+      {
+        "parameter": "Current Consumption",
+        "required_max": 200,
+        "required_unit": "mA",
+        "required_notes": "Average current for power budget",
+        "satisfied": false,
+        "satisfaction_notes": "Exact current not known; need to measure or consult datasheet for worst-case"
+      },
+      {
+        "parameter": "GPIO Current",
+        "required_max": 12,
+        "required_unit": "mA",
+        "required_notes": "Per GPIO pin",
+        "satisfied": false,
+        "satisfaction_notes": "Need to verify"
+      }
+    ],
+    "overall_status": "REQUIRES POWER BUDGET CHARACTERIZATION"
+  },
+  {
+    "component": "5V Regulator",
+    "requirements": [
+      {
+        "parameter": "Output Voltage",
+        "required_value": 5,
+        "required_unit": "V",
+        "required_tolerance": 0.2,
+        "required_notes": "Regulated output",
+        "satisfied": true,
+        "satisfaction_notes": "Datasheet shows 5 V ±4%"
+      },
+      {
+        "parameter": "Dropout Voltage",
+        "required_max": 2,
+        "required_unit": "V",
+        "required_notes": "At maximum load current",
+        "satisfied": false,
+        "satisfaction_notes": "Dropout not verified at load"
+      },
+      {
+        "parameter": "Output Current",
+        "required_min": 1,
+        "required_unit": "A",
+        "required_notes": "Must supply analog and digital circuitry",
+        "satisfied": false,
+        "satisfaction_notes": "Current capacity not verified for our load"
+      },
+      {
+        "parameter": "Thermal Resistance",
+        "required_max": 20,
+        "required_unit": "K/W",
+        "required_notes": "Junction to ambient with heatsink",
+        "satisfied": false,
+        "satisfaction_notes": "Thermal resistance not verified"
+      }
+    ],
+    "overall_status": "REQUIRES POWER BUDGET AND THERMAL VALIDATION"
+  },
+  {
+    "component": "3.3V LDO",
+    "requirements": [
+      {
+        "parameter": "Output Voltage",
+        "required_value": 3.3,
+        "required_unit": "V",
+        "required_tolerance": 0.1,
+        "required_notes": "Regulated output",
+        "satisfied": false,
+        "satisfaction_notes": "Part not selected"
+      },
+      {
+        "parameter": "Output Current",
+        "required_min": 0.5,
+        "required_unit": "A",
+        "required_notes": "Must supply analog and digital circuitry",
+        "satisfied": false,
+        "satisfaction_notes": "Part not selected"
+      },
+      {
+        "parameter": "Dropout Voltage",
+        "required_max": 0.5,
+        "required_unit": "V",
+        "required_notes": "At maximum load",
+        "satisfied": false,
+        "satisfaction_notes": "Part not selected"
+      },
+      {
+        "parameter": "PSRR",
+        "required_min": 50,
+        "required_unit": "dB",
+        "required_notes": "At frequencies of interest",
+        "satisfied": false,
+        "satisfaction_notes": "Part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "NTC Thermistor",
+    "requirements": [
+      {
+        "parameter": "R25",
+        "required_value": 10000,
+        "required_unit": "Ω",
+        "required_tolerance": 1,
+        "required_notes": "Nominal resistance",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Beta",
+        "required_value": 3950,
+        "required_unit": "K",
+        "required_tolerance": 1,
+        "required_notes": "Beta value for temperature calculation",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Ballast Resistor",
+    "requirements": [
+      {
+        "parameter": "Resistance",
+        "required_value": 0.1,
+        "required_unit": "Ω",
+        "required_tolerance": 1,
+        "required_notes": "Per MOSFET",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Power Rating",
+        "required_min": 3,
+        "required_unit": "W",
+        "required_notes": "Must handle I^2*R at branch current",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Temperature Coefficient",
+        "required_max": 100,
+        "required_unit": "ppm/°C",
+        "required_notes": "Low drift preferred",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Gate Resistor",
+    "requirements": [
+      {
+        "parameter": "Resistance",
+        "required_value": 1000,
+        "required_unit": "Ω",
+        "required_tolerance": 1,
+        "required_notes": "Per MOSFET for damping",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Power Rating",
+        "required_min": 0.1,
+        "required_unit": "W",
+        "required_notes": "Must handle gate charging current",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Gate Pull-down Resistor",
+    "requirements": [
+      {
+        "parameter": "Resistance",
+        "required_value": 100000,
+        "required_unit": "Ω",
+        "required_tolerance": 1,
+        "required_notes": "To ensure default-off",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Power Rating",
+        "required_min": 0.1,
+        "required_unit": "W",
+        "required_notes": "Must handle voltage when gate is high",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Gate Zener Diode",
+    "requirements": [
+      {
+        "parameter": "Zener Voltage",
+        "required_value": 8.2,
+        "required_unit": "V",
+        "required_tolerance": 5,
+        "required_notes": "Gate-source over-voltage protection",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      },
+      {
+        "parameter": "Power Dissipation",
+        "required_min": 0.5,
+        "required_unit": "W",
+        "required_notes": "Must handle transient energy",
+        "satisfied": false,
+        "satisfaction_notes": "Exact part not selected"
+      }
+    ],
+    "overall_status": "PART SELECTION REQUIRED"
+  },
+  {
+    "component": "Heatsink",
+    "requirements": [
+      {
+        "parameter": "Thermal Resistance (RθSA)",
+        "required_max": 1.5,
+        "required_unit": "K/W",
+        "required_notes": "Shared at approximately 30 W total dissipation",
+        "satisfied": false,
+        "satisfaction_notes": "Heatsink not selected; need to characterize with airflow"
+      }
+    ],
+    "overall_status": "HEATSINK SELECTION AND THERMAL CHARACTERIZATION REQUIRED"
+  },
+  {
+    "component": "Fan",
+    "requirements": [
+      {
+        "parameter": "Airflow",
+        "required_notes": "Sufficient to achieve heatsink thermal resistance",
+        "satisfied": false,
+        "satisfaction_notes": "Fan not selected"
+      },
+      {
+        "parameter": "Current Draw",
+        "required_max": 0.5,
+        "required_unit": "A",
+        "required_notes": "Must be supplyable from 5 V rail",
+        "satisfied": false,
+        "satisfaction_notes": "Fan not selected"
+      },
+      {
+        "parameter": "PWM Controllable",
+        "required_value": true,
+        "required_unit": "boolean",
+        "required_notes": "For fan speed control",
+        "satisfied": false,
+        "satisfaction_notes": "Fan not selected"
+      }
+    ],
+    "overall_status": "FAN SELECTION AND CHARACTERIZATION REQUIRED"
+  },
+  {
+    "component": "Fuse",
+    "requirements": [
+      {
+        "parameter": "Rating",
+        "required_value": 2.5,
+        "required_unit": "A",
+        "required_notes": "Slow-blow, slightly above maximum operating current",
+        "satisfied": false,
+        "satisfaction_notes": "Fuse not selected"
+      },
+      {
+        "parameter": "Type",
+        "required_notes": "Slow-blow (time-delay) to tolerate inrush",
+        "satisfied": false,
+        "satisfaction_notes": "Fuse not selected"
+      }
+    ],
+    "overall_status": "FUSE SELECTION REQUIRED"
+  },
+  {
+    "component": "Input/Output Connectors",
+    "requirements": [
+      {
+        "parameter": "Current Rating",
+        "required_min": 2,
+        "required_unit": "A",
+        "required_notes": "Must handle maximum current",
+        "satisfied": false,
+        "satisfaction_notes": "Connectors not selected"
+      },
+      {
+        "parameter": "Contact Resistance",
+        "required_max": 10,
+        "required_unit": "mΩ",
+        "required_notes": "Low resistance to minimize voltage drop",
+        "satisfied": false,
+        "satisfaction_notes": "Connectors not selected"
+      },
+      {
+        "parameter": "Voltage Rating",
+        "required_min": 30,
+        "required_unit": "V",
+        "required_notes": "Must withstand input voltage",
+        "satisfied": false,
+        "satisfaction_notes": "Connectors not selected"
+      }
+    ],
+    "overall_status": "CONNECTOR SELECTION REQUIRED"
+  },
+  {
+    "component": "OLED Display",
+    "requirements": [
+      {
+        "parameter": "Interface",
+        "required_value": "I2C",
+        "required_unit": "text",
+        "required_notes": "As specified",
+        "satisfied": true,
+        "satisfaction_notes": "SSD1306 supports I2C"
+      },
+      {
+        "parameter": "Operating Voltage",
+        "required_min": 3,
+        "required_max": 3.6,
+        "required_unit": "V",
+        "required_notes": "Compatible with 3.3 V supply",
+        "satisfied": false,
+        "satisfaction_notes": "Exact module voltage range not verified"
+      },
+      {
+        "parameter": "Current Consumption",
+        "required_max": 10,
+        "required_unit": "mA",
+        "required_notes": "Low current for power budget",
+        "satisfied": false,
+        "satisfaction_notes": "Exact module current not verified"
+      }
+    ],
+    "overall_status": "MODULE SELECTION AND CHARACTERIZATION REQUIRED"
+  }
+]

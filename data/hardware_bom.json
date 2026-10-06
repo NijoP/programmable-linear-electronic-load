@@ -1,0 +1,966 @@
+[
+  {
+    "component": "BUZ11 MOSFET",
+    "manufacturer": "onsemi (candidate)",
+    "exact_mpn": "BUZ11",
+    "package": "TO-220",
+    "datasheet_url": "https://www.onsemi.com/pdf/datasheet/buz11-d.pdf",
+    "datasheet_revision": "Rev. 3, October 2017",
+    "parameters": [
+      {
+        "parameter": "VDS(max)",
+        "value": 50,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": 50,
+        "temperature_condition": "Tc = 25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "ID(max)",
+        "value": 38,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": 38,
+        "temperature_condition": "Tc = 25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "RDS(on)",
+        "value": 0.03,
+        "unit": "Ω",
+        "min": null,
+        "typ": 0.03,
+        "max": 0.04,
+        "temperature_condition": "VGS = 10 V, ID = 19 A",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "VGS(th)",
+        "value": 3.0,
+        "unit": "V",
+        "min": 2.0,
+        "typ": 3.0,
+        "max": 4.0,
+        "temperature_condition": "ID = 250 µA",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "RθJC",
+        "value": 1.67,
+        "unit": "K/W",
+        "min": null,
+        "typ": 1.67,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "TJ(max)",
+        "value": 175,
+        "unit": "°C",
+        "min": null,
+        "typ": null,
+        "max": 175,
+        "temperature_condition": null,
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "DC SOA",
+        "value": "See Figure 4 in datasheet",
+        "unit": "V vs I",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": "Tc = 25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE - REQUIRES EVALUATION AT DESIGN POINT"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR PURCHASED PART QUALIFICATION"
+  },
+  {
+    "component": "Shunt Resistor",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Resistance",
+        "value": 0.01,
+        "unit": "Ω",
+        "min": 0.0099,
+        "typ": 0.01,
+        "max": 0.0101,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Power Rating",
+        "value": 3,
+        "unit": "W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": 1,
+        "unit": "%",
+        "min": null,
+        "typ": 1,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Temperature Coefficient",
+        "value": null,
+        "unit": "ppm/°C",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Current Sense Amplifier",
+    "manufacturer": "Texas Instruments",
+    "exact_mpn": "INA180A3",
+    "package": "TBD",
+    "datasheet_url": "https://www.ti.com/lit/ds/symlink/ina180.pdf",
+    "datasheet_revision": "SBOS741H, July 2022",
+    "parameters": [
+      {
+        "parameter": "Gain",
+        "value": 100,
+        "unit": "V/V",
+        "min": null,
+        "typ": 100,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "Offset Voltage",
+        "value": null,
+        "unit": "µV",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Gain Error",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Bandwidth",
+        "value": null,
+        "unit": "kHz",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Input Common-Mode Range",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Output Swing",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR OFFSET/Gain ERROR AND BANDWIDTH"
+  },
+  {
+    "component": "DAC",
+    "manufacturer": "Microchip",
+    "exact_mpn": "MCP4725",
+    "package": "TBD",
+    "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf",
+    "datasheet_revision": "DS22039D, 2009",
+    "parameters": [
+      {
+        "parameter": "Resolution",
+        "value": 12,
+        "unit": "bits",
+        "min": null,
+        "typ": 12,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "LSB",
+        "value": 0.8056640625,
+        "unit": "mV",
+        "min": null,
+        "typ": 0.8056640625,
+        "max": null,
+        "temperature_condition": "Vdd = 3.3 V",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "Supply Voltage",
+        "value": 3.3,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET AVAILABLE - NEED MEASURED SUPPLY TOLERANCE"
+      },
+      {
+        "parameter": "Power-on Reset State",
+        "value": "EEPROM default (midscale)",
+        "unit": "code",
+        "min": null,
+        "typ": 2048,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE - REQUIRES HARDWARE INHIBIT"
+      },
+      {
+        "parameter": "Integral Nonlinearity",
+        "value": null,
+        "unit": "LSB",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET AVAILABLE - STARTUP BEHAVIOR NEEDS HARDWARE MITIGATION"
+  },
+  {
+    "component": "Op-Amp",
+    "manufacturer": "Texas Instruments",
+    "exact_mpn": "LM358B",
+    "package": "TBD",
+    "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
+    "datasheet_revision": "SLOS068AB, October 2024",
+    "parameters": [
+      {
+        "parameter": "Supply Voltage",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED - NEED TO VERIFY SUPPLY ARRANGEMENT"
+      },
+      {
+        "parameter": "Input Common-Mode Range",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Output Swing",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "GBW",
+        "value": 1,
+        "unit": "MHz",
+        "min": null,
+        "typ": 1,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "Slew Rate",
+        "value": 0.3,
+        "unit": "V/µs",
+        "min": null,
+        "typ": 0.3,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR SUPPLY AND HEADROOM VALIDATION"
+  },
+  {
+    "component": "Microcontroller",
+    "manufacturer": "Espressif",
+    "exact_mpn": "ESP32-WROOM-32",
+    "package": "TBD",
+    "datasheet_url": "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf",
+    "datasheet_revision": "TBD",
+    "parameters": [
+      {
+        "parameter": "Core Current",
+        "value": null,
+        "unit": "mA",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED - NEED MEASURED PEAK CURRENT"
+      },
+      {
+        "parameter": "Wi-Fi TX Current",
+        "value": null,
+        "unit": "mA",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "GPIO Current",
+        "value": null,
+        "unit": "mA",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR POWER BUDGET"
+  },
+  {
+    "component": "5V Regulator",
+    "manufacturer": "STMicroelectronics (candidate)",
+    "exact_mpn": "L7805",
+    "package": "TBD",
+    "datasheet_url": "https://www.st.com/resource/en/datasheet/l7805.pdf",
+    "datasheet_revision": "TBD",
+    "parameters": [
+      {
+        "parameter": "Output Voltage",
+        "value": 5,
+        "unit": "V",
+        "min": 4.8,
+        "typ": 5.0,
+        "max": 5.2,
+        "temperature_condition": "25°C",
+        "provenance": "DATASHEET",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "Dropout Voltage",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Output Current",
+        "value": null,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED - NEED TO VERIFY SUFFICIENT FOR LOAD"
+      },
+      {
+        "parameter": "Thermal Resistance",
+        "value": null,
+        "unit": "K/W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR POWER BUDGET AND THERMAL"
+  },
+  {
+    "component": "3.3V LDO",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Output Volt",
+        "value": 3.3,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Output Current",
+        "value": null,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Dropout Voltage",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "PSRR",
+        "value": null,
+        "unit": "dB",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "NTC Thermistor",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "R25",
+        "value": 10000,
+        "unit": "Ω",
+        "min": null,
+        "typ": 10000,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Beta",
+        "value": 3950,
+        "unit": "K",
+        "min": null,
+        "typ": 3950,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Ballast Resistor",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Resistance",
+        "value": 0.1,
+        "unit": "Ω",
+        "min": null,
+        "typ": 0.1,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Power Rating",
+        "value": 3,
+        "unit": "W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Temperature Coefficient",
+        "value": null,
+        "unit": "ppm/°C",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Gate Resistor",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Resistance",
+        "value": 1000,
+        "unit": "Ω",
+        "min": null,
+        "typ": 1000,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Power Rating",
+        "value": null,
+        "unit": "W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Gate Pull-down Resistor",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Resistance",
+        "value": 100000,
+        "unit": "Ω",
+        "min": null,
+        "typ": 100000,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Power Rating",
+        "value": null,
+        "unit": "W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Gate Zener Diode",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Zener Voltage",
+        "value": 8.2,
+        "unit": "V",
+        "min": null,
+        "typ": 8.2,
+        "max": null,
+        "temperature_condition": "25°C",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Power Dissipation",
+        "value": null,
+        "unit": "W",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Tolerance",
+        "value": null,
+        "unit": "%",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Heatsink",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Thermal Resistance (RθSA)",
+        "value": null,
+        "unit": "K/W",
+        "min": null,
+        "typ": null,
+        "max": 1.5,
+        "temperature_condition": "Shared at ~30 W, with airflow",
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET REQUIRED - NEED TO SELECT PART WITH MEASURED RθSA"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Fan",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Airflow",
+        "value": null,
+        "unit": "CFM",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Current Draw",
+        "value": null,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "PWM Frequency",
+        "value": null,
+        "unit": "Hz",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Fuse",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Rating",
+        "value": null,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED - SUGGESTED 2.5 A SLOW-BLOW"
+      },
+      {
+        "parameter": "Type",
+        "value": null,
+        "unit": "text",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Time-Current Curve",
+        "value": null,
+        "unit": "text",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "Input/Output Connectors",
+    "manufacturer": "TBD",
+    "exact_mpn": "TBD",
+    "package": "TBD",
+    "datasheet_url": null,
+    "datasheet_revision": null,
+    "parameters": [
+      {
+        "parameter": "Current Rating",
+        "value": null,
+        "unit": "A",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED - MINIMUM 2 A"
+      },
+      {
+        "parameter": "Contact Resistance",
+        "value": null,
+        "unit": "mΩ",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Voltage Rating",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED"
+  },
+  {
+    "component": "OLED Display",
+    "manufacturer": "TBD",
+    "exact_mpn": "SSD1306",
+    "package": "TBD",
+    "datasheet_url": "https://www.solomon-systech.com/en/product/oled-display-drivers/ssd1306/",
+    "datasheet_revision": "TBD",
+    "parameters": [
+      {
+        "parameter": "Diagonal Size",
+        "value": 0.96,
+        "unit": "in",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET AVAILABLE - NEED TO SELECT MODULE"
+      },
+      {
+        "parameter": "Interface",
+        "value": "I2C",
+        "unit": "text",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "FROZEN_FROM_PDF",
+        "status": "DATASHEET AVAILABLE"
+      },
+      {
+        "parameter": "Operating Voltage",
+        "value": null,
+        "unit": "V",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      },
+      {
+        "parameter": "Current Consumption",
+        "value": null,
+        "unit": "mA",
+        "min": null,
+        "typ": null,
+        "max": null,
+        "temperature_condition": null,
+        "provenance": "TBD",
+        "status": "DATASHEET REQUIRED"
+      }
+    ],
+    "provenance": "FROZEN_FROM_PDF",
+    "status": "DATASHEET REQUIRED FOR EXACT MODULE SELECTION"
+  }
+]

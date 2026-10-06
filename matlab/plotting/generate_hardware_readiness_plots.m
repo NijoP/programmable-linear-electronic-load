@@ -48,7 +48,10 @@ N = params.num_mosfets;
 Ptotal = Vin.*I - I.^2*Rsh - N*(I/N).^2*Rballast;
 Pper = Ptotal / N;
 plot(I, Pper, 'b-', 'LineWidth', 2);
-rated_per = 7.47;
+% Compute rated per MOSFET power at max current
+I_max = 2;
+Ptotal_max = Vin*I_max - I_max^2*Rsh - N*(I_max/N)^2*Rballast;
+rated_per = Ptotal_max / N;
 yline(rated_per, '--', 'Rated per MOSFET');
 xlabel('Total Current I (A)');
 ylabel('Power per MOSFET (W)');

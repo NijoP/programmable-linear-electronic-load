@@ -11,11 +11,11 @@ function Icmd = plel_cp_command(Pset, Imax, Pmax, Vin)
 %
 %   Reference: Source §23, equations (94)-(99).
 %   Ideal: Ireq = Pset / Vin
-%   Safety: Icmd = min(Imax, Pmax, Pset/Vin)
+%   Safety: Icmd = min(Imax, Pmax/Vin, Pset/Vin)
 %
 %   The function enforces three independent limits:
 %   1. Maximum current capability (Imax)
-%   2. Maximum power capability (Pmax)
+%   2. Maximum power capability (Pmax/Vin)
 %   3. User requested power converted to current (Pset/Vin)
 %
 %   Important: At voltages below 10 V, the 2 A maximum prevents true
@@ -37,9 +37,9 @@ function Icmd = plel_cp_command(Pset, Imax, Pmax, Vin)
     % Compute requested current from power setpoint
     Ireq = Pset / Vin;
 
-    % Apply safety limits: Icmd = min(Imax, Pmax, Pset/Vin)
-    % Note: Pmax here is the absolute maximum; the user setpoint limit is Pset/Vin
-    Icmd = min([Imax, Pmax, Ireq]);
+    % Apply safety limits: Icmd = min(Imax, Pmax/Vin, Pset/Vin)
+    % Note: Pmax/Vin is the maximum current from power limit; Ireq is the user setpoint current
+    Icmd = min([Imax, Pmax / Vin, Ireq]);
 end
 
     function checkFiniteScalar(val, name)
