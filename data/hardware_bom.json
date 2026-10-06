@@ -86,7 +86,7 @@
       }
     ],
     "provenance": "FROZEN_FROM_PDF",
-    "status": "DATASHEET REQUIRED FOR PURCHASED PART QUALIFICATION"
+    "status": "DATASHEET AVAILABLE - REQUIRES SOA EVALUATION"
   },
   {
     "component": "Shunt Resistor",
@@ -399,7 +399,7 @@
       }
     ],
     "provenance": "FROZEN_FROM_PDF",
-    "status": "DATASHEET REQUIRED FOR POWER BUDGET"
+    "status": "DATASHEET AVAILABLE - REQUIRES POWER BUDGET CHARACTERIZATION"
   },
   {
     "component": "5V Regulator",
@@ -455,7 +455,7 @@
       }
     ],
     "provenance": "FROZEN_FROM_PDF",
-    "status": "DATASHEET REQUIRED FOR POWER BUDGET AND THERMAL"
+    "status": "DATASHEET AVAILABLE - REQUIRES POWER BUDGET AND THERMAL VALIDATION"
   },
   {
     "component": "3.3V LDO",
