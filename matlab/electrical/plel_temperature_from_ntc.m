@@ -42,10 +42,8 @@ function T_K = plel_temperature_from_ntc(R, R0, beta, T0_K)
     T_K = 1 / invT_K;
 end
 
-functions
     function checkFiniteScalar(val, name)
         if ~isnumeric(val) || ~isreal(val) || ~isscalar(val) || ~isfinite(val)
             error('plel:InvalidInput', '%s must be a finite numeric scalar.', name);
         end
     end
-end % plel_temperature_from_ntc

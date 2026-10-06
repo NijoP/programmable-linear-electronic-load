@@ -27,10 +27,8 @@ function Vadc = plel_voltage_divider(Vin, R1, R2)
     Vadc = Vin * R2 / (R1 + R2);
 end
 
-functions
     function checkFiniteScalar(val, name)
         if ~isnumeric(val) || ~isreal(val) || ~isscalar(val) || ~isfinite(val)
             error('plel:InvalidInput', '%s must be a finite numeric scalar.', name);
         end
     end
-end % plel_voltage_divider

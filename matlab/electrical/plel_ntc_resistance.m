@@ -30,10 +30,8 @@ function R = plel_ntc_resistance(R0, beta, T0_K, T_K)
     R = R0 * exp(beta * (1/T_K - 1/T0_K));
 end
 
-functions
     function checkFiniteScalar(val, name)
         if ~isnumeric(val) || ~isreal(val) || ~isscalar(val) || ~isfinite(val)
             error('plel:InvalidInput', '%s must be a finite numeric scalar.', name);
         end
     end
-end % plel_ntc_resistance

@@ -37,10 +37,8 @@ function Icmd = plel_cc_command(Iset, Imax, Pmax, Vin)
     Icmd = min([Iset, Imax, Pmax / Vin]);
 end
 
-functions
     function checkFiniteScalar(val, name)
         if ~isnumeric(val) || ~isreal(val) || ~isscalar(val) || ~isfinite(val)
             error('plel:InvalidInput', '%s must be a finite numeric scalar.', name);
         end
     end
-end % plel_cc_command
