@@ -28,10 +28,8 @@ function R = plel_trace_resistance(L, w, t, rho)
     R = rho * L / (w * t);
 end
 
-functions
     function checkFiniteScalar(val, name)
         if ~isnumeric(val) || ~isreal(val) || ~isscalar(val) || ~isfinite(val)
             error('plel:InvalidInput', '%s must be a finite numeric scalar.', name);
         end
     end
-end % plel_trace_resistance

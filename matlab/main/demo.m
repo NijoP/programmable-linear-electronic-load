@@ -20,7 +20,7 @@ function demo()
     fprintf('=== PROGRAMMABLE LINEAR DC ELECTRONIC LOAD DEMONSTRATION ===\n\n');
     
     % Add project paths
-    project_root = fileparts(fileparts(mfilename('fullpath')));
+    project_root = fileparts(fileparts(fileparts(mfilename('fullpath'))));
     addpath(fullfile(project_root, 'matlab', 'project'));
     addpath(fullfile(project_root, 'matlab', 'electrical'));
     addpath(fullfile(project_root, 'matlab', 'powerstage'));
