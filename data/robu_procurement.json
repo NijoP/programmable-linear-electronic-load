@@ -2,8 +2,10 @@
   "schema_version": 1,
   "supplier": "Robu.in only",
   "checked_at": "2026-10-07T06:06:33+05:30",
-  "check_method": "Direct HTTPS catalogue/search checks from native Windows Python urllib",
-  "supplier_access_result": "HTTP 403 Forbidden for Robu catalogue and product-search endpoints; no product page, stock or price was verifiable",
+  "robu_access": "BLOCKED",
+  "browser_capability": "No browser-capable navigation, rendered-page or screenshot tool is exposed in the current session; only repository, shell and MATLAB tools are available.",
+  "check_method": "Existing record from a prior direct-HTTP attempt; not treated as browser verification",
+  "supplier_access_result": "Browser verification could not be performed in the current tool environment. The prior direct-HTTP attempt returned HTTP 403 and supplied no product evidence.",
   "price_currency": "INR",
   "items": [
     {"component":"BUZ11 MOSFET","required_value":"BUZ11, linear SOA at 14.93 V/0.5 A","selected_mpn":"BUZ11/D candidate; ordering suffix not established","manufacturer":"onsemi candidate","package":"TO-220 candidate","robu_url":"https://robu.in/?s=BUZ11&post_type=product","robu_sku":null,"stock_status":"UNCERTAIN","price":null,"quantity":5,"extended_cost":null,"datasheet":"https://www.onsemi.com/pdf/datasheet/buz11-d.pdf","compatibility":"Source family matches; exact Robu identity and SOA qualification open","substitution":null,"provenance":"FROZEN_FROM_PDF","status":"BLOCKED"},

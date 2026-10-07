@@ -2,7 +2,8 @@
 
 **Checked:** 2026-10-07 06:06:33 +05:30  
 **Allowed supplier:** Robu.in only  
-**Catalogue result:** Direct Robu catalogue/search requests returned HTTP 403 Forbidden from the native Windows environment. No product page, SKU, stock or price was visible to the engineering process.
+**ROBU_ACCESS:** `BLOCKED`
+**Access limitation:** The current session exposes no browser-capable navigation, rendered-page or screenshot tool. The prior direct-HTTP attempt returned HTTP 403 and is not treated as browser verification. No product page, SKU, stock or price was visible to the engineering process.
 
 ## Procurement status
 
@@ -35,4 +36,4 @@ These candidates are supported by the manufacturer datasheets but have no verifi
 
 ## Required manual recovery
 
-Open each search URL in `data/robu_procurement.json` from a normal browser session, record the exact Robu product URL/SKU, MPN, package, stock label, displayed INR price and timestamp, then update the JSON. Re-run footprint, thermal and compatibility review after the exact listings are known.
+Open each search URL in `data/robu_procurement.json` from a normal browser session, record the exact Robu product URL/SKU, MPN, package, stock label, displayed INR price and timestamp, then update the JSON. Re-run footprint, thermal and compatibility review after the exact listings are known. Until this is done, the BOM is procurement-incomplete and must not be used to claim PCB release.
