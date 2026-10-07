@@ -1,5 +1,11 @@
 # Traceable engineering specification
 
+> **PLEL R1 revision note:** The source PDF remains authoritative for the
+> electrical baseline, but its OLED/encoder/button interface is superseded for
+> the R1 product by the controlled local web architecture documented in
+> `docs/PRODUCT_REQUIREMENTS_R1.md`. The source requirement is retained here
+> for traceability and is not an active R1 PCB population requirement.
+
 Primary authority: [`source/design-source.pdf`](source/design-source.pdf), September 2026, Goutham Haridas and Afnan Muhammad. This is a **first-pass prototype design**. Physical PDF page numbering is 1-based (cover=1); printed page number = physical page minus 1. Requirements are not evidence of assembly qualification.
 
 ## Frozen product targets
@@ -21,7 +27,7 @@ Source §9 Table 1, physical page 10:
 | Reference | MCP4725 12-bit DAC |
 | Analog loop | LM358B |
 | MCU | ESP32-WROOM-32, directly soldered to PCB |
-| Display/input | 0.96-inch SSD1306 OLED, EC11 encoder and buttons (§8.6, page 9) |
+| R1 user interface | ESP32-WROOM-32E local Wi-Fi web application; emergency STOP only; source OLED/encoder/buttons superseded for R1 |
 | Temperature | 10 kohm NTC at 25 C, beta approximately 3950 K (§26, page 19) |
 | PCB | Two-layer FR-4, approximately 100 × 100 mm; 2 oz copper preferred if affordable |
 

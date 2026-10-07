@@ -1,4 +1,20 @@
-# Programmable Linear Electronic Load
+# PLEL R1 — Web-Controlled Programmable Linear DC Electronic Load
+
+PLEL R1 is a 10–15 V, 2 A, 30 W peak programmable linear load controlled by a local ESP32-WROOM-32E web application. R1 has no OLED, rotary encoder, encoder switch, or ordinary START/STOP buttons. A physical emergency STOP remains independent of Wi-Fi and firmware.
+
+For the product definition, see `docs/PRODUCT_REQUIREMENTS_R1.md`. The web contract is in `docs/WEB_INTERFACE_ARCHITECTURE_R1.md`; the GPIO and safety baselines are in `docs/ESP32_GPIO_MAP_R1.md` and `docs/EMERGENCY_STOP_R1.md`.
+
+## R1 engineering quick start
+
+1. Clone the repository and open it in MATLAB R2024b or later.
+2. Set MATLAB's current folder to the repository root.
+3. Run `run('matlab/project/plel_setup.m')`.
+4. Run `report = pcb_design_release()` to evaluate the pre-fabrication gate.
+5. Run the MATLAB regression functions in `tests/`, including the R1 product, web-command, GPIO, E-stop, power-tree, operating-envelope, and release tests.
+6. Review `results/pcb_design_release_summary.md` and the R1 result files before schematic capture.
+
+The reported `PCB_DESIGN_RELEASE = PASS` is a design-baseline result only.
+`HARDWARE_VALIDATION = PENDING` remains for assembled thermal, SOA, current-sharing, calibration, loaded-loop, startup/fault, Wi-Fi, and production tests.
 
 This repository contains the engineering MATLAB/modeling implementation for a programmable linear DC electronic load based on the design by Goutham Haridas and Afnan Muhammad (September 2026). The source design is archived in `docs/source/design-source.pdf`.
 

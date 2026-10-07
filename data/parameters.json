@@ -432,7 +432,7 @@
     },
     {
       "id": "mcu_part",
-      "value": "ESP32-WROOM-32",
+      "value": "ESP32-WROOM-32E",
       "unit": "text",
       "classification": "FROZEN_FROM_PDF",
       "source": {
@@ -441,7 +441,7 @@
         "physical_page": 10
       },
       "context": "specification",
-      "notes": "Module soldered directly to custom PCB, not a development board."
+      "notes": "R1 local web controller; direct module soldering, antenna keepout, programming/service UART required."
     },
     {
       "id": "display_part",
@@ -454,7 +454,7 @@
         "physical_page": 10
       },
       "context": "specification",
-      "notes": "0.96-inch display; exact module and electrical interface to be verified."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "display_diagonal_in",
@@ -467,7 +467,7 @@
         "physical_page": 10
       },
       "context": "nominal",
-      "notes": "Source display size, not a PCB footprint dimension."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "encoder_part",
@@ -480,7 +480,7 @@
         "physical_page": 9
       },
       "context": "specification",
-      "notes": "Encoder with push switch; exact variant/footprint unresolved."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "regulator_5V_part",
@@ -844,7 +844,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested shared OLED/MCP4725 SDA."
+      "notes": "R1 MCP4725 I2C SDA; no OLED fitted."
     },
     {
       "id": "gpio_i2c_scl",
@@ -857,7 +857,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested shared OLED/MCP4725 SCL."
+      "notes": "R1 MCP4725 I2C SCL; no OLED fitted."
     },
     {
       "id": "gpio_adc_current",
@@ -909,7 +909,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested encoder A."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "gpio_enc_b",
@@ -922,7 +922,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested encoder B."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "gpio_enc_push",
@@ -935,7 +935,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested encoder push."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "gpio_start_stop",
@@ -948,7 +948,7 @@
         "physical_page": 21
       },
       "context": "provisional",
-      "notes": "Suggested START/STOP button."
+      "notes": "R0 source requirement retained for traceability but superseded by PLEL R1 local web interface; no active R1 footprint or GPIO assignment."
     },
     {
       "id": "gpio_fan",
@@ -1444,5 +1444,8 @@
       "context": "unknown",
       "notes": "Actual geometry, temperature, vias and connections require layout/measurement."
     }
-  ]
+  ],
+  "product_revision": "PLEL R1",
+  "product_interface": "ESP32-WROOM-32E local web application",
+  "cloud_enabled": false
 }

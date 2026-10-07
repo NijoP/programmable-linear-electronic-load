@@ -41,14 +41,17 @@
 
 - Preserve VIN -> 5 V -> 3.3 V architecture.
 - Use L7805CV for 5 V and AP2112K-3.3TRG1 for 3.3 V.
-- Budget 150 mA on 5 V and 544 mA worst-case on 3.3 V: ESP32 500 mA peak, OLED 30 mA, and 14 mA for DAC/INA/NTC/logic/indicators.
+- Budget 150 mA on 5 V and 548 mA worst-case on 3.3 V: ESP32 500 mA peak plus 48 mA for MCP4725/INA/NTC/logic/status support; OLED and encoder loads are removed.
 - AP2112K current margin is approximately 56 mA. Provide at least 600 mm2 copper for thermal spreading and verify regulator temperature after fabrication.
 
-## MCU and interface
+## MCU and web interface
 
 - Use ESP32-WROOM-32E. Keep the module antenna at the board edge with the manufacturer keepout: no copper, traces, vias, or metal hardware in the antenna region.
-- Provide EN, boot strap, reset, I2C pull-ups, local 100 nF and bulk decoupling, and programming access.
-- Use the selected SSD1306 display module candidate, EC11 encoder candidate, Omron B3U-1000P buttons, and Kingbright KP-2012SGC LEDs. Verify final vendor drawings before Gerbers.
+- Provide EN, boot strap, reset, I2C pull-ups for MCP4725, local 100 nF and bulk decoupling, and a 3.3 V programming/service UART connector.
+- R1 has no OLED, rotary encoder, encoder switch, or ordinary START/STOP buttons. Status indication is provided by the defined status LED and the local web application.
+- The ESP32 shall validate web commands and own the supervisory state machine; browser requests shall never directly write a DAC command.
+- Implement `/api/status`, `/api/config`, `/api/mode`, `/api/setpoint`, `/api/start`, `/api/stop`, `/api/reset`, `/api/test/status`, `/api/test/data`, and `/ws` as the firmware interface contract.
+- Use the defined status LED and emergency-stop panel connector. Verify final vendor drawings before Gerbers.
 
 ## Startup safety and fault protection
 
@@ -77,4 +80,4 @@
 - Maintain clearance for TO-220 body, heatsink, TIM, fan, and isolated mounting hardware.
 - Define connector pin-1 orientation and silkscreen polarity for input, load output, fan, display, and programming connectors.
 - Provide labeled test points for VIN, 5 V, 3.3 V, DAC output, current-sense input/output, each gate bus, NTC, inhibit, and fault.
-- Before fabrication, complete manufacturer-land-pattern review for DBV, CH, SOIC-8, TO-220, ESP32 module, shunt, terminal blocks, display, encoder, and regulators. This is a design-library review, not a reason to claim hardware validation.
+- Before fabrication, complete manufacturer-land-pattern review for DBV, CH, SOIC-8, TO-220, ESP32 module, shunt, terminal blocks, emergency-stop connector, service connector, and regulators. R1 has no display or encoder footprint. This is a design-library review, not a reason to claim hardware validation.

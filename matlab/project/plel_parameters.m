@@ -40,7 +40,7 @@ if isstruct(raw)
     raw = num2cell(raw);
 end
 required = {'id', 'value', 'unit', 'classification', 'source', 'context', 'notes'};
-classes = {'FROZEN_FROM_PDF', 'DATASHEET', 'MEASURED', 'CALIBRATED', 'TBD'};
+classes = {'FROZEN_FROM_PDF', 'DATASHEET', 'CALCULATED', 'DESIGN_TARGET', 'MEASURED', 'CALIBRATED', 'TBD'};
 contexts = {'specification', 'nominal', 'provisional', 'illustrative', 'unknown'};
 entries = repmat(struct('id', '', 'value', [], 'unit', '', ...
     'classification', '', 'source', struct(), 'context', '', 'notes', ''), numel(raw), 1);

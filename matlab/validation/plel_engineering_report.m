@@ -50,8 +50,8 @@ function report = plel_engineering_report()
     report = [report, '  Current-sense gain: 100 V/V\n'];
     report = [report, '  DAC: MCP4725, 12-bit\n'];
     report = [report, '  Analog control: LM358B\n'];
-    report = [report, '  MCU: ESP32-WROOM-32\n'];
-    report = [report, '  Display: 0.96-inch SSD1306 OLED\n'];
+    report = [report, '  MCU: ESP32-WROOM-32E, local Wi-Fi web application\n'];
+    report = [report, '  Physical UI: emergency STOP only; no OLED or encoder in R1\n'];
     report = [report, '  NTC: 10 kohm at 25 C, beta ≈ 3950 K\n'];
     report = [report, '  PCB: two-layer FR-4, ≈100×100 mm\n\n'];
     
