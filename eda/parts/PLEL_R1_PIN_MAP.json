@@ -1,0 +1,777 @@
+{
+  "project": "PLEL R1",
+  "authoritative_bom": "data/PLEL_R1_MASTER_BOM.json",
+  "pin_maps": {
+    "J1": [
+      {
+        "pin": "1",
+        "name": "VIN+",
+        "role": "DC positive"
+      },
+      {
+        "pin": "2",
+        "name": "VIN-",
+        "role": "DC return"
+      }
+    ],
+    "F1": [
+      {
+        "pin": "1",
+        "name": "IN",
+        "role": "fused input"
+      },
+      {
+        "pin": "2",
+        "name": "OUT",
+        "role": "protected input"
+      }
+    ],
+    "D1": [
+      {
+        "pin": "1",
+        "name": "A",
+        "role": "input protection"
+      },
+      {
+        "pin": "2",
+        "name": "K",
+        "role": "protected VIN"
+      }
+    ],
+    "C1": [
+      {
+        "pin": "1",
+        "name": "+",
+        "role": "VIN bulk"
+      },
+      {
+        "pin": "2",
+        "name": "-",
+        "role": "VIN return"
+      }
+    ],
+    "Q1": [
+      {
+        "pin": "1",
+        "name": "G",
+        "role": "RG1 gate"
+      },
+      {
+        "pin": "2",
+        "name": "D",
+        "role": "VIN/load drain"
+      },
+      {
+        "pin": "3",
+        "name": "S",
+        "role": "RB1/shunt source"
+      }
+    ],
+    "Q2": [
+      {
+        "pin": "1",
+        "name": "G",
+        "role": "RG2 gate"
+      },
+      {
+        "pin": "2",
+        "name": "D",
+        "role": "VIN/load drain"
+      },
+      {
+        "pin": "3",
+        "name": "S",
+        "role": "RB2/shunt source"
+      }
+    ],
+    "Q3": [
+      {
+        "pin": "1",
+        "name": "G",
+        "role": "RG3 gate"
+      },
+      {
+        "pin": "2",
+        "name": "D",
+        "role": "VIN/load drain"
+      },
+      {
+        "pin": "3",
+        "name": "S",
+        "role": "RB3/shunt source"
+      }
+    ],
+    "Q4": [
+      {
+        "pin": "1",
+        "name": "G",
+        "role": "RG4 gate"
+      },
+      {
+        "pin": "2",
+        "name": "D",
+        "role": "VIN/load drain"
+      },
+      {
+        "pin": "3",
+        "name": "S",
+        "role": "RB4/shunt source"
+      }
+    ],
+    "R1-R4": [
+      {
+        "pin": "1",
+        "name": "Sx",
+        "role": "MOSFET source"
+      },
+      {
+        "pin": "2",
+        "name": "SHUNT",
+        "role": "shared current return"
+      }
+    ],
+    "RG1-RG4": [
+      {
+        "pin": "1",
+        "name": "GATE_BUS",
+        "role": "inhibit switch output"
+      },
+      {
+        "pin": "2",
+        "name": "Gx",
+        "role": "MOSFET gate"
+      }
+    ],
+    "RPD1-RPD4": [
+      {
+        "pin": "1",
+        "name": "Gx",
+        "role": "gate"
+      },
+      {
+        "pin": "2",
+        "name": "Sx",
+        "role": "source"
+      }
+    ],
+    "DZ1-DZ4": [
+      {
+        "pin": "1",
+        "name": "K",
+        "role": "gate"
+      },
+      {
+        "pin": "2",
+        "name": "A",
+        "role": "source"
+      }
+    ],
+    "U1": [
+      {
+        "pin": "1",
+        "name": "IN+",
+        "role": "shunt Kelvin positive"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "analog ground"
+      },
+      {
+        "pin": "3",
+        "name": "IN-",
+        "role": "shunt Kelvin negative"
+      },
+      {
+        "pin": "4",
+        "name": "OUT",
+        "role": "I_SENSE"
+      },
+      {
+        "pin": "5",
+        "name": "VS",
+        "role": "3V3"
+      }
+    ],
+    "U2": [
+      {
+        "pin": "1",
+        "name": "OUTA",
+        "role": "gate/control"
+      },
+      {
+        "pin": "2",
+        "name": "INA-",
+        "role": "feedback"
+      },
+      {
+        "pin": "3",
+        "name": "INA+",
+        "role": "VSET"
+      },
+      {
+        "pin": "4",
+        "name": "V-",
+        "role": "GND"
+      },
+      {
+        "pin": "5",
+        "name": "INB+",
+        "role": "spare"
+      },
+      {
+        "pin": "6",
+        "name": "INB-",
+        "role": "spare"
+      },
+      {
+        "pin": "7",
+        "name": "OUTB",
+        "role": "spare"
+      },
+      {
+        "pin": "8",
+        "name": "V+",
+        "role": "5V"
+      }
+    ],
+    "U3": [
+      {
+        "pin": "1",
+        "name": "VDD",
+        "role": "3V3"
+      },
+      {
+        "pin": "2",
+        "name": "VOUT",
+        "role": "VSET"
+      },
+      {
+        "pin": "3",
+        "name": "VSS",
+        "role": "GND"
+      },
+      {
+        "pin": "4",
+        "name": "SDA",
+        "role": "GPIO21"
+      },
+      {
+        "pin": "5",
+        "name": "SCL",
+        "role": "GPIO22"
+      },
+      {
+        "pin": "6",
+        "name": "A0",
+        "role": "address strap"
+      }
+    ],
+    "U4": [
+      {
+        "pin": "2",
+        "name": "3V3",
+        "role": "3V3"
+      },
+      {
+        "pin": "3",
+        "name": "EN",
+        "role": "reset"
+      },
+      {
+        "pin": "6",
+        "name": "GPIO34",
+        "role": "VIN ADC"
+      },
+      {
+        "pin": "7",
+        "name": "GPIO35",
+        "role": "current ADC"
+      },
+      {
+        "pin": "9",
+        "name": "GPIO33",
+        "role": "ESTOP monitor"
+      },
+      {
+        "pin": "10",
+        "name": "GPIO25",
+        "role": "MCU_RUN"
+      },
+      {
+        "pin": "11",
+        "name": "GPIO26",
+        "role": "fan control"
+      },
+      {
+        "pin": "12",
+        "name": "GPIO27",
+        "role": "fault"
+      },
+      {
+        "pin": "25",
+        "name": "GPIO0",
+        "role": "boot"
+      },
+      {
+        "pin": "33",
+        "name": "GPIO21",
+        "role": "I2C SDA"
+      },
+      {
+        "pin": "34",
+        "name": "GPIO3",
+        "role": "UART RX"
+      },
+      {
+        "pin": "35",
+        "name": "GPIO1",
+        "role": "UART TX"
+      },
+      {
+        "pin": "36",
+        "name": "GPIO22",
+        "role": "I2C SCL"
+      }
+    ],
+    "R5": [
+      {
+        "pin": "1",
+        "name": "VIN",
+        "role": "divider input"
+      },
+      {
+        "pin": "2",
+        "name": "VIN_SENSE",
+        "role": "ADC"
+      }
+    ],
+    "R6": [
+      {
+        "pin": "1",
+        "name": "VIN_SENSE",
+        "role": "divider output"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "R7": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "divider supply"
+      },
+      {
+        "pin": "2",
+        "name": "NTC_SENSE",
+        "role": "ADC"
+      }
+    ],
+    "FAN1": [
+      {
+        "pin": "1",
+        "name": "FAN+",
+        "role": "fan supply"
+      },
+      {
+        "pin": "2",
+        "name": "FAN-",
+        "role": "switched return"
+      }
+    ],
+    "Q5": [
+      {
+        "pin": "1",
+        "name": "G",
+        "role": "GPIO26 via gate resistor"
+      },
+      {
+        "pin": "2",
+        "name": "S",
+        "role": "GND"
+      },
+      {
+        "pin": "3",
+        "name": "D",
+        "role": "FAN-"
+      }
+    ],
+    "D2": [
+      {
+        "pin": "1",
+        "name": "A",
+        "role": "FAN-"
+      },
+      {
+        "pin": "2",
+        "name": "K",
+        "role": "FAN+"
+      }
+    ],
+    "U5": [
+      {
+        "pin": "1",
+        "name": "IN",
+        "role": "VIN"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "GND"
+      },
+      {
+        "pin": "3",
+        "name": "OUT",
+        "role": "5V"
+      }
+    ],
+    "U6": [
+      {
+        "pin": "1",
+        "name": "IN",
+        "role": "5V"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "GND"
+      },
+      {
+        "pin": "3",
+        "name": "EN",
+        "role": "3V3 enable"
+      },
+      {
+        "pin": "5",
+        "name": "OUT",
+        "role": "3V3"
+      },
+      {
+        "pin": "4/6",
+        "name": "NC",
+        "role": "No connect; verify datasheet"
+      }
+    ],
+    "C2": [
+      {
+        "pin": "1",
+        "name": "5V_IN",
+        "role": "regulator bypass"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "C3": [
+      {
+        "pin": "1",
+        "name": "5V",
+        "role": "regulator output"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "C4": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "ESP32 transient support"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "SW1": [
+      {
+        "pin": "1",
+        "name": "ESTOP_OK",
+        "role": "NC loop"
+      },
+      {
+        "pin": "2",
+        "name": "ESTOP_RETURN",
+        "role": "hardware inhibit"
+      }
+    ],
+    "U7": [
+      {
+        "pin": "1",
+        "name": "GND",
+        "role": "GND"
+      },
+      {
+        "pin": "2",
+        "name": "RESET",
+        "role": "RESET_OK logic"
+      },
+      {
+        "pin": "3",
+        "name": "VDD",
+        "role": "3V3"
+      }
+    ],
+    "U8": [
+      {
+        "pin": "1",
+        "name": "A",
+        "role": "fault/reset logic"
+      },
+      {
+        "pin": "2",
+        "name": "Y",
+        "role": "gate inhibit logic"
+      },
+      {
+        "pin": "3",
+        "name": "GND",
+        "role": "GND"
+      },
+      {
+        "pin": "4",
+        "name": "VCC",
+        "role": "3V3"
+      },
+      {
+        "pin": "5",
+        "name": "NC",
+        "role": "unused/verify"
+      }
+    ],
+    "U9": [
+      {
+        "pin": "1/2/3",
+        "name": "S/D",
+        "role": "LM358 gate-control path"
+      },
+      {
+        "pin": "4",
+        "name": "GND",
+        "role": "GND"
+      },
+      {
+        "pin": "5",
+        "name": "IN",
+        "role": "enable"
+      },
+      {
+        "pin": "6-10",
+        "name": "S/D/NC",
+        "role": "verify exact datasheet pinout"
+      }
+    ],
+    "R10": [
+      {
+        "pin": "1",
+        "name": "MCU_RUN",
+        "role": "enable"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "default off"
+      }
+    ],
+    "R11": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "logic bias"
+      },
+      {
+        "pin": "2",
+        "name": "FAULT",
+        "role": "fault input"
+      }
+    ],
+    "TP1": [
+      {
+        "pin": "1",
+        "name": "VIN",
+        "role": "measurement access"
+      }
+    ],
+    "TP2-TP10": [
+      {
+        "pin": "1",
+        "name": "NAMED_NET",
+        "role": "measurement access"
+      }
+    ],
+    "J2": [
+      {
+        "pin": "1",
+        "name": "TX0",
+        "role": "ESP32 GPIO1"
+      },
+      {
+        "pin": "2",
+        "name": "RX0",
+        "role": "ESP32 GPIO3"
+      }
+    ],
+    "J3": [
+      {
+        "pin": "1",
+        "name": "ESTOP_OK",
+        "role": "NC field loop"
+      },
+      {
+        "pin": "2",
+        "name": "ESTOP_RETURN",
+        "role": "return"
+      }
+    ],
+    "J4": [
+      {
+        "pin": "1",
+        "name": "FAN+",
+        "role": "fan supply"
+      },
+      {
+        "pin": "2",
+        "name": "FAN-",
+        "role": "switched return"
+      }
+    ],
+    "C5": [
+      {
+        "pin": "1",
+        "name": "VIN_SENSE",
+        "role": "ADC filter"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "C6": [
+      {
+        "pin": "1",
+        "name": "I_SENSE",
+        "role": "ADC filter"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "C7": [
+      {
+        "pin": "1",
+        "name": "VSET",
+        "role": "DAC filter"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "C8-C12": [
+      {
+        "pin": "1",
+        "name": "RAIL",
+        "role": "local bypass"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ],
+    "R12": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "I2C pull-up"
+      },
+      {
+        "pin": "2",
+        "name": "SDA",
+        "role": "GPIO21"
+      }
+    ],
+    "R13": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "I2C pull-up"
+      },
+      {
+        "pin": "2",
+        "name": "SCL",
+        "role": "GPIO22"
+      }
+    ],
+    "LED1": [
+      {
+        "pin": "1",
+        "name": "A",
+        "role": "status drive"
+      },
+      {
+        "pin": "2",
+        "name": "K",
+        "role": "return"
+      }
+    ],
+    "R14": [
+      {
+        "pin": "1",
+        "name": "LED_DRIVE",
+        "role": "current limit"
+      },
+      {
+        "pin": "2",
+        "name": "LED_A",
+        "role": "LED"
+      }
+    ],
+    "RSH1": [
+      {
+        "pin": "1",
+        "name": "LOAD_RETURN",
+        "role": "high-current terminal"
+      },
+      {
+        "pin": "2",
+        "name": "SENSE-",
+        "role": "Kelvin sense"
+      },
+      {
+        "pin": "3",
+        "name": "SENSE+",
+        "role": "Kelvin sense"
+      },
+      {
+        "pin": "4",
+        "name": "POWER_RETURN",
+        "role": "high-current terminal"
+      }
+    ],
+    "TH1": [
+      {
+        "pin": "1",
+        "name": "NTC_SENSE",
+        "role": "ADC divider"
+      },
+      {
+        "pin": "2",
+        "name": "GND",
+        "role": "return"
+      }
+    ]
+  }
+}

@@ -1,0 +1,1744 @@
+{
+  "project": "Programmable Linear DC Electronic Load",
+  "product": "PLEL R1",
+  "revision": "PLEL-R1",
+  "bom_status": "AUTHORITATIVE_ENGINEERING_BOM",
+  "hardware_validation": "PENDING",
+  "source_authority": "Current R1 repository engineering architecture; historical PDF retained only where still valid",
+  "obsolete_removed": [
+    "OLED",
+    "rotary encoder",
+    "encoder push button",
+    "ordinary START button",
+    "ordinary STOP button",
+    "touchscreen"
+  ],
+  "components": [
+    {
+      "reference_designator": "J1",
+      "function": "DC input",
+      "category": "A. DC input / protection",
+      "quantity": 1,
+      "manufacturer": "Phoenix Contact",
+      "exact_MPN": "1729010",
+      "package": "2-pin 5.08 mm pluggable terminal",
+      "value": "2 position",
+      "rating": {
+        "voltage": ">=15 V",
+        "current": ">=2 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VIN+",
+          "role": "DC positive"
+        },
+        {
+          "pin": "2",
+          "name": "VIN-",
+          "role": "DC return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "CANDIDATE",
+      "selection_status": "CANDIDATE",
+      "notes": "Verify contact rating and exact land pattern before layout."
+    },
+    {
+      "reference_designator": "F1",
+      "function": "Input overcurrent fuse",
+      "category": "A. DC input / protection",
+      "quantity": 1,
+      "manufacturer": "Littelfuse",
+      "exact_MPN": "0453002.NRL",
+      "package": "1206 fuse",
+      "value": "3 A",
+      "rating": {
+        "voltage": "45 V",
+        "current": "3 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "IN",
+          "role": "fused input"
+        },
+        {
+          "pin": "2",
+          "name": "OUT",
+          "role": "protected input"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Interrupt rating and pulse behavior require final datasheet review."
+    },
+    {
+      "reference_designator": "D1",
+      "function": "Reverse-polarity protection",
+      "category": "A. DC input / protection",
+      "quantity": 1,
+      "manufacturer": "STMicroelectronics",
+      "exact_MPN": "STPS3L60U",
+      "package": "SMC",
+      "value": "Schottky diode",
+      "rating": {
+        "voltage": "60 V",
+        "current": "3 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "A",
+          "role": "input protection"
+        },
+        {
+          "pin": "2",
+          "name": "K",
+          "role": "protected VIN"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Check dissipation at 2 A and reverse-polarity topology."
+    },
+    {
+      "reference_designator": "C1",
+      "function": "Input bulk capacitor",
+      "category": "A. DC input / protection",
+      "quantity": 1,
+      "manufacturer": "Panasonic",
+      "exact_MPN": "EEU-FR1E102",
+      "package": "Radial electrolytic",
+      "value": "1000 uF",
+      "rating": {
+        "voltage": "25 V",
+        "ripple": "TBD"
+      },
+      "tolerance": "20%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "+",
+          "role": "VIN bulk"
+        },
+        {
+          "pin": "2",
+          "name": "-",
+          "role": "VIN return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Source input transient/ripple support; verify ripple-current rating."
+    },
+    {
+      "reference_designator": "Q1",
+      "function": "Linear load MOSFET branch 1",
+      "category": "B. MOSFET power stage",
+      "quantity": 1,
+      "manufacturer": "onsemi",
+      "exact_MPN": "BUZ11",
+      "package": "TO-220AB",
+      "value": "N-channel MOSFET",
+      "rating": {
+        "VDS": "50 V",
+        "ID": "38 A headline; linear SOA governs",
+        "power": "SOA governed"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "G",
+          "role": "RG1 gate"
+        },
+        {
+          "pin": "2",
+          "name": "D",
+          "role": "VIN/load drain"
+        },
+        {
+          "pin": "3",
+          "name": "S",
+          "role": "RB1/shunt source"
+        }
+      ],
+      "datasheet/source": "https://www.onsemi.com/pdf/datasheet/buz11-d.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Exact lot and DC linear SOA require confirmation."
+    },
+    {
+      "reference_designator": "Q2",
+      "function": "Linear load MOSFET branch 2",
+      "category": "B. MOSFET power stage",
+      "quantity": 1,
+      "manufacturer": "onsemi",
+      "exact_MPN": "BUZ11",
+      "package": "TO-220AB",
+      "value": "N-channel MOSFET",
+      "rating": {
+        "VDS": "50 V",
+        "ID": "38 A headline; linear SOA governs",
+        "power": "SOA governed"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "G",
+          "role": "RG2 gate"
+        },
+        {
+          "pin": "2",
+          "name": "D",
+          "role": "VIN/load drain"
+        },
+        {
+          "pin": "3",
+          "name": "S",
+          "role": "RB2/shunt source"
+        }
+      ],
+      "datasheet/source": "https://www.onsemi.com/pdf/datasheet/buz11-d.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Independent branch; exact lot and SOA require confirmation."
+    },
+    {
+      "reference_designator": "Q3",
+      "function": "Linear load MOSFET branch 3",
+      "category": "B. MOSFET power stage",
+      "quantity": 1,
+      "manufacturer": "onsemi",
+      "exact_MPN": "BUZ11",
+      "package": "TO-220AB",
+      "value": "N-channel MOSFET",
+      "rating": {
+        "VDS": "50 V",
+        "ID": "38 A headline; linear SOA governs",
+        "power": "SOA governed"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "G",
+          "role": "RG3 gate"
+        },
+        {
+          "pin": "2",
+          "name": "D",
+          "role": "VIN/load drain"
+        },
+        {
+          "pin": "3",
+          "name": "S",
+          "role": "RB3/shunt source"
+        }
+      ],
+      "datasheet/source": "https://www.onsemi.com/pdf/datasheet/buz11-d.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Independent branch; exact lot and SOA require confirmation."
+    },
+    {
+      "reference_designator": "Q4",
+      "function": "Linear load MOSFET branch 4",
+      "category": "B. MOSFET power stage",
+      "quantity": 1,
+      "manufacturer": "onsemi",
+      "exact_MPN": "BUZ11",
+      "package": "TO-220AB",
+      "value": "N-channel MOSFET",
+      "rating": {
+        "VDS": "50 V",
+        "ID": "38 A headline; linear SOA governs",
+        "power": "SOA governed"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "G",
+          "role": "RG4 gate"
+        },
+        {
+          "pin": "2",
+          "name": "D",
+          "role": "VIN/load drain"
+        },
+        {
+          "pin": "3",
+          "name": "S",
+          "role": "RB4/shunt source"
+        }
+      ],
+      "datasheet/source": "https://www.onsemi.com/pdf/datasheet/buz11-d.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Independent branch; exact lot and SOA require confirmation."
+    },
+    {
+      "reference_designator": "R1-R4",
+      "function": "Source ballast resistors, one per MOSFET",
+      "category": "B. MOSFET power stage",
+      "quantity": 4,
+      "manufacturer": "Vishay",
+      "exact_MPN": "WSL3637 0R10 3W candidate",
+      "package": "WSL3637 power resistor",
+      "value": "0.1 ohm",
+      "rating": {
+        "power": "3 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "Sx",
+          "role": "MOSFET source"
+        },
+        {
+          "pin": "2",
+          "name": "SHUNT",
+          "role": "shared current return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "CANDIDATE",
+      "selection_status": "CANDIDATE",
+      "notes": "Four independent footprints; exact ordering code and TCR require final verification."
+    },
+    {
+      "reference_designator": "RG1-RG4",
+      "function": "Gate damping resistors, one per MOSFET",
+      "category": "B. MOSFET power stage",
+      "quantity": 4,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC2512FR-071KL",
+      "package": "2512",
+      "value": "1 kohm",
+      "rating": {
+        "voltage": "200 V",
+        "power": "1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "GATE_BUS",
+          "role": "inhibit switch output"
+        },
+        {
+          "pin": "2",
+          "name": "Gx",
+          "role": "MOSFET gate"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "One resistor per branch; pulse and layout review required."
+    },
+    {
+      "reference_designator": "RPD1-RPD4",
+      "function": "Gate-source pull-down resistors",
+      "category": "B. MOSFET power stage",
+      "quantity": 4,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC1206FR-07100KL",
+      "package": "1206",
+      "value": "100 kohm",
+      "rating": {
+        "voltage": "200 V",
+        "power": "0.25 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "Gx",
+          "role": "gate"
+        },
+        {
+          "pin": "2",
+          "name": "Sx",
+          "role": "source"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Forces default gate-off when inhibit path opens."
+    },
+    {
+      "reference_designator": "DZ1-DZ4",
+      "function": "Gate-source clamp zeners",
+      "category": "B. MOSFET power stage",
+      "quantity": 4,
+      "manufacturer": "Diodes Incorporated",
+      "exact_MPN": "BZT52C8V2-7-F",
+      "package": "SOD-123",
+      "value": "8.2 V",
+      "rating": {
+        "power": "0.5 W"
+      },
+      "tolerance": "5%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "K",
+          "role": "gate"
+        },
+        {
+          "pin": "2",
+          "name": "A",
+          "role": "source"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Verify dynamic clamp at the gate transient current."
+    },
+    {
+      "reference_designator": "U1",
+      "function": "Current-sense amplifier",
+      "category": "C. Current sensing",
+      "quantity": 1,
+      "manufacturer": "Texas Instruments",
+      "exact_MPN": "INA180A3IDBVR",
+      "package": "SOT-23-5 DBV",
+      "value": "100 V/V",
+      "rating": {
+        "voltage": "2.7-5.5 V",
+        "current": "260 uA max"
+      },
+      "tolerance": "1% gain error",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "IN+",
+          "role": "shunt Kelvin positive"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "analog ground"
+        },
+        {
+          "pin": "3",
+          "name": "IN-",
+          "role": "shunt Kelvin negative"
+        },
+        {
+          "pin": "4",
+          "name": "OUT",
+          "role": "I_SENSE"
+        },
+        {
+          "pin": "5",
+          "name": "VS",
+          "role": "3V3"
+        }
+      ],
+      "datasheet/source": "https://www.ti.com/lit/ds/symlink/ina180.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "ADC error and calibration remain physical validation."
+    },
+    {
+      "reference_designator": "U2",
+      "function": "Dual analog error/control amplifier",
+      "category": "D. Analog control",
+      "quantity": 1,
+      "manufacturer": "Texas Instruments",
+      "exact_MPN": "LM358BIDR",
+      "package": "SOIC-8 D",
+      "value": "dual op amp",
+      "rating": {
+        "voltage": "3-36 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "OUTA",
+          "role": "gate/control"
+        },
+        {
+          "pin": "2",
+          "name": "INA-",
+          "role": "feedback"
+        },
+        {
+          "pin": "3",
+          "name": "INA+",
+          "role": "VSET"
+        },
+        {
+          "pin": "4",
+          "name": "V-",
+          "role": "GND"
+        },
+        {
+          "pin": "5",
+          "name": "INB+",
+          "role": "spare"
+        },
+        {
+          "pin": "6",
+          "name": "INB-",
+          "role": "spare"
+        },
+        {
+          "pin": "7",
+          "name": "OUTB",
+          "role": "spare"
+        },
+        {
+          "pin": "8",
+          "name": "V+",
+          "role": "5V"
+        }
+      ],
+      "datasheet/source": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Gate loading and loop response remain hardware validation."
+    },
+    {
+      "reference_designator": "U3",
+      "function": "12-bit setpoint DAC",
+      "category": "E. DAC / reference",
+      "quantity": 1,
+      "manufacturer": "Microchip",
+      "exact_MPN": "MCP4725A0T-E/CH",
+      "package": "SOT-23-6 CH",
+      "value": "12-bit I2C DAC",
+      "rating": {
+        "voltage": "2.7-5.5 V",
+        "current": "400 uA max"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VDD",
+          "role": "3V3"
+        },
+        {
+          "pin": "2",
+          "name": "VOUT",
+          "role": "VSET"
+        },
+        {
+          "pin": "3",
+          "name": "VSS",
+          "role": "GND"
+        },
+        {
+          "pin": "4",
+          "name": "SDA",
+          "role": "GPIO21"
+        },
+        {
+          "pin": "5",
+          "name": "SCL",
+          "role": "GPIO22"
+        },
+        {
+          "pin": "6",
+          "name": "A0",
+          "role": "address strap"
+        }
+      ],
+      "datasheet/source": "https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Do not rely on DAC POR for safety; hardware inhibit is independent."
+    },
+    {
+      "reference_designator": "U4",
+      "function": "Wi-Fi MCU and local web controller",
+      "category": "F. ESP32 / MCU",
+      "quantity": 1,
+      "manufacturer": "Espressif",
+      "exact_MPN": "ESP32-WROOM-32E",
+      "package": "38-pin module",
+      "value": "ESP32-WROOM-32E",
+      "rating": {
+        "voltage": "3.0-3.6 V",
+        "current": "0.5 A peak design allowance"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "2",
+          "name": "3V3",
+          "role": "3V3"
+        },
+        {
+          "pin": "3",
+          "name": "EN",
+          "role": "reset"
+        },
+        {
+          "pin": "6",
+          "name": "GPIO34",
+          "role": "VIN ADC"
+        },
+        {
+          "pin": "7",
+          "name": "GPIO35",
+          "role": "current ADC"
+        },
+        {
+          "pin": "9",
+          "name": "GPIO33",
+          "role": "ESTOP monitor"
+        },
+        {
+          "pin": "10",
+          "name": "GPIO25",
+          "role": "MCU_RUN"
+        },
+        {
+          "pin": "11",
+          "name": "GPIO26",
+          "role": "fan control"
+        },
+        {
+          "pin": "12",
+          "name": "GPIO27",
+          "role": "fault"
+        },
+        {
+          "pin": "25",
+          "name": "GPIO0",
+          "role": "boot"
+        },
+        {
+          "pin": "33",
+          "name": "GPIO21",
+          "role": "I2C SDA"
+        },
+        {
+          "pin": "34",
+          "name": "GPIO3",
+          "role": "UART RX"
+        },
+        {
+          "pin": "35",
+          "name": "GPIO1",
+          "role": "UART TX"
+        },
+        {
+          "pin": "36",
+          "name": "GPIO22",
+          "role": "I2C SCL"
+        }
+      ],
+      "datasheet/source": "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_datasheet_en.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Antenna keepout, module land pattern, programming access and Wi-Fi current are required."
+    },
+    {
+      "reference_designator": "R5",
+      "function": "VIN divider high-side",
+      "category": "G. Voltage sensing",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-0733KL",
+      "package": "0603",
+      "value": "33 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VIN",
+          "role": "divider input"
+        },
+        {
+          "pin": "2",
+          "name": "VIN_SENSE",
+          "role": "ADC"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Pairs with R6 for VIN ADC scaling."
+    },
+    {
+      "reference_designator": "R6",
+      "function": "VIN divider low-side",
+      "category": "G. Voltage sensing",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-077K5L",
+      "package": "0603",
+      "value": "7.5 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VIN_SENSE",
+          "role": "divider output"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "VIN ADC scaling and impedance."
+    },
+    {
+      "reference_designator": "R7",
+      "function": "NTC divider reference",
+      "category": "H. Thermal sensing / fan",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC1206FR-07100KL",
+      "package": "1206",
+      "value": "10 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.25 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "divider supply"
+        },
+        {
+          "pin": "2",
+          "name": "NTC_SENSE",
+          "role": "ADC"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Reference resistor for NTC transfer."
+    },
+    {
+      "reference_designator": "FAN1",
+      "function": "Forced-air cooling fan",
+      "category": "H. Thermal sensing / fan",
+      "quantity": 1,
+      "manufacturer": "Sunon",
+      "exact_MPN": "MF40101V2-1000U-A99 candidate",
+      "package": "40 mm fan",
+      "value": ">=10 CFM design target",
+      "rating": {
+        "voltage": "TBD",
+        "current": "TBD"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "FAN+",
+          "role": "fan supply"
+        },
+        {
+          "pin": "2",
+          "name": "FAN-",
+          "role": "switched return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Exact voltage/startup current must be matched to JFAN and driver."
+    },
+    {
+      "reference_designator": "Q5",
+      "function": "Fan low-side driver",
+      "category": "I. Fan control",
+      "quantity": 1,
+      "manufacturer": "Diodes Incorporated",
+      "exact_MPN": "BSS138-7-F",
+      "package": "SOT-23",
+      "value": "N-channel MOSFET",
+      "rating": {
+        "voltage": "50 V",
+        "current": "0.22 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "G",
+          "role": "GPIO26 via gate resistor"
+        },
+        {
+          "pin": "2",
+          "name": "S",
+          "role": "GND"
+        },
+        {
+          "pin": "3",
+          "name": "D",
+          "role": "FAN-"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Validate fan startup current and dissipation."
+    },
+    {
+      "reference_designator": "D2",
+      "function": "Fan flyback diode",
+      "category": "I. Fan control",
+      "quantity": 1,
+      "manufacturer": "Diodes Incorporated",
+      "exact_MPN": "1N5819W-7-F",
+      "package": "SOD-123",
+      "value": "Schottky",
+      "rating": {
+        "voltage": "40 V",
+        "current": "1 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "A",
+          "role": "FAN-"
+        },
+        {
+          "pin": "2",
+          "name": "K",
+          "role": "FAN+"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Inductive fan transient suppression."
+    },
+    {
+      "reference_designator": "U5",
+      "function": "5 V regulator",
+      "category": "J. Power rails",
+      "quantity": 1,
+      "manufacturer": "STMicroelectronics",
+      "exact_MPN": "L7805CV",
+      "package": "TO-220",
+      "value": "5 V linear regulator",
+      "rating": {
+        "voltage": "35 V input",
+        "current": "1.5 A family"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "IN",
+          "role": "VIN"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "GND"
+        },
+        {
+          "pin": "3",
+          "name": "OUT",
+          "role": "5V"
+        }
+      ],
+      "datasheet/source": "https://www.st.com/resource/en/datasheet/l7805.pdf",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "At 15 V/150 mA calculated dissipation is 1.5 W; thermal design required."
+    },
+    {
+      "reference_designator": "U6",
+      "function": "3.3 V Wi-Fi rail regulator",
+      "category": "J. Power rails",
+      "quantity": 1,
+      "manufacturer": "Texas Instruments",
+      "exact_MPN": "TLV76733PDBVR",
+      "package": "SOT-23-6",
+      "value": "3.3 V, 1 A",
+      "rating": {
+        "voltage": "16 V max input",
+        "current": "1 A"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "IN",
+          "role": "5V"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "GND"
+        },
+        {
+          "pin": "3",
+          "name": "EN",
+          "role": "3V3 enable"
+        },
+        {
+          "pin": "5",
+          "name": "OUT",
+          "role": "3V3"
+        },
+        {
+          "pin": "4/6",
+          "name": "NC",
+          "role": "No connect; verify datasheet"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Selected over AP2112K because R1 0.548 A budget left only 0.052 A nominal margin. Exact pin numbering and thermal land pattern require final datasheet review."
+    },
+    {
+      "reference_designator": "C2",
+      "function": "5 V regulator input capacitor",
+      "category": "J. Power rails",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM21BR71E106KA73L",
+      "package": "0805",
+      "value": "10 uF",
+      "rating": {
+        "voltage": "25 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "5V_IN",
+          "role": "regulator bypass"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Confirm regulator stability requirements."
+    },
+    {
+      "reference_designator": "C3",
+      "function": "5 V regulator output capacitor",
+      "category": "J. Power rails",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM21BR71A106KE51L",
+      "package": "0805",
+      "value": "10 uF",
+      "rating": {
+        "voltage": "10 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "5V",
+          "role": "regulator output"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Confirm regulator stability requirements."
+    },
+    {
+      "reference_designator": "C4",
+      "function": "3.3 V rail bulk capacitor",
+      "category": "J. Power rails",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM21BR71A106KE51L",
+      "package": "0805",
+      "value": "10 uF",
+      "rating": {
+        "voltage": "10 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "ESP32 transient support"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "DATASHEET/TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Place at ESP32/regulator power entry."
+    },
+    {
+      "reference_designator": "SW1",
+      "function": "Physical Emergency STOP, normally closed and latching",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "E-Switch",
+      "exact_MPN": "PV6F240SS-3R candidate",
+      "package": "Panel-mount mushroom switch",
+      "value": "NC contact",
+      "rating": {
+        "voltage": "24 V design",
+        "current": "TBD"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "ESTOP_OK",
+          "role": "NC loop"
+        },
+        {
+          "pin": "2",
+          "name": "ESTOP_RETURN",
+          "role": "hardware inhibit"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Independent of Wi-Fi/browser/firmware; open contact forces gate inhibit."
+    },
+    {
+      "reference_designator": "U7",
+      "function": "3.3 V reset supervisor",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "Texas Instruments",
+      "exact_MPN": "TPS3839K33DBZR",
+      "package": "SOT-23-3",
+      "value": "3.3 V supervisor",
+      "rating": {
+        "voltage": "1.6-6.5 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "GND",
+          "role": "GND"
+        },
+        {
+          "pin": "2",
+          "name": "RESET",
+          "role": "RESET_OK logic"
+        },
+        {
+          "pin": "3",
+          "name": "VDD",
+          "role": "3V3"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Verify active polarity and exact package pinout."
+    },
+    {
+      "reference_designator": "U8",
+      "function": "Run/fault logic inverter",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "Texas Instruments",
+      "exact_MPN": "SN74LVC1G04DBVR",
+      "package": "SOT-23-5",
+      "value": "single inverter",
+      "rating": {
+        "voltage": "1.65-5.5 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "A",
+          "role": "fault/reset logic"
+        },
+        {
+          "pin": "2",
+          "name": "Y",
+          "role": "gate inhibit logic"
+        },
+        {
+          "pin": "3",
+          "name": "GND",
+          "role": "GND"
+        },
+        {
+          "pin": "4",
+          "name": "VCC",
+          "role": "3V3"
+        },
+        {
+          "pin": "5",
+          "name": "NC",
+          "role": "unused/verify"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Default-safe control logic; exact pinout verify."
+    },
+    {
+      "reference_designator": "U9",
+      "function": "Analog gate-control inhibit switch",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "Analog Devices",
+      "exact_MPN": "ADG884BRMZ",
+      "package": "MSOP-10",
+      "value": "dual SPST analog switch",
+      "rating": {
+        "voltage": "1.8-5.5 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1/2/3",
+          "name": "S/D",
+          "role": "LM358 gate-control path"
+        },
+        {
+          "pin": "4",
+          "name": "GND",
+          "role": "GND"
+        },
+        {
+          "pin": "5",
+          "name": "IN",
+          "role": "enable"
+        },
+        {
+          "pin": "6-10",
+          "name": "S/D/NC",
+          "role": "verify exact datasheet pinout"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Normally-open effective gate path; all safe states open it."
+    },
+    {
+      "reference_designator": "R10",
+      "function": "Hardware inhibit default pull-down",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-07100KL",
+      "package": "0603",
+      "value": "100 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "MCU_RUN",
+          "role": "enable"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "default off"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Forces run-enable false when MCU is absent."
+    },
+    {
+      "reference_designator": "R11",
+      "function": "Fault logic pull-up",
+      "category": "K. Fault / safety / Emergency STOP",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-0710KL",
+      "package": "0603",
+      "value": "10 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "logic bias"
+        },
+        {
+          "pin": "2",
+          "name": "FAULT",
+          "role": "fault input"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Fault path default and latch review required."
+    },
+    {
+      "reference_designator": "TP1",
+      "function": "VIN test point",
+      "category": "L. Test points",
+      "quantity": 1,
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "value": "VIN",
+      "rating": {
+        "voltage": "30 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VIN",
+          "role": "measurement access"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Hardware validation access."
+    },
+    {
+      "reference_designator": "TP2-TP10",
+      "function": "5V, 3V3, VSET, I_SENSE, V_SENSE, NTC_SENSE, FAULT, ESTOP_OK, GATE_BUS test points",
+      "category": "L. Test points",
+      "quantity": 9,
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "value": "Named validation nodes",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "NAMED_NET",
+          "role": "measurement access"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Individual silkscreen labels required; see hardware validation plan."
+    },
+    {
+      "reference_designator": "J2",
+      "function": "Programming/debug/service UART",
+      "category": "M. Programming / debug / service",
+      "quantity": 1,
+      "manufacturer": "Molex",
+      "exact_MPN": "53047-0210",
+      "package": "1x2 1.27 mm board connector",
+      "value": "TX/RX plus nearby GND pad",
+      "rating": {
+        "voltage": "3.3 V"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "TX0",
+          "role": "ESP32 GPIO1"
+        },
+        {
+          "pin": "2",
+          "name": "RX0",
+          "role": "ESP32 GPIO3"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Service/programming only; no safety function."
+    },
+    {
+      "reference_designator": "J3",
+      "function": "External Emergency STOP loop",
+      "category": "N. Connectors",
+      "quantity": 1,
+      "manufacturer": "Phoenix Contact",
+      "exact_MPN": "1729010",
+      "package": "2-pin 5.08 mm terminal",
+      "value": "Normally closed loop",
+      "rating": {
+        "voltage": "24 V design",
+        "current": "TBD"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "ESTOP_OK",
+          "role": "NC field loop"
+        },
+        {
+          "pin": "2",
+          "name": "ESTOP_RETURN",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Pin orientation and safety marking required."
+    },
+    {
+      "reference_designator": "J4",
+      "function": "Fan connector",
+      "category": "N. Connectors",
+      "quantity": 1,
+      "manufacturer": "Phoenix Contact",
+      "exact_MPN": "1729010",
+      "package": "2-pin 5.08 mm terminal",
+      "value": "FAN+ / FAN-",
+      "rating": {
+        "voltage": "TBD",
+        "current": "fan startup TBD"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "FAN+",
+          "role": "fan supply"
+        },
+        {
+          "pin": "2",
+          "name": "FAN-",
+          "role": "switched return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Confirm fan startup contact rating."
+    },
+    {
+      "reference_designator": "HS1",
+      "function": "Shared MOSFET heatsink",
+      "category": "O. Mechanical / thermal hardware",
+      "quantity": 1,
+      "manufacturer": "Fischer Elektronik",
+      "exact_MPN": "SK 56 100 SA candidate",
+      "package": "TO-220 sink",
+      "value": "RthetaSA <=1.5 K/W target",
+      "rating": {
+        "voltage": "electrical isolation required"
+      },
+      "tolerance": "TBD",
+      "pins": [],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Four isolated TO-220 positions; forced air; mechanical drawing required."
+    },
+    {
+      "reference_designator": "TIM1",
+      "function": "Electrical isolation and thermal interface",
+      "category": "O. Mechanical / thermal hardware",
+      "quantity": 4,
+      "manufacturer": "TBD",
+      "exact_MPN": "TBD",
+      "package": "TO-220 insulating pad",
+      "value": "RthetaCS <=0.5 K/W target",
+      "rating": {
+        "voltage": "isolation required"
+      },
+      "tolerance": "TBD",
+      "pins": [],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "TBD",
+      "notes": "Select pad/compound and mounting hardware as one validated stack."
+    },
+    {
+      "reference_designator": "M1",
+      "function": "Fan/heatsink mounting hardware",
+      "category": "O. Mechanical / thermal hardware",
+      "quantity": 1,
+      "manufacturer": "TBD",
+      "exact_MPN": "TBD",
+      "package": "Mechanical",
+      "value": "40 mm fan and TO-220 isolated mounting",
+      "rating": {
+        "voltage": "N/A"
+      },
+      "tolerance": "TBD",
+      "pins": [],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "TBD",
+      "notes": "Required mechanical drawing and clearance review."
+    },
+    {
+      "reference_designator": "C5",
+      "function": "VIN ADC filter",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM188R71H103KA01D",
+      "package": "0603",
+      "value": "10 nF",
+      "rating": {
+        "voltage": "50 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VIN_SENSE",
+          "role": "ADC filter"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Input-voltage ADC anti-noise filter."
+    },
+    {
+      "reference_designator": "C6",
+      "function": "Current-sense filter",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM188R71H103KA01D",
+      "package": "0603",
+      "value": "10 nF",
+      "rating": {
+        "voltage": "50 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "I_SENSE",
+          "role": "ADC filter"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "INA180 output filter."
+    },
+    {
+      "reference_designator": "C7",
+      "function": "DAC output filter",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM188R71H104KA01D",
+      "package": "0603",
+      "value": "100 nF",
+      "rating": {
+        "voltage": "50 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VSET",
+          "role": "DAC filter"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "DAC/reference control filtering."
+    },
+    {
+      "reference_designator": "C8-C12",
+      "function": "IC and module local decoupling",
+      "category": "N. Passive components",
+      "quantity": 5,
+      "manufacturer": "Murata",
+      "exact_MPN": "GRM188R71H104KA01D",
+      "package": "0603",
+      "value": "100 nF",
+      "rating": {
+        "voltage": "50 V"
+      },
+      "tolerance": "10%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "RAIL",
+          "role": "local bypass"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "Place at U1/U2/U3/U4 and safety logic supply pins."
+    },
+    {
+      "reference_designator": "R12",
+      "function": "I2C SDA pull-up",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-074K7L",
+      "package": "0603",
+      "value": "4.7 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "I2C pull-up"
+        },
+        {
+          "pin": "2",
+          "name": "SDA",
+          "role": "GPIO21"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "I2C bus pull-up."
+    },
+    {
+      "reference_designator": "R13",
+      "function": "I2C SCL pull-up",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-074K7L",
+      "package": "0603",
+      "value": "4.7 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "I2C pull-up"
+        },
+        {
+          "pin": "2",
+          "name": "SCL",
+          "role": "GPIO22"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "I2C bus pull-up."
+    },
+    {
+      "reference_designator": "LED1",
+      "function": "Status indicator",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Kingbright",
+      "exact_MPN": "KP-2012SGC",
+      "package": "0805",
+      "value": "green LED",
+      "rating": {
+        "current": "2 mA design"
+      },
+      "tolerance": "TBD",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "A",
+          "role": "status drive"
+        },
+        {
+          "pin": "2",
+          "name": "K",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "CANDIDATE",
+      "notes": "Status indication only; web application is primary UI."
+    },
+    {
+      "reference_designator": "R14",
+      "function": "Status LED current limiter",
+      "category": "N. Passive components",
+      "quantity": 1,
+      "manufacturer": "Yageo",
+      "exact_MPN": "RC0603FR-071KL",
+      "package": "0603",
+      "value": "1 kohm",
+      "rating": {
+        "voltage": "50 V",
+        "power": "0.1 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "LED_DRIVE",
+          "role": "current limit"
+        },
+        {
+          "pin": "2",
+          "name": "LED_A",
+          "role": "LED"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "notes": "LED current limit based on 3.3 V logic."
+    },
+    {
+      "reference_designator": "RSH1",
+      "function": "Kelvin load-current shunt",
+      "category": "C. Current sensing",
+      "quantity": 1,
+      "manufacturer": "Vishay",
+      "exact_MPN": "WSL3637 0R010 3W candidate",
+      "package": "WSL3637 Kelvin power resistor",
+      "value": "0.01 ohm",
+      "rating": {
+        "current": "2 A design",
+        "power": "3 W"
+      },
+      "tolerance": "1%",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "LOAD_RETURN",
+          "role": "high-current terminal"
+        },
+        {
+          "pin": "2",
+          "name": "SENSE-",
+          "role": "Kelvin sense"
+        },
+        {
+          "pin": "3",
+          "name": "SENSE+",
+          "role": "Kelvin sense"
+        },
+        {
+          "pin": "4",
+          "name": "POWER_RETURN",
+          "role": "high-current terminal"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "CANDIDATE",
+      "selection_status": "CANDIDATE",
+      "notes": "High-current terminals and Kelvin sense pads are separate."
+    },
+    {
+      "reference_designator": "TH1",
+      "function": "Heatsink temperature sensor",
+      "category": "H. Thermal sensing / fan",
+      "quantity": 1,
+      "manufacturer": "TDK",
+      "exact_MPN": "B57540G1103F000",
+      "package": "Radial NTC",
+      "value": "10 kohm beta 3988 K candidate",
+      "rating": {
+        "voltage": "TBD"
+      },
+      "tolerance": "1% at 25 C",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "NTC_SENSE",
+          "role": "ADC divider"
+        },
+        {
+          "pin": "2",
+          "name": "GND",
+          "role": "return"
+        }
+      ],
+      "datasheet/source": "TBD",
+      "provenance": "DATASHEET",
+      "selection_status": "CANDIDATE",
+      "notes": "Mount at representative hottest sink location."
+    }
+  ]
+}

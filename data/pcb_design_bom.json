@@ -719,5 +719,7 @@
   ],
   "design_release_note": "Engineering design selections are closed independently of supplier availability. Candidate flags identify datasheet/package verification items, not undefined electrical parameters.",
   "product_revision": "PLEL R1",
-  "product_strategy": "ESP32 Wi-Fi local web application; no OLED, encoder, or ordinary user buttons; emergency stop retained"
+  "product_strategy": "ESP32 Wi-Fi local web application; no OLED, encoder, or ordinary user buttons; emergency stop retained",
+  "authoritative_master_bom": "data/PLEL_R1_MASTER_BOM.json",
+  "role": "Legacy/source-mapped R1 procurement/design record; master BOM is authoritative for schematic handoff"
 }
