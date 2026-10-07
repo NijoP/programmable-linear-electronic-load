@@ -33,6 +33,20 @@ A possible single-channel selection such as `S1A=LM358_OUT`, `S1B=GND`, `D1=GATE
 
 Therefore the existing proposed safety topology is electrically incomplete. No U9 channel assignment has been placed in the connection matrix.
 
+## U8 connection status
+
+U8 pin identity is verified as:
+
+```text
+U8.1 NC
+U8.2 A
+U8.3 GND
+U8.4 Y
+U8.5 VCC
+```
+
+The functional connections of `A` and `Y` cannot be assigned without the approved safety truth-table implementation. The current source does not establish whether U8 should invert `FAULT`, a combined logic node, or another signal, and it provides no complete hardware AND network. Therefore pin mapping passes but safety-chain connectivity remains FAIL.
+
 ## Required engineering decision
 
 Select and document a real fail-safe hardware implementation for the four conditions, including exact logic IC(s), truth table, default biasing, U9 usage or replacement, and the defined gate-off voltage path. Until that decision is made, `SAFETY_CHAIN = FAIL`.

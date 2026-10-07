@@ -82,3 +82,10 @@ compensation network, shunt polarity/Kelvin connection contract, and complete
 fail-safe U7/U8/U9 logic are still unresolved. Do not create
 `eda/connections/PLEL_CONNECTION_MATRIX.csv` until those engineering decisions
 are closed.
+
+The firmware/programming interface is also unresolved. The current `J2` is a
+1x2 TX/RX connector and does not satisfy the required six-pin `J_PROGRAM`
+interface (GND, 3V3, ESP_TX, ESP_RX, EN, GPIO0). The EN/GPIO0 support networks,
+exact CP2102 adapter power contract, and back-power prevention are not yet
+represented in the authoritative BOM. See
+`verification/PLEL_ESP32_FIRMWARE_INTERFACE_REVIEW.md`.
