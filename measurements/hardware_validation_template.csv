@@ -1,0 +1,2 @@
+timestamp,vin_V,current_A,power_W,ambient_C,sink_C,case_C,gate_V,dac_V,sense_V,adc_raw,fault,estop,mode
+2026-01-01T00:00:00Z,,,,,,,,,,,,,

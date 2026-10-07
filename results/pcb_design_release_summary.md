@@ -4,6 +4,7 @@
 **Source:** `docs/source/design-source.pdf`
 **PCB_DESIGN_RELEASE:** `PASS`
 **HARDWARE_VALIDATION:** `PENDING`
+**HARDWARE_VALIDATION_SIMULATION:** `COMPLETE`
 
 ## R1 release closures
 

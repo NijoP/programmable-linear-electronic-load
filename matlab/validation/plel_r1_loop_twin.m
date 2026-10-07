@@ -1,0 +1,13 @@
+function out = plel_r1_loop_twin(cfg)
+%PLEL_R1_LOOP_TWIN First-order design envelope; unknown plant terms stay explicit.
+    f=logspace(0,5,300); cross=[10 25 50 100]; pm=zeros(size(cross));
+    for k=1:numel(cross)
+        lag=atan(cross(k)/159)+atan(cross(k)/5000)+atan(cross(k)/cfg.datasheet.lm_gbw_Hz);
+        pm(k)=180-lag*180/pi;
+    end
+    out=struct('frequency_Hz',f,'design_crossover_Hz',cross,'estimated_phase_margin_deg',pm, ...
+        'stable_region_definition','CONDITIONAL: first-order envelope only when crossover <=25 Hz and compensation is implemented as documented', ...
+        'unknown_region','MOSFET gm, output capacitance, wiring and assembled parasitics', ...
+        'LOOP_STABILITY_HARDWARE_TEST_REQUIRED',true, ...
+        'provenance','SIMULATED/DESIGN_TARGET; no measured Bode data');
+end
