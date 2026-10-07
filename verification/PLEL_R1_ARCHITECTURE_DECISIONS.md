@@ -3,6 +3,18 @@
 **Date:** 2026-10-07
 **Scope:** electrical architecture only; EasyEDA `Schematic1 / P1` is untouched.
 
+## Superseding numerical audit
+
+`PLEL_DESIGN_RELEASE_REAUDIT.md` records the current executed MATLAB evidence.
+The previous power-tree and startup PASS assumptions are withdrawn. Policy-level
+approvals below are not complete design-gate approvals. The integrator candidate
+is explored in `matlab/analysis/plel_candidate_integrator_sweep.m`, but is not
+promoted to BOM until headroom and startup/DC behavior are closed.
+
+TPS3839 RESET is push-pull and active-low: it is already high when healthy,
+so no reset-polarity inverter is appropriate. The proposed U12 inverter from
+earlier conversational reports must not be added.
+
 ## Release summary
 
 ```text
@@ -201,11 +213,11 @@ Power policy:
 
 ```text
 ANALOG_ARCHITECTURE   = FAIL
-SHUNT_POLARITY        = PASS (synchronization pending)
+SHUNT_POLARITY        = BLOCKED (physical part/pin synchronization not complete)
 SAFETY_ARCHITECTURE   = FAIL
 ESP32_BOOT_RESET      = FAIL
-PROGRAMMING_INTERFACE = PASS (connector synchronization pending)
-POWER_DOMAIN          = PASS (component allocation pending)
+PROGRAMMING_INTERFACE = BLOCKED (connector and protection not complete)
+POWER_DOMAIN          = BLOCKED (cascade thermal design and allocation not complete)
 MATLAB_MODEL_MATCH    = FAIL
 CONNECTION_MATRIX     = NOT PERMITTED
 BOM_PIN_PARITY        = NOT PERMITTED

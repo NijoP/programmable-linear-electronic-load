@@ -72,7 +72,7 @@ The following source corrections are applied and datasheet-traced:
 
 - U4 is a complete 38-pin ESP32-WROOM-32E map; GPIO39/SENSOR_VN is module pin 5 and unused module pins are classified.
 - U8 SN74LVC1G04DBVR is DBV: pin 1 NC, pin 2 A, pin 3 GND, pin 4 Y, pin 5 VCC.
-- U6 TLV76733PDBVR is fixed DBV SOT-23-5: pin 1 SNS, pin 2 IN, pin 3 EN, pin 4 OUT, pin 5 GND/thermal pad.
+- U6 TLV76733PDBVR is fixed DBV SOT-23-5: pin 1 IN, pin 2 GND, pin 3 EN, pin 4 DNC (leave open), pin 5 OUT. No SNS or exposed thermal-pad pin exists on this package; TI SLVSE84D Figure 5-5 controls.
 - U9 ADG884BRMZ has its exact ten-pin MSOP map recorded.
 - TP1–TP10 have explicit net, purpose, and validation-test assignments.
 

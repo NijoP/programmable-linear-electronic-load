@@ -11,8 +11,8 @@ function outputs = generate_r1_outputs()
     vds=15-15*0.01-(I/4)*0.1; pdev=vds.*I/4; plot(I,pdev,'LineWidth',1.5); grid on;
     xlabel('Total load current (A)'); ylabel('MOSFET dissipation/device (W)'); title('PLEL R1 MOSFET power sharing');
     saveas(f,fullfile(plotdir,'mosfet_power_sharing.png')); close(f);
-    f=figure('Visible','off'); I2=[0.1 0.5 1 1.5 2]; err=I2*(cfg.operating.shunt_tolerance+cfg.datasheet.sense_gain_error)+ ...
-        cfg.datasheet.sense_offset_max_uV*1e-6/(cfg.operating.shunt_ohm*100);
+    f=figure('Visible','off'); sense=validate_current_sense(cfg);
+    I2=sense.value.current_A; err=sense.value.worst_case_partial_error_A;
     plot(I2,100*err./I2,'o-','LineWidth',1.5); grid on; xlabel('Current (A)'); ylabel('Partial uncalibrated error (%)');
     title('PLEL R1 current-sense analytical subtotal'); saveas(f,fullfile(plotdir,'current_sense_error.png')); close(f);
     outputs=struct('envelope',e,'plot_directory',plotdir);

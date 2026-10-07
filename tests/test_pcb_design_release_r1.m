@@ -1,6 +1,6 @@
 function test_pcb_design_release_r1()
 %TEST_PCB_DESIGN_RELEASE_R1 Verify the R1 release gate includes product interfaces.
-    r=pcb_design_release(); assert(strcmp(r.PCB_DESIGN_RELEASE,'PASS'));
+    r=pcb_design_release(); assert(strcmp(r.PCB_DESIGN_RELEASE,'BLOCKED'));
     assert(strcmp(r.HARDWARE_VALIDATION,'PENDING'));
     names=cellfun(@(x)x.item,r.checks,'UniformOutput',false);
     assert(any(strcmp(names,'Source-PDF requirements mapped')));

@@ -11,7 +11,7 @@
 | ESP32_PIN_MAP | PASS | Complete 38-pin U4 map; GPIO39/SENSOR_VN is pin 5; unused pins classified |
 | U8_PIN_MAP | PASS | Correct DBV mapping: 1 NC, 2 A, 3 GND, 4 Y, 5 VCC |
 | U9_PIN_MAP | PASS | Exact ten-pin MSOP map recorded; functional use is not approved |
-| U6_PIN_MAP | PASS | Corrected TLV76733PDBVR fixed DBV mapping: SNS, IN, EN, OUT, GND/thermal pad |
+| U6_PIN_MAP | PASS | TI fixed DBV mapping: 1 IN, 2 GND, 3 EN, 4 DNC, 5 OUT; prior SNS mapping withdrawn |
 | ANALOG_CONTROL | FAIL | No authoritative complete LM358 feedback/compensation topology, component references, or values. The source 10 kΩ/100 nF first-pass filter is not a complete loop definition and conflicts with BOM C6 = 10 nF without an approved decision. |
 | SHUNT_CONNECTION | FAIL | Sources define a four-terminal shunt concept but not the authoritative high-current polarity/path or exact INA180 IN+/IN− Kelvin polarity. |
 | TEST_POINTS | PASS | TP1–TP10 have explicit nets, purposes, and validation IDs. |
