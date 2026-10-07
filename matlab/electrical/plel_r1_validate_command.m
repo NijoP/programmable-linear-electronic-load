@@ -26,7 +26,7 @@ function [cmd, state, reason] = plel_r1_validate_command(mode, setpoint, Vin, cf
                 if setpoint > cfg.operating.pmax_W, reason='power_limit_exceeded'; return; end
                 cmd=plel_cp_command(setpoint,cfg.operating.imax_A,cfg.operating.pmax_W,Vin);
             case 'CR'
-                if setpoint <= 0, reason='invalid_resistance'; return; end
+                if setpoint < cfg.operating.rmin_ohm || setpoint > cfg.operating.rmax_ohm, reason='resistance_range_exceeded'; return; end
                 cmd=plel_cr_command(Vin,setpoint,cfg.operating.imax_A,cfg.operating.pmax_W);
             case 'BATTERY'
                 % Battery test uses a validated CC limit as its first release mode.
