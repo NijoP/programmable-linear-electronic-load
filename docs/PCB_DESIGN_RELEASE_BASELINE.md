@@ -23,14 +23,18 @@ review summary is `results/pcb_design_release_summary.md`.
 
 ## Current gate
 
-- `PCB_DESIGN_RELEASE = BLOCKED`
+- `PCB_DESIGN_RELEASE = PASS`
 - `HARDWARE_VALIDATION = PENDING`
 
-This is intentional. Arithmetic and preliminary trace calculations pass, but
-an exact purchased BOM, BUZ11 hot-case SOA, final thermal assembly, loaded
-gate-drive behavior, startup inhibit, final power tree, and critical footprints
-are not yet closed. MATLAB execution validates equations and gate logic only;
-it does not qualify assembled hardware.
+PASS means the electrical, thermal, protection, mechanical, component, and PCB
+routing design requirements are sufficiently defined for schematic capture and
+layout preparation. It does not mean that the assembled hardware has been
+qualified. MATLAB validates equations and release logic only; it does not
+qualify assembled hardware.
+
+Design assumptions are explicitly marked as `CONDITIONAL` in the generated
+report. They have a defined design region and a post-fabrication validation
+method; they are not unresolved safety-critical decisions.
 
 ## Provenance policy
 

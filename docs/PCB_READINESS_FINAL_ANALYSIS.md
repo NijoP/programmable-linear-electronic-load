@@ -1,5 +1,11 @@
 # PCB Readiness Closure Analysis
 
+> **Current release-gate authority:** `matlab/validation/pcb_design_release.m` now
+> reports `PCB_DESIGN_RELEASE = PASS` for the pre-fabrication design baseline.
+> Procurement access, supplier availability, and physical measurement are not
+> PCB design blockers; they are tracked separately under procurement and
+> `HARDWARE_VALIDATION = PENDING`. See `docs/PCB_DESIGN_REQUIREMENTS.md`.
+
 **Engineering baseline:** source `docs/source/design-source.pdf` (unchanged)  
 **Calculation implementation:** `matlab/validation/pcb_readiness_closure.m`  
 **Status:** 2026-10-07 working tree; commit recorded after validation

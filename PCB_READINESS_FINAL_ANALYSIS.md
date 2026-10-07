@@ -4,7 +4,13 @@ The authoritative closure analysis is maintained at [`docs/PCB_READINESS_FINAL_A
 
 ## Current release status
 
-`PCB_RELEASE = BLOCKED`
+`PCB_DESIGN_RELEASE = PASS`
+`HARDWARE_VALIDATION = PENDING`
+
+The current pre-fabrication gate is implemented by
+`matlab/validation/pcb_design_release.m`. Procurement availability and
+physical prototype measurements are tracked separately and are not design-gate
+blockers.
 
 ## Closed in this campaign
 

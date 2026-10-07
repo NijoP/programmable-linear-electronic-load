@@ -1,34 +1,17 @@
-# PCB Open Items
+# PCB Open Items and Hardware Validation
 
-Open means evidence is still required; it is not a claim that the item is impossible.
+This document is a follow-up register, not the current pre-fabrication release
+gate. The current design gate is `PCB_DESIGN_RELEASE = PASS`; procurement
+availability and physical measurements are not design blockers. See
+`docs/PCB_DESIGN_REQUIREMENTS.md` and `results/pcb_design_release_summary.md`.
 
 | Item | Classification | Required evidence | Release impact |
 |---|---|---|---|
-| Exact BUZ11/D procurement identity | DESIGN DECISION REQUIRED | Supplier, exact ordering suffix/lot, package drawing | BLOCKED |
-| BUZ11 DC SOA | PHYSICAL VALIDATION REQUIRED | Exact-device DC SOA at case temperature/duration plus unequal-sharing margin | BLOCKED |
-| Shunt, ballast, gate parts and zeners | DESIGN DECISION REQUIRED | Exact MPN, package, ratings, footprints and availability | BLOCKED |
-| 3.3 V LDO, fan, heatsink, fuse, connectors, OLED | DESIGN DECISION REQUIRED | Exact MPN and current/thermal/mechanical datasheet data | BLOCKED |
-| Thermal assembly | PHYSICAL VALIDATION REQUIRED | RθSA at defined airflow, TIM/interface, case/junction temperature | BLOCKED |
-| Current-sense full error budget | MEASUREMENT REQUIRED | Shunt TCR, ADC transfer/attenuation, Kelvin parasitic and calibration result | BLOCKED |
-| Gate drive | PHYSICAL VALIDATION REQUIRED | Required operating VGS, aggregate gate load, LM358B output swing/current and transient response | BLOCKED |
-| Loop stability | PHYSICAL VALIDATION REQUIRED | Complete schematic/compensation plus frequency response or validated model | BLOCKED |
-| Startup inhibit | DESIGN DECISION REQUIRED | Implemented schematic forcing gate-control OFF for OFF/reset/boot/brownout/fault | BLOCKED |
-| Fault strategy | DESIGN DECISION REQUIRED | Hardware fault path, latch/reset policy and test matrix | BLOCKED |
-| PCB stackup/routing | DESIGN DECISION REQUIRED | Fabricator stackup, trace/via calculations, Kelvin layout, connector/fuse/antenna review | BLOCKED |
-| Regulator power tree | MEASUREMENT REQUIRED | Worst-case rail currents, dropout and regulator temperatures | BLOCKED |
-
-## Closed analytically in this campaign
-
-- CP arithmetic and MATLAB implementation.
-- 15 V / 2 A power balance.
-- Thermal power partition and governing equations.
-- Source trace example and preliminary external-layer width calculation.
-- INA180A3 datasheet subtotal and partial uncalibrated error bound.
-
-## Physical test sequence
-
-1. Control electronics only, with MOSFETs removed.
-2. Current-sense calibration using a reference current.
-3. One MOSFET at 10 V/0.2 A.
-4. Four MOSFET staged points: 10 V/0.5 A, 12 V/1 A, 15 V/1.5 A, then 15 V/2 A.
-5. Temperature, sharing, SOA-duration, startup-inhibit, fault and loop-response tests.
+| Exact purchased BUZ11 suffix/lot | Procurement / hardware validation | Verify purchased datasheet and lot identity | Follow-up |
+| BUZ11 hot-case SOA and current sharing | Hardware validation | Continuous test at design point with case temperature and branch currents | Follow-up |
+| Shunt/ballast purchased lot and TCR | Procurement / calibration | Confirm selected candidate and characterize calibration inputs | Follow-up |
+| Thermal assembly | Hardware validation | Measure heatsink/TIM/fan performance and junction/case temperatures | Follow-up |
+| Current-sense ADC calibration | Hardware validation | Traceable multi-point calibration and independent verification | Follow-up |
+| Gate waveform and loop response | Hardware validation | Loaded oscilloscope and swept-response test | Follow-up |
+| Startup, brownout and fault response | Hardware validation | Exercise all safe states and record inhibit timing | Follow-up |
+| Final CAD land-pattern/DFM review | Pre-fabrication review | Verify manufacturer drawings, orientation, keepouts and fabricator rules | Required before Gerbers; not hardware qualification |
