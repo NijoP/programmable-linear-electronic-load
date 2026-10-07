@@ -4,6 +4,7 @@
 PCB_DESIGN_RELEASE = PASS
 HARDWARE_VALIDATION = PENDING
 HARDWARE_VALIDATION_SIMULATION = COMPLETE
+HARDWARE_VALIDATION_READINESS = COMPLETE
 ```
 
 This report contains simulated and datasheet-derived predictions only. It does
@@ -68,9 +69,10 @@ No measured Bode result is claimed.
 
 The R1 model uses the OLED-free budget and includes ESP32 normal/peak allowance,
 MCP4725, INA180A3, LM358B, NTC/logic, fan-control, and status support. The
-3.3 V design budget is 0.548 A against the selected 0.6 A nominal AP2112K
-limit, leaving approximately 52 mA nominal current margin. Regulator
-temperature remains physical validation.
+3.3 V design budget is 0.548 A against the selected 1.0 A nominal TLV76733
+limit, leaving approximately 452 mA nominal current margin. The earlier 0.6 A
+AP2112K candidate was rejected as having insufficient transient margin.
+Regulator temperature remains physical validation.
 
 ## 9. Startup, E-stop, and communication
 

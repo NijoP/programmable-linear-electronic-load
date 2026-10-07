@@ -1,2 +1,2 @@
-timestamp,vin_V,current_A,power_W,ambient_C,sink_C,case_C,gate_V,dac_V,sense_V,adc_raw,fault,estop,mode
-2026-01-01T00:00:00Z,,,,,,,,,,,,,
+test_id,timestamp,instrument_id,instrument_calibration_date,operator,vin_V,current_A,power_W,ambient_C,sink_C,case_C,gate_V,dac_V,dac_code,sense_V,adc_raw,gate_enable,fault,estop,reset_line,startup_ms,fault_ms,estop_ms,timeout_ms,mode,setpoint
+TEMPLATE,,NOT_MEASURED,NOT_MEASURED,NOT_MEASURED,,,,,,,,,,,,,,,,,,,,,

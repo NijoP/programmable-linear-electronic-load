@@ -302,14 +302,14 @@
       "component_id": "U_REG33",
       "function": "3.3 V rail regulator",
       "source_requirement": "3.3 V LDO, source \u00c2\u00a727",
-      "manufacturer": "Diodes Incorporated",
-      "exact_mpn": "AP2112K-3.3TRG1",
-      "package": "SOT-23-5",
+      "manufacturer": "Texas Instruments",
+      "exact_mpn": "TLV76733PDBVR",
+      "package": "SOT-23-6",
       "quantity": 1,
-      "electrical_rating": "3.3 V, 600 mA",
+      "electrical_rating": "3.3 V, 1 A nominal",
       "power_rating": "TBD",
       "temperature_rating": "TBD",
-      "critical_parameters": "dropout/load transient/capacitors",
+      "critical_parameters": "dropout, transient response, thermal copper; selected over AP2112K due to margin",
       "datasheet_url": "TBD",
       "datasheet_revision": null,
       "footprint_reference": "TBD",
@@ -317,7 +317,7 @@
       "selection_status": "CANDIDATE",
       "engineering_status": "DESIGN_CLOSED_CANDIDATE",
       "procurement_status": "UNVERIFIED",
-      "design_notes": "Exact engineering candidate selected for design closure; supplier availability is not a release criterion."
+      "design_notes": "SOURCE REQUIREMENT: 3.3 V LDO. ENGINEERING ISSUE: AP2112K 0.6 A left 52 mA nominal margin. SELECTED DESIGN: TLV76733 1 A candidate. IMPACT: improved current margin; verify thermal layout."
     },
     {
       "component_id": "TH1",

@@ -40,9 +40,9 @@
 ## Power tree
 
 - Preserve VIN -> 5 V -> 3.3 V architecture.
-- Use L7805CV for 5 V and AP2112K-3.3TRG1 for 3.3 V.
+- Use L7805CV for 5 V and TLV76733PDBVR for 3.3 V. The prior AP2112K 0.6 A candidate was rejected for insufficient transient margin.
 - Budget 150 mA on 5 V and 548 mA worst-case on 3.3 V: ESP32 500 mA peak plus 48 mA for MCP4725/INA/NTC/logic/status support; OLED and encoder loads are removed.
-- AP2112K current margin is approximately 56 mA. Provide at least 600 mm2 copper for thermal spreading and verify regulator temperature after fabrication.
+- TLV76733 nominal current margin is approximately 452 mA. Provide at least 600 mm2 copper for thermal spreading and verify regulator temperature after fabrication.
 
 ## MCU and web interface
 

@@ -3,7 +3,7 @@ function data = import_hardware_measurements(filename)
     if nargin<1, filename=fullfile(fileparts(fileparts(fileparts(mfilename('fullpath')))), ...
             'measurements','hardware_validation_template.csv'); end
     if ~isfile(filename), error('plel:MeasurementFile','Measurement file not found: %s',filename); end
-    data=readtable(filename,'TextType','string');
+    data=readtable(filename,'ReadVariableNames',true,'TextType','string');
     required={'timestamp','vin_V','current_A','power_W','ambient_C','sink_C','case_C', ...
         'gate_V','dac_V','sense_V','adc_raw','fault','estop','mode'};
     missing=setdiff(required,data.Properties.VariableNames);
