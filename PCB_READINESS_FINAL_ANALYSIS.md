@@ -15,9 +15,13 @@ The authoritative closure analysis is maintained at [`docs/PCB_READINESS_FINAL_A
 - Source PCB trace example recalculated for 2 oz copper; an IPC-2221 external-layer sizing check gives 0.385 mm minimum at 2 A and 10 °C rise under stated assumptions.
 - MATLAB regression and repository tests pass.
 
+## Robu-only procurement result
+
+Robu catalogue/search requests returned HTTP 403 at the recorded check time. `data/robu_procurement.json` records every required line, quantity, search URL, candidate MPN, `ROBU_STATUS`, price and compatibility. Stock and price are therefore `UNCERTAIN`/`PRICE NOT VISIBLE`, not fabricated.
+
 ## Genuine release blockers
 
-- Exact purchasable MPNs, packages and footprints are incomplete for several critical components.
+- Exact Robu product records, MPNs, packages and footprints are incomplete for several critical components.
 - BUZ11 DC SOA margin at the applicable case temperature and duration is not qualified; the candidate 25 °C graph is not a hot-case guarantee.
 - Heatsink, TIM, mechanical interface, airflow and regulator thermal data are not selected or measured.
 - Complete current-sense error budget still needs shunt TCR, ADC characteristics, layout/Kelvin parasitics and calibration policy.

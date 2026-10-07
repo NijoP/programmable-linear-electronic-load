@@ -58,6 +58,12 @@ For each incomplete item the release action is: select MPN → obtain current da
 - Regulator rail current, dropout and thermal measurements.
 - Final PCB layout, via, connector, fuse, antenna keepout and DFM review.
 
+## Robu-only procurement closure
+
+`data/robu_procurement.json` and `docs/ROBU_BOM.md` are the procurement records. Robu catalogue and search requests returned HTTP 403 at the recorded check time. Consequently every unverified listing is marked `ROBU_STATUS = UNCERTAIN`; no stock, price, SKU or product identity is asserted. Prices are `PRICE NOT VISIBLE` and total cost is null. This is a genuine procurement-access blocker, not a substitute component decision.
+
+The three datasheet-supported ordering candidates are recorded as candidates only: `INA180A3IDBVR`, `MCP4725A0T-E/CH` and `LM358BIDR`. They become final selections only after their Robu product pages, exact package and current stock are manually verified.
+
 ## Authoritative release gate
 
 `PCB_RELEASE = BLOCKED`
