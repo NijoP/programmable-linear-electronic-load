@@ -304,7 +304,7 @@
       "source_requirement": "3.3 V LDO, source \u00c2\u00a727",
       "manufacturer": "Texas Instruments",
       "exact_mpn": "TLV76733PDBVR",
-      "package": "SOT-23-6",
+      "package": "SOT-23-5 (DBV)",
       "quantity": 1,
       "electrical_rating": "3.3 V, 1 A nominal",
       "power_rating": "TBD",

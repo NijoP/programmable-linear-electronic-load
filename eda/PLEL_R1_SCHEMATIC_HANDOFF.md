@@ -65,3 +65,20 @@ Use `reference_designator`, `pins`, and `electrical_role` from the master BOM
 and pin map to build the connection matrix. Do not infer missing safety nets
 from component names. Any missing pin or unresolved package must be flagged in
 the schematic-generation review rather than silently connected.
+
+## 2026-10-07 prerequisite status
+
+The following source corrections are applied and datasheet-traced:
+
+- U4 is a complete 38-pin ESP32-WROOM-32E map; GPIO39/SENSOR_VN is module pin 5 and unused module pins are classified.
+- U8 SN74LVC1G04DBVR is DBV: pin 1 NC, pin 2 A, pin 3 GND, pin 4 Y, pin 5 VCC.
+- U6 TLV76733PDBVR is fixed DBV SOT-23-5: pin 1 SNS, pin 2 IN, pin 3 EN, pin 4 OUT, pin 5 GND/thermal pad.
+- U9 ADG884BRMZ has its exact ten-pin MSOP map recorded.
+- TP1–TP10 have explicit net, purpose, and validation-test assignments.
+
+Schematic generation remains prohibited. The prerequisite verdict is in
+`verification/PLEL_SCHEMATIC_PREREQUISITE_VERDICT.md`. The LM358 feedback/
+compensation network, shunt polarity/Kelvin connection contract, and complete
+fail-safe U7/U8/U9 logic are still unresolved. Do not create
+`eda/connections/PLEL_CONNECTION_MATRIX.csv` until those engineering decisions
+are closed.

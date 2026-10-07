@@ -581,9 +581,14 @@
       "tolerance": "TBD",
       "pins": [
         {
+          "pin": "1",
+          "name": "GND",
+          "role": "GND return"
+        },
+        {
           "pin": "2",
           "name": "3V3",
-          "role": "3V3"
+          "role": "3V3 supply"
         },
         {
           "pin": "3",
@@ -591,65 +596,226 @@
           "role": "reset"
         },
         {
+          "pin": "4",
+          "name": "SENSOR_VP",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO36"
+        },
+        {
+          "pin": "5",
+          "name": "SENSOR_VN",
+          "role": "NTC ADC",
+          "gpio": "GPIO39"
+        },
+        {
           "pin": "6",
           "name": "GPIO34",
-          "role": "VIN ADC"
+          "role": "VIN ADC",
+          "gpio": "GPIO34"
         },
         {
           "pin": "7",
           "name": "GPIO35",
-          "role": "current ADC"
+          "role": "current ADC",
+          "gpio": "GPIO35"
+        },
+        {
+          "pin": "8",
+          "name": "GPIO32",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO32"
         },
         {
           "pin": "9",
           "name": "GPIO33",
-          "role": "ESTOP monitor"
+          "role": "ESTOP monitor",
+          "gpio": "GPIO33"
         },
         {
           "pin": "10",
           "name": "GPIO25",
-          "role": "MCU_RUN"
+          "role": "MCU_RUN",
+          "gpio": "GPIO25"
         },
         {
           "pin": "11",
           "name": "GPIO26",
-          "role": "fan control"
+          "role": "fan control",
+          "gpio": "GPIO26"
         },
         {
           "pin": "12",
           "name": "GPIO27",
-          "role": "fault"
+          "role": "fault",
+          "gpio": "GPIO27"
+        },
+        {
+          "pin": "13",
+          "name": "GPIO14",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO14"
+        },
+        {
+          "pin": "14",
+          "name": "GPIO12",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO12"
+        },
+        {
+          "pin": "15",
+          "name": "GND",
+          "role": "GND return"
+        },
+        {
+          "pin": "16",
+          "name": "GPIO13",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO13"
+        },
+        {
+          "pin": "17",
+          "name": "SD2",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO9"
+        },
+        {
+          "pin": "18",
+          "name": "SD3",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO10"
+        },
+        {
+          "pin": "19",
+          "name": "CMD",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO11"
+        },
+        {
+          "pin": "20",
+          "name": "CLK",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO6"
+        },
+        {
+          "pin": "21",
+          "name": "SD0",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO7"
+        },
+        {
+          "pin": "22",
+          "name": "SD1",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO8"
+        },
+        {
+          "pin": "23",
+          "name": "GND",
+          "role": "GND return"
+        },
+        {
+          "pin": "24",
+          "name": "GPIO15",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO15"
         },
         {
           "pin": "25",
           "name": "GPIO0",
-          "role": "boot"
+          "role": "boot strap",
+          "gpio": "GPIO0"
+        },
+        {
+          "pin": "26",
+          "name": "GPIO2",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO2"
+        },
+        {
+          "pin": "27",
+          "name": "GPIO4",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO4"
+        },
+        {
+          "pin": "28",
+          "name": "GPIO16",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO16"
+        },
+        {
+          "pin": "29",
+          "name": "GPIO17",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO17"
+        },
+        {
+          "pin": "30",
+          "name": "GPIO5",
+          "role": "unused; no-connect in R1",
+          "gpio": "GPIO5"
+        },
+        {
+          "pin": "31",
+          "name": "GPIO18",
+          "role": "unused; encoder function removed",
+          "gpio": "GPIO18"
+        },
+        {
+          "pin": "32",
+          "name": "GPIO19",
+          "role": "unused; encoder function removed",
+          "gpio": "GPIO19"
         },
         {
           "pin": "33",
           "name": "GPIO21",
-          "role": "I2C SDA"
+          "role": "I2C SDA",
+          "gpio": "GPIO21"
         },
         {
           "pin": "34",
-          "name": "GPIO3",
-          "role": "UART RX"
+          "name": "U0RXD",
+          "role": "UART RX",
+          "gpio": "GPIO3"
         },
         {
           "pin": "35",
-          "name": "GPIO1",
-          "role": "UART TX"
+          "name": "U0TXD",
+          "role": "UART TX",
+          "gpio": "GPIO1"
         },
         {
           "pin": "36",
           "name": "GPIO22",
-          "role": "I2C SCL"
+          "role": "I2C SCL",
+          "gpio": "GPIO22"
+        },
+        {
+          "pin": "37",
+          "name": "GPIO23",
+          "role": "unused; encoder function removed",
+          "gpio": "GPIO23"
+        },
+        {
+          "pin": "38",
+          "name": "GND",
+          "role": "GND return"
         }
       ],
       "datasheet/source": "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_datasheet_en.pdf",
-      "provenance": "DATASHEET",
+      "provenance": "DATASHEET_VERIFIED",
       "selection_status": "DESIGN_SELECTED",
-      "notes": "Antenna keepout, module land pattern, programming access and Wi-Fi current are required."
+      "notes": "Antenna keepout, module land pattern, programming access and Wi-Fi current are required.",
+      "verification": {
+        "manufacturer": "Espressif",
+        "mpn": "ESP32-WROOM-32E",
+        "package": "38-pin module",
+        "datasheet": "https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_datasheet_en.pdf",
+        "pin_source": "ESP32-WROOM-32E datasheet, module pin table",
+        "verification_date": "2026-10-07",
+        "provenance": "DATASHEET_VERIFIED"
+      }
     },
     {
       "reference_designator": "R5",
@@ -885,7 +1051,7 @@
       "quantity": 1,
       "manufacturer": "Texas Instruments",
       "exact_MPN": "TLV76733PDBVR",
-      "package": "SOT-23-6",
+      "package": "SOT-23-5 (DBV)",
       "value": "3.3 V, 1 A",
       "rating": {
         "voltage": "16 V max input",
@@ -895,34 +1061,43 @@
       "pins": [
         {
           "pin": "1",
-          "name": "IN",
-          "role": "5V"
+          "name": "SNS",
+          "role": "fixed-output sense; connect to OUT/3V3"
         },
         {
           "pin": "2",
-          "name": "GND",
-          "role": "GND"
+          "name": "IN",
+          "role": "5V input"
         },
         {
           "pin": "3",
           "name": "EN",
-          "role": "3V3 enable"
+          "role": "enable; tie to 5V for always-on rail"
+        },
+        {
+          "pin": "4",
+          "name": "OUT",
+          "role": "3V3 output"
         },
         {
           "pin": "5",
-          "name": "OUT",
-          "role": "3V3"
-        },
-        {
-          "pin": "4/6",
-          "name": "NC",
-          "role": "No connect; verify datasheet"
+          "name": "GND/THERMAL PAD",
+          "role": "GND; thermal pad"
         }
       ],
-      "datasheet/source": "TBD",
-      "provenance": "DATASHEET",
+      "datasheet/source": "https://www.ti.com/lit/ds/symlink/tlv767.pdf",
+      "provenance": "DATASHEET_VERIFIED",
       "selection_status": "CANDIDATE",
-      "notes": "Selected over AP2112K because R1 0.548 A budget left only 0.052 A nominal margin. Exact pin numbering and thermal land pattern require final datasheet review."
+      "notes": "Selected over AP2112K because R1 0.548 A budget left only 0.052 A nominal margin. Exact pin numbering and thermal land pattern require final datasheet review.",
+      "verification": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "TLV76733PDBVR",
+        "package": "SOT-23-5 (DBV)",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/tlv767.pdf",
+        "pin_source": "TI TLV767 datasheet, fixed DBV package pin configuration and functions",
+        "verification_date": "2026-10-07",
+        "provenance": "DATASHEET_VERIFIED"
+      }
     },
     {
       "reference_designator": "C2",
@@ -1087,7 +1262,7 @@
       "quantity": 1,
       "manufacturer": "Texas Instruments",
       "exact_MPN": "SN74LVC1G04DBVR",
-      "package": "SOT-23-5",
+      "package": "SOT-23-5 (DBV)",
       "value": "single inverter",
       "rating": {
         "voltage": "1.65-5.5 V"
@@ -1096,13 +1271,13 @@
       "pins": [
         {
           "pin": "1",
-          "name": "A",
-          "role": "fault/reset logic"
+          "name": "NC",
+          "role": "No internal connection; leave unconnected"
         },
         {
           "pin": "2",
-          "name": "Y",
-          "role": "gate inhibit logic"
+          "name": "A",
+          "role": "logic input"
         },
         {
           "pin": "3",
@@ -1111,19 +1286,28 @@
         },
         {
           "pin": "4",
-          "name": "VCC",
-          "role": "3V3"
+          "name": "Y",
+          "role": "inverted logic output"
         },
         {
           "pin": "5",
-          "name": "NC",
-          "role": "unused/verify"
+          "name": "VCC",
+          "role": "3V3"
         }
       ],
-      "datasheet/source": "TBD",
-      "provenance": "DATASHEET",
+      "datasheet/source": "https://www.ti.com/lit/ds/symlink/sn74lvc1g04.pdf",
+      "provenance": "DATASHEET_VERIFIED",
       "selection_status": "DESIGN_SELECTED",
-      "notes": "Default-safe control logic; exact pinout verify."
+      "notes": "Default-safe control logic; exact pinout verify.",
+      "verification": {
+        "manufacturer": "Texas Instruments",
+        "mpn": "SN74LVC1G04DBVR",
+        "package": "SOT-23-5 (DBV)",
+        "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lvc1g04.pdf",
+        "pin_source": "TI SN74LVC1G04 datasheet, DBV package pin configuration",
+        "verification_date": "2026-10-07",
+        "provenance": "DATASHEET_VERIFIED"
+      }
     },
     {
       "reference_designator": "U9",
@@ -1140,30 +1324,69 @@
       "tolerance": "TBD",
       "pins": [
         {
-          "pin": "1/2/3",
-          "name": "S/D",
-          "role": "LM358 gate-control path"
+          "pin": "1",
+          "name": "VDD",
+          "role": "3V3 supply"
+        },
+        {
+          "pin": "2",
+          "name": "S1A",
+          "role": "SPDT channel 1 throw A"
+        },
+        {
+          "pin": "3",
+          "name": "D1",
+          "role": "SPDT channel 1 common"
         },
         {
           "pin": "4",
+          "name": "IN1",
+          "role": "channel 1 logic control"
+        },
+        {
+          "pin": "5",
+          "name": "S1B",
+          "role": "SPDT channel 1 throw B"
+        },
+        {
+          "pin": "6",
           "name": "GND",
           "role": "GND"
         },
         {
-          "pin": "5",
-          "name": "IN",
-          "role": "enable"
+          "pin": "7",
+          "name": "S2B",
+          "role": "SPDT channel 2 throw B"
         },
         {
-          "pin": "6-10",
-          "name": "S/D/NC",
-          "role": "verify exact datasheet pinout"
+          "pin": "8",
+          "name": "IN2",
+          "role": "channel 2 logic control"
+        },
+        {
+          "pin": "9",
+          "name": "D2",
+          "role": "SPDT channel 2 common"
+        },
+        {
+          "pin": "10",
+          "name": "S2A",
+          "role": "SPDT channel 2 throw A"
         }
       ],
-      "datasheet/source": "TBD",
-      "provenance": "DATASHEET",
+      "datasheet/source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADG884.pdf",
+      "provenance": "DATASHEET_VERIFIED",
       "selection_status": "CANDIDATE",
-      "notes": "Normally-open effective gate path; all safe states open it."
+      "notes": "Normally-open effective gate path; all safe states open it.",
+      "verification": {
+        "manufacturer": "Analog Devices",
+        "mpn": "ADG884BRMZ",
+        "package": "MSOP-10",
+        "datasheet": "https://www.analog.com/media/en/technical-documentation/data-sheets/ADG884.pdf",
+        "pin_source": "Analog Devices ADG884 datasheet, MSOP-10 pin configuration",
+        "verification_date": "2026-10-07",
+        "provenance": "DATASHEET_VERIFIED"
+      }
     },
     {
       "reference_designator": "R10",
@@ -1253,29 +1476,247 @@
       "notes": "Hardware validation access."
     },
     {
-      "reference_designator": "TP2-TP10",
-      "function": "5V, 3V3, VSET, I_SENSE, V_SENSE, NTC_SENSE, FAULT, ESTOP_OK, GATE_BUS test points",
       "category": "L. Test points",
-      "quantity": 9,
       "manufacturer": "Keystone",
       "exact_MPN": "5000",
       "package": "Through-hole test point",
-      "value": "Named validation nodes",
       "rating": {
         "voltage": "30 V max"
       },
       "tolerance": "TBD",
-      "pins": [
-        {
-          "pin": "1",
-          "name": "NAMED_NET",
-          "role": "measurement access"
-        }
-      ],
       "datasheet/source": "TBD",
       "provenance": "DESIGN_TARGET",
       "selection_status": "DESIGN_SELECTED",
-      "notes": "Individual silkscreen labels required; see hardware validation plan."
+      "reference_designator": "TP2",
+      "quantity": 1,
+      "function": "5V validation test point",
+      "value": "5V",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "5V",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "5 V rail measurement",
+      "validation_test_id": "HV-POWER-05V",
+      "notes": "Explicit 5V measurement node; validation test HV-POWER-05V."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP3",
+      "quantity": 1,
+      "function": "3V3 validation test point",
+      "value": "3V3",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "3V3",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "3.3 V rail measurement",
+      "validation_test_id": "HV-POWER-03V3",
+      "notes": "Explicit 3V3 measurement node; validation test HV-POWER-03V3."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP4",
+      "quantity": 1,
+      "function": "VSET validation test point",
+      "value": "VSET",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "VSET",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "DAC setpoint measurement",
+      "validation_test_id": "HV-DAC-01",
+      "notes": "Explicit VSET measurement node; validation test HV-DAC-01."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP5",
+      "quantity": 1,
+      "function": "I_SENSE validation test point",
+      "value": "I_SENSE",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "I_SENSE",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "Current amplifier output measurement",
+      "validation_test_id": "HV-SENSE-02",
+      "notes": "Explicit I_SENSE measurement node; validation test HV-SENSE-02."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP6",
+      "quantity": 1,
+      "function": "V_SENSE validation test point",
+      "value": "V_SENSE",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "V_SENSE",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "VIN ADC divider measurement",
+      "validation_test_id": "HV-SENSE-03",
+      "notes": "Explicit V_SENSE measurement node; validation test HV-SENSE-03."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP7",
+      "quantity": 1,
+      "function": "NTC_SENSE validation test point",
+      "value": "NTC_SENSE",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "NTC_SENSE",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "Heatsink NTC divider measurement",
+      "validation_test_id": "HV-THERM-01",
+      "notes": "Explicit NTC_SENSE measurement node; validation test HV-THERM-01."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP8",
+      "quantity": 1,
+      "function": "FAULT validation test point",
+      "value": "FAULT",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "FAULT",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "Fault logic state measurement",
+      "validation_test_id": "HV-SAFETY-03",
+      "notes": "Explicit FAULT measurement node; validation test HV-SAFETY-03."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP9",
+      "quantity": 1,
+      "function": "ESTOP_OK validation test point",
+      "value": "ESTOP_OK",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "ESTOP_OK",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "Emergency-stop loop state measurement",
+      "validation_test_id": "HV-SAFETY-01",
+      "notes": "Explicit ESTOP_OK measurement node; validation test HV-SAFETY-01."
+    },
+    {
+      "category": "L. Test points",
+      "manufacturer": "Keystone",
+      "exact_MPN": "5000",
+      "package": "Through-hole test point",
+      "rating": {
+        "voltage": "30 V max"
+      },
+      "tolerance": "TBD",
+      "datasheet/source": "TBD",
+      "provenance": "DESIGN_TARGET",
+      "selection_status": "DESIGN_SELECTED",
+      "reference_designator": "TP10",
+      "quantity": 1,
+      "function": "GATE_BUS validation test point",
+      "value": "GATE_BUS",
+      "pins": [
+        {
+          "pin": "1",
+          "name": "GATE_BUS",
+          "role": "measurement access"
+        }
+      ],
+      "measurement_purpose": "Gate-control bus/inhibit measurement",
+      "validation_test_id": "HV-SAFETY-04",
+      "notes": "Explicit GATE_BUS measurement node; validation test HV-SAFETY-04."
     },
     {
       "reference_designator": "J2",

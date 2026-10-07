@@ -269,9 +269,14 @@
     ],
     "U4": [
       {
+        "pin": "1",
+        "name": "GND",
+        "role": "GND return"
+      },
+      {
         "pin": "2",
         "name": "3V3",
-        "role": "3V3"
+        "role": "3V3 supply"
       },
       {
         "pin": "3",
@@ -279,59 +284,211 @@
         "role": "reset"
       },
       {
+        "pin": "4",
+        "name": "SENSOR_VP",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO36"
+      },
+      {
+        "pin": "5",
+        "name": "SENSOR_VN",
+        "role": "NTC ADC",
+        "gpio": "GPIO39"
+      },
+      {
         "pin": "6",
         "name": "GPIO34",
-        "role": "VIN ADC"
+        "role": "VIN ADC",
+        "gpio": "GPIO34"
       },
       {
         "pin": "7",
         "name": "GPIO35",
-        "role": "current ADC"
+        "role": "current ADC",
+        "gpio": "GPIO35"
+      },
+      {
+        "pin": "8",
+        "name": "GPIO32",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO32"
       },
       {
         "pin": "9",
         "name": "GPIO33",
-        "role": "ESTOP monitor"
+        "role": "ESTOP monitor",
+        "gpio": "GPIO33"
       },
       {
         "pin": "10",
         "name": "GPIO25",
-        "role": "MCU_RUN"
+        "role": "MCU_RUN",
+        "gpio": "GPIO25"
       },
       {
         "pin": "11",
         "name": "GPIO26",
-        "role": "fan control"
+        "role": "fan control",
+        "gpio": "GPIO26"
       },
       {
         "pin": "12",
         "name": "GPIO27",
-        "role": "fault"
+        "role": "fault",
+        "gpio": "GPIO27"
+      },
+      {
+        "pin": "13",
+        "name": "GPIO14",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO14"
+      },
+      {
+        "pin": "14",
+        "name": "GPIO12",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO12"
+      },
+      {
+        "pin": "15",
+        "name": "GND",
+        "role": "GND return"
+      },
+      {
+        "pin": "16",
+        "name": "GPIO13",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO13"
+      },
+      {
+        "pin": "17",
+        "name": "SD2",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO9"
+      },
+      {
+        "pin": "18",
+        "name": "SD3",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO10"
+      },
+      {
+        "pin": "19",
+        "name": "CMD",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO11"
+      },
+      {
+        "pin": "20",
+        "name": "CLK",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO6"
+      },
+      {
+        "pin": "21",
+        "name": "SD0",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO7"
+      },
+      {
+        "pin": "22",
+        "name": "SD1",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO8"
+      },
+      {
+        "pin": "23",
+        "name": "GND",
+        "role": "GND return"
+      },
+      {
+        "pin": "24",
+        "name": "GPIO15",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO15"
       },
       {
         "pin": "25",
         "name": "GPIO0",
-        "role": "boot"
+        "role": "boot strap",
+        "gpio": "GPIO0"
+      },
+      {
+        "pin": "26",
+        "name": "GPIO2",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO2"
+      },
+      {
+        "pin": "27",
+        "name": "GPIO4",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO4"
+      },
+      {
+        "pin": "28",
+        "name": "GPIO16",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO16"
+      },
+      {
+        "pin": "29",
+        "name": "GPIO17",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO17"
+      },
+      {
+        "pin": "30",
+        "name": "GPIO5",
+        "role": "unused; no-connect in R1",
+        "gpio": "GPIO5"
+      },
+      {
+        "pin": "31",
+        "name": "GPIO18",
+        "role": "unused; encoder function removed",
+        "gpio": "GPIO18"
+      },
+      {
+        "pin": "32",
+        "name": "GPIO19",
+        "role": "unused; encoder function removed",
+        "gpio": "GPIO19"
       },
       {
         "pin": "33",
         "name": "GPIO21",
-        "role": "I2C SDA"
+        "role": "I2C SDA",
+        "gpio": "GPIO21"
       },
       {
         "pin": "34",
-        "name": "GPIO3",
-        "role": "UART RX"
+        "name": "U0RXD",
+        "role": "UART RX",
+        "gpio": "GPIO3"
       },
       {
         "pin": "35",
-        "name": "GPIO1",
-        "role": "UART TX"
+        "name": "U0TXD",
+        "role": "UART TX",
+        "gpio": "GPIO1"
       },
       {
         "pin": "36",
         "name": "GPIO22",
-        "role": "I2C SCL"
+        "role": "I2C SCL",
+        "gpio": "GPIO22"
+      },
+      {
+        "pin": "37",
+        "name": "GPIO23",
+        "role": "unused; encoder function removed",
+        "gpio": "GPIO23"
+      },
+      {
+        "pin": "38",
+        "name": "GND",
+        "role": "GND return"
       }
     ],
     "R5": [
@@ -431,28 +588,28 @@
     "U6": [
       {
         "pin": "1",
-        "name": "IN",
-        "role": "5V"
+        "name": "SNS",
+        "role": "fixed-output sense; connect to OUT/3V3"
       },
       {
         "pin": "2",
-        "name": "GND",
-        "role": "GND"
+        "name": "IN",
+        "role": "5V input"
       },
       {
         "pin": "3",
         "name": "EN",
-        "role": "3V3 enable"
+        "role": "enable; tie to 5V for always-on rail"
+      },
+      {
+        "pin": "4",
+        "name": "OUT",
+        "role": "3V3 output"
       },
       {
         "pin": "5",
-        "name": "OUT",
-        "role": "3V3"
-      },
-      {
-        "pin": "4/6",
-        "name": "NC",
-        "role": "No connect; verify datasheet"
+        "name": "GND/THERMAL PAD",
+        "role": "GND; thermal pad"
       }
     ],
     "C2": [
@@ -523,13 +680,13 @@
     "U8": [
       {
         "pin": "1",
-        "name": "A",
-        "role": "fault/reset logic"
+        "name": "NC",
+        "role": "No internal connection; leave unconnected"
       },
       {
         "pin": "2",
-        "name": "Y",
-        "role": "gate inhibit logic"
+        "name": "A",
+        "role": "logic input"
       },
       {
         "pin": "3",
@@ -538,35 +695,65 @@
       },
       {
         "pin": "4",
-        "name": "VCC",
-        "role": "3V3"
+        "name": "Y",
+        "role": "inverted logic output"
       },
       {
         "pin": "5",
-        "name": "NC",
-        "role": "unused/verify"
+        "name": "VCC",
+        "role": "3V3"
       }
     ],
     "U9": [
       {
-        "pin": "1/2/3",
-        "name": "S/D",
-        "role": "LM358 gate-control path"
+        "pin": "1",
+        "name": "VDD",
+        "role": "3V3 supply"
+      },
+      {
+        "pin": "2",
+        "name": "S1A",
+        "role": "SPDT channel 1 throw A"
+      },
+      {
+        "pin": "3",
+        "name": "D1",
+        "role": "SPDT channel 1 common"
       },
       {
         "pin": "4",
+        "name": "IN1",
+        "role": "channel 1 logic control"
+      },
+      {
+        "pin": "5",
+        "name": "S1B",
+        "role": "SPDT channel 1 throw B"
+      },
+      {
+        "pin": "6",
         "name": "GND",
         "role": "GND"
       },
       {
-        "pin": "5",
-        "name": "IN",
-        "role": "enable"
+        "pin": "7",
+        "name": "S2B",
+        "role": "SPDT channel 2 throw B"
       },
       {
-        "pin": "6-10",
-        "name": "S/D/NC",
-        "role": "verify exact datasheet pinout"
+        "pin": "8",
+        "name": "IN2",
+        "role": "channel 2 logic control"
+      },
+      {
+        "pin": "9",
+        "name": "D2",
+        "role": "SPDT channel 2 common"
+      },
+      {
+        "pin": "10",
+        "name": "S2A",
+        "role": "SPDT channel 2 throw A"
       }
     ],
     "R10": [
@@ -597,13 +784,6 @@
       {
         "pin": "1",
         "name": "VIN",
-        "role": "measurement access"
-      }
-    ],
-    "TP2-TP10": [
-      {
-        "pin": "1",
-        "name": "NAMED_NET",
         "role": "measurement access"
       }
     ],
@@ -771,6 +951,69 @@
         "pin": "2",
         "name": "GND",
         "role": "return"
+      }
+    ],
+    "TP2": [
+      {
+        "pin": "1",
+        "name": "5V",
+        "role": "5 V rail measurement; validation test HV-POWER-05V"
+      }
+    ],
+    "TP3": [
+      {
+        "pin": "1",
+        "name": "3V3",
+        "role": "3.3 V rail measurement; validation test HV-POWER-03V3"
+      }
+    ],
+    "TP4": [
+      {
+        "pin": "1",
+        "name": "VSET",
+        "role": "DAC setpoint measurement; validation test HV-DAC-01"
+      }
+    ],
+    "TP5": [
+      {
+        "pin": "1",
+        "name": "I_SENSE",
+        "role": "Current amplifier output measurement; validation test HV-SENSE-02"
+      }
+    ],
+    "TP6": [
+      {
+        "pin": "1",
+        "name": "V_SENSE",
+        "role": "VIN ADC divider measurement; validation test HV-SENSE-03"
+      }
+    ],
+    "TP7": [
+      {
+        "pin": "1",
+        "name": "NTC_SENSE",
+        "role": "Heatsink NTC divider measurement; validation test HV-THERM-01"
+      }
+    ],
+    "TP8": [
+      {
+        "pin": "1",
+        "name": "FAULT",
+        "role": "Fault logic state measurement; validation test HV-SAFETY-03"
+      }
+    ],
+    "TP9": [
+      {
+        "pin": "1",
+        "name": "ESTOP_OK",
+        "role": "Emergency-stop loop state measurement; validation test HV-SAFETY-01"
+      }
+    ],
+    "TP10": [
+      {
+        "pin": "1",
+        "name": "GATE_BUS",
+        "role": "Gate-control bus/inhibit measurement; validation test HV-SAFETY-04"
       }
     ]
   }
