@@ -1,4 +1,4 @@
-# PLEL R1 — Web-Controlled Programmable Linear DC Electronic Load
+# PLEL R1 — KiCad-Controlled Programmable Linear DC Electronic Load
 
 PLEL R1 is a 10–15 V, 2 A, 30 W peak programmable linear load controlled by a local ESP32-WROOM-32E web application. R1 has no OLED, rotary encoder, encoder switch, or ordinary START/STOP buttons. A physical emergency STOP remains independent of Wi-Fi and firmware.
 
@@ -21,6 +21,7 @@ This repository contains the engineering MATLAB/modeling implementation for a pr
 The repository supports two workflows:
 1. **Pure MATLAB**: Use MATLAB directly to run simulations, validate calculations, and generate engineering plots.
 2. **Pi + MATLAB MCP (Optional)**: Use the Pi AI agent to control MATLAB via the MATLAB Communication Protocol (MCP) for an AI-assisted workflow.
+3. **Pi + MATLAB MCP + KiCad (Recommended)**: Use the Pi AI agent to control MATLAB via MCP and generate KiCad schematics via deterministic Copperhead-style generation for an AI-assisted electronics engineering workflow.
 
 This README serves as a practical installation and workflow manual to get you started with the repository on a clean Windows computer.
 
@@ -34,11 +35,14 @@ This README serves as a practical installation and workflow manual to get you st
 | MATLAB            | Yes       | Engineering execution environment (R2024b or later)                     |
 | Pi                | Optional  | AI engineering agent (for assisted workflow)                            |
 | MATLAB MCP Server | Optional  | Bridge between Pi and MATLAB (installed via Pi)                         |
+| KiCad             | Optional  | EDA suite for schematic and PCB design (v7.0 or later)                  |
+| KiCad CLI         | Optional  | Command-line interface for KiCad validation and export                  |
 
 **Note**: 
 - Base MATLAB is sufficient; no additional toolboxes are required for core functions.
 - Pi installation includes the MATLAB MCP Server.
 - Python is not required for the MATLAB workflow (only used in GitHub Actions for validation).
+- KiCad 7.0+ is recommended for the best CLI experience and features.
 
 ---
 
@@ -239,7 +243,59 @@ Pi will automatically load the project configuration and confirm the MCP connect
 
 ---
 
-## Connect Pi to MATLAB: Complete Workflow
+## KiCad Installation (Recommended for Full Workflow)
+
+To use the full AI-assisted electronics engineering workflow with KiCad generation:
+
+1. **Download KiCad** from https://www.kicad.org/download/
+2. **Install KiCad 7.0 or later** (recommended for best CLI experience)
+3. **Verify KiCad CLI installation** by opening a terminal and running:
+   ```bash
+   kicad-cli --version
+   ```
+   You should see the version number printed.
+
+4. **Add KiCad CLI to your PATH** if not done automatically during installation
+   - On Windows: The installer typically adds it to PATH
+   - On macOS/Linux: May need to add `/Applications/KiCad/KiCad.app/Contents/SharedSupport/bin` to PATH
+
+---
+
+## KiCad MCP Installation and Setup
+
+To use Pi with KiCad for schematic generation:
+
+### Step 1: Start KiCad and Share Session (Optional for GUI workflow)
+1. Launch KiCad from your applications menu.
+2. Open the PLEL R1 project: `hardware/PLEL_R1.kicad_pro`
+3. For CLI-only workflow, no session sharing is needed - Pi will work directly with files
+
+### Step 2: Start Pi and Connect
+1. In a separate Command Prompt or PowerShell window, start Pi from the repository root:
+   ```powershell
+   cd C:\Users\<your-username>\Projects\programmable-linear-electronic-load
+   pi
+   ```
+2. Within the Pi session, load the MATLAB MCP skill (for MATLAB validation):
+   ```
+   /load matlab
+   ```
+3. (Optional) Load KiCad-related skills if available for direct KiCad control:
+   ```
+   /load kicad
+   ```
+   This connects Pi to KiCad files for schematic generation.
+
+### Step 3: Verify Connection
+Pi will automatically load the project configuration and confirm connections. You should see status indicators showing:
+- MATLAB connection (if matlab skill loaded)
+- KiCad file access (if kicad skill loaded or working directly with files)
+
+> **Important**: For the KiCad workflow, Pi works primarily by reading and writing the KiCad files directly. The MATLAB session must remain active and shared for the duration of Pi usage if using MATLAB validation. Do not close MATLAB while Pi is connected if using MATLAB validation.
+
+---
+
+## Connect Pi to MATLAB and KiCad: Complete Workflow
 
 Here is a complete copy-pasteable workflow for PowerShell and MATLAB:
 
@@ -355,6 +411,22 @@ Executes `test_foundation` and reports pass/fail.
 ```
 Executes `test_electrical` and reports pass/fail.
 
+### Generate KiCad Schematics (Recommended Full Workflow)
+```
+/generate P1 MCU sheet
+```
+Pi will:
+1. Generate engineering intent for P1 from authoritative sources
+2. Run deterministic KiCad generator to create P1 schematic sheet
+3. Save to `hardware/PLEL_R1.kicad_sch`
+4. Run validation: load check, ERC, netlist export, SVG export, legibility check
+5. Report results and request human review
+
+```
+/generate complete schematic
+```
+Pi will generate all 8 sheets (P1-P8) using the same process, then run whole-schematic verification.
+
 ### View Results
 ```
 /show recent plots
@@ -366,12 +438,21 @@ Lists the most recently generated plots in `results/plots/hardware-readiness/`.
 ```
 Opens the Windows Explorer window to the results directory.
 
+```
+/show kicad files
+```
+Shows the KiCad project files in the hardware/ directory.
+
 ---
 
 ## Results and Plots
 
 - **Generated plots**: `results/plots/hardware-readiness/` (generated by running `generate_hardware_readiness_plots`)
 - **Engineering reports**: `results/` (e.g., `hardware_readiness_summary.md`)
+- **KiCad schematics**: `hardware/PLEL_R1.kicad_sch` (the authoritative schematic source)
+- **KiCad PCB**: `hardware/PLEL_R1.kicad_pcb` (the authoritative PCB source)
+- **Generated PDFs**: `outputs/PLEL_R1_COMPLETE_SCHEMATIC.pdf` (multi-page schematic release)
+- **Manufacturing outputs**: `outputs/manufacturing/` (Gerbers, drill files, etc.)
 - **Test output**: Console output when running test functions
 
 The hardware-readiness validation campaign generates 10 plots (via `generate_hardware_readiness_plots.m`) that validate the mathematical models conform to the engineering specification in the source PDF.
@@ -393,6 +474,15 @@ Simulation does NOT by itself prove:
 
 Final hardware requires datasheet verification and physical testing.
 
+KiCad schematic and PCB files represent the electrical design intent and must be validated through:
+- ERC (Electrical Rules Check)
+- DRC (Design Rules Check)
+- Netlist verification against engineering intent
+- Legibility/geometry verification
+- Human visual review
+- Manufacturing output verification
+- Electrical testing of assembled boards
+
 ---
 
 ## Troubleshooting
@@ -411,6 +501,11 @@ Final hardware requires datasheet verification and physical testing.
 | Pi using wrong shell on Windows            | Use PowerShell or Command Prompt; Pi works natively in both.             |
 | MATLAB current folder is wrong             | In MATLAB, manually `cd` to the repository root before sharing the session. |
 | MATLAB test fails                          | Verify you ran `plel_setup()` first; use MATLAB R2024b or later.        |
+| `kicad-cli` command not found              | Install KiCad 7.0+ and ensure CLI is in your PATH                      |
+| KiCad file load errors                     | Verify KiCad version compatibility; check for file corruption            |
+| ERC/DRC errors                             | Review error messages and fix schematic issues per KiCad guidance        |
+| Legibility failures                        | Check symbol overlap, text collisions, wire-through-symbol issues        |
+| Netlist mismatches                         | Verify engineering intent matches generated schematic                    |
 
 ---
 
@@ -437,8 +532,10 @@ Final hardware requires datasheet verification and physical testing.
 7. **In MATLAB**, run `shareMATLABSession`.
 8. **In Pi**, run `/load matlab` to connect.
 9. **Run your first MCP test** (see the "Connect Pi to MATLAB" section).
-10. **Begin using the workflow** with natural language commands.
+10. **(Optional) Install KiCad 7.0+** for schematic generation workflow
+11. **Begin using the workflow** with natural language commands.
+12. **(Optional) Generate schematics** with commands like `/generate P1 MCU sheet`
 
 ---
 
-*This README was rewritten to be a practical installation and workflow manual. All commands were verified against the actual repository contents.*
+*This README was rewritten to reflect the new KiCad-native, AI-assisted electronics engineering architecture. All commands were verified against the actual repository contents.*

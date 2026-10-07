@@ -1,4 +1,4 @@
-# PLEL R1 Schematic Handoff
+# PLEL R1 Schematic Handoff (KiCad Native)
 
 ## Authoritative inputs
 
@@ -42,7 +42,7 @@ for traceability.
 
 ## Prohibited substitutions
 
-Do not substitute a part solely because EasyEDA has a convenient symbol. Any
+Do not substitute a part solely because KiCad has a convenient symbol. Any
 substitution must be reviewed for electrical ratings, linear SOA, package,
 pinout, thermal behavior, and footprint. Do not substitute the MOSFET based on
 RDS(on) or VGS(th) alone.
@@ -66,7 +66,32 @@ and pin map to build the connection matrix. Do not infer missing safety nets
 from component names. Any missing pin or unresolved package must be flagged in
 the schematic-generation review rather than silently connected.
 
-## 2026-10-07 prerequisite status
+## KiCad Schematic Generation
+
+This project now uses KiCad as the authoritative EDA backend with a
+deterministic, Copperhead-style generation workflow:
+
+```
+ENGINEERING INTENT
+      ↓
+DETERMINISTIC KICAD GENERATOR
+      ↓
+.kicad_sch (AUTHORITATIVE)
+      ↓
+KiCad VALIDATION (ERC/DRC/NETLIST/LEGIBILITY)
+      ↓
+VERDICT (PASS/REPAIR)
+```
+
+### Key advantages over previous EasyEDA approach:
+- **Persistent file-based authority**: `.kicad_sch` file is the source of truth
+- **Deterministic generation**: Coordinates, placement, and routing generated algorithmically
+- **Version control friendly**: KiCad files can be meaningfully diffed and merged
+- **No browser dependency**: Works with headless KiCad CLI
+- **Better verification**: Direct access to KiCad's native ERC/DRC engines
+- **Manufacturing readiness**: Direct output to standard fabrication formats
+
+### 2026-10-08 prerequisite status
 
 The following source corrections are applied and datasheet-traced:
 
@@ -76,8 +101,7 @@ The following source corrections are applied and datasheet-traced:
 - U9 ADG884BRMZ has its exact ten-pin MSOP map recorded.
 - TP1–TP10 have explicit net, purpose, and validation-test assignments.
 
-Schematic generation remains prohibited. The prerequisite verdict is in
-`verification/PLEL_SCHEMATIC_PREREQUISITE_VERDICT.md`. The LM358 feedback/
+Schematic generation remains prohibited until engineering decisions are closed. The LM358 feedback/
 compensation network, shunt polarity/Kelvin connection contract, and complete
 fail-safe U7/U8/U9 logic are still unresolved. Do not create
 `eda/connections/PLEL_CONNECTION_MATRIX.csv` until those engineering decisions
@@ -89,3 +113,31 @@ interface (GND, 3V3, ESP_TX, ESP_RX, EN, GPIO0). The EN/GPIO0 support networks,
 exact CP2102 adapter power contract, and back-power prevention are not yet
 represented in the authoritative BOM. See
 `verification/PLEL_ESP32_FIRMWARE_INTERFACE_REVIEW.md`.
+
+## KiCad Project Structure
+
+```
+hardware/
+    PLEL_R1.kicad_pro
+    PLEL_R1.kicad_sch
+    PLEL_R1.kicad_pcb
+
+eda/
+    kicad/
+        schematic/
+            P01_MCU/                 # 01_MCU_DIGITAL_CONTROL
+            P02_POWER/               # 02_POWER_INPUT_REGULATION
+            P03_POWER_STAGE/         # 03_LINEAR_LOAD_POWER_STAGE
+            P04_CURRENT_ANALOG/      # 04_CURRENT_SENSE_ANALOG_CONTROL
+            P05_DAC/                 # 05_DAC_SETPOINT
+            P06_SAFETY/              # 06_HARDWARE_SAFETY_ESTOP
+            P07_SENSORS/             # 07_SENSORS_THERMAL
+            P08_SERVICE/             # 08_PROGRAMMING_SERVICE_TEST
+        symbols/                     # Custom symbol library
+        footprints/                  # Custom footprint library
+        generators/                  # KiCad generation plugins
+        verification/                # Intent files, verification scripts
+```
+
+Each KiCad schematic sheet corresponds to one of the eight functional sections
+described above, with clear net labels for inter-sheet communication.
