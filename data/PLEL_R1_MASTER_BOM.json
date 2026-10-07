@@ -1061,34 +1061,34 @@
       "pins": [
         {
           "pin": "1",
-          "name": "SNS",
-          "role": "fixed-output sense; connect to OUT/3V3"
-        },
-        {
-          "pin": "2",
           "name": "IN",
           "role": "5V input"
         },
         {
+          "pin": "2",
+          "name": "GND",
+          "role": "ground"
+        },
+        {
           "pin": "3",
           "name": "EN",
-          "role": "enable; tie to 5V for always-on rail"
+          "role": "always-on enable"
         },
         {
           "pin": "4",
-          "name": "OUT",
-          "role": "3V3 output"
+          "name": "DNC",
+          "role": "no connect"
         },
         {
           "pin": "5",
-          "name": "GND/THERMAL PAD",
-          "role": "GND; thermal pad"
+          "name": "OUT",
+          "role": "3V3 output"
         }
       ],
       "datasheet/source": "https://www.ti.com/lit/ds/symlink/tlv767.pdf",
       "provenance": "DATASHEET_VERIFIED",
       "selection_status": "CANDIDATE",
-      "notes": "Selected over AP2112K because R1 0.548 A budget left only 0.052 A nominal margin. Exact pin numbering and thermal land pattern require final datasheet review.",
+      "notes": "Fixed 3.3 V TLV767 DBV mapping verified from TI SLVSE84D: 1 IN, 2 GND, 3 EN, 4 DNC, 5 OUT.",
       "verification": {
         "manufacturer": "Texas Instruments",
         "mpn": "TLV76733PDBVR",

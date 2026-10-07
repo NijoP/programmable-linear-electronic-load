@@ -58,3 +58,21 @@ The following values were transcribed from the exact PDFs identified above; they
 - **BUZ11/D:** input capacitance CISS is specified as a range at the stated test condition (1500–2000 pF in the candidate document); this is not a substitute for the exact assembled gate-load measurement. Figure 4 is a 25 °C case-temperature SOA graph and does not qualify hot continuous operation.
 
 These candidate ordering MPNs require procurement and footprint verification before they become final selections.
+
+## E-006: TLV76733PDBVR fixed DBV pinout correction
+
+TI TLV767 datasheet `SLVSE84D`, Figure 5-5 and the DBV pin-function table define the fixed-output 5-pin SOT-23 mapping as:
+
+| Pin | Function |
+|---:|---|
+| 1 | IN |
+| 2 | GND |
+| 3 | EN |
+| 4 | DNC |
+| 5 | OUT |
+
+The previous R1 U6 mapping incorrectly used `SNS`. `SNS` is not a pin on the fixed DBV package. The authoritative BOM and pin map now use the corrected mapping. Source: `https://www.ti.com/lit/ds/symlink/tlv767.pdf`, revision SLVSE84D, Figure 5-5.
+
+## E-007: TMUX6219 replacement candidate
+
+TI `TMUX6219`, datasheet `SCDS420E`, defines a 4.5–36 V single-supply 2:1 SPDT switch with rail-to-rail source/drain range, active-high EN, internal EN pull-up, internal SEL pull-down, and DGK VSSOP-8 pinout. This makes it electrically more suitable than the low-voltage ADG884 for a 7.5–8.2 V gate-control path. It remains a candidate until the exact component-level analog model and safety default proof are complete.

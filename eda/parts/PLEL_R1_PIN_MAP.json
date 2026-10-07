@@ -588,28 +588,28 @@
     "U6": [
       {
         "pin": "1",
-        "name": "SNS",
-        "role": "fixed-output sense; connect to OUT/3V3"
-      },
-      {
-        "pin": "2",
         "name": "IN",
         "role": "5V input"
       },
       {
+        "pin": "2",
+        "name": "GND",
+        "role": "ground"
+      },
+      {
         "pin": "3",
         "name": "EN",
-        "role": "enable; tie to 5V for always-on rail"
+        "role": "always-on enable"
       },
       {
         "pin": "4",
-        "name": "OUT",
-        "role": "3V3 output"
+        "name": "DNC",
+        "role": "no connect"
       },
       {
         "pin": "5",
-        "name": "GND/THERMAL PAD",
-        "role": "GND; thermal pad"
+        "name": "OUT",
+        "role": "3V3 output"
       }
     ],
     "C2": [
