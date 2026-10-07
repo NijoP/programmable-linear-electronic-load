@@ -93,6 +93,9 @@
   },
   {
     "component": "Current Sense Amplifier",
+    "selected_candidate_mpn": "INA180A3IDBVR",
+    "selected_candidate_package": "SOT-23-5 (DBV)",
+    "candidate_provenance": "DATASHEET",
     "requirements": [
       {
         "parameter": "Gain",
@@ -144,6 +147,9 @@
   },
   {
     "component": "DAC",
+    "selected_candidate_mpn": "MCP4725A0T-E/CH",
+    "selected_candidate_package": "SOT-23-6 (CH)",
+    "candidate_provenance": "DATASHEET",
     "requirements": [
       {
         "parameter": "Resolution",
@@ -183,6 +189,9 @@
   },
   {
     "component": "Op-Amp",
+    "selected_candidate_mpn": "LM358BIDR",
+    "selected_candidate_package": "SOIC-8 (D)",
+    "candidate_provenance": "DATASHEET",
     "requirements": [
       {
         "parameter": "Supply Voltage",

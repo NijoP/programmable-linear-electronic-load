@@ -1,56 +1,34 @@
-# PCB Open Items Tracking
+# PCB Open Items
 
-This document tracks open items that need to be resolved before PCB fabrication can proceed.
+Open means evidence is still required; it is not a claim that the item is impossible.
 
-## Critical Blockers (Must be resolved before PCB commit)
+| Item | Classification | Required evidence | Release impact |
+|---|---|---|---|
+| Exact BUZ11/D procurement identity | DESIGN DECISION REQUIRED | Supplier, exact ordering suffix/lot, package drawing | BLOCKED |
+| BUZ11 DC SOA | PHYSICAL VALIDATION REQUIRED | Exact-device DC SOA at case temperature/duration plus unequal-sharing margin | BLOCKED |
+| Shunt, ballast, gate parts and zeners | DESIGN DECISION REQUIRED | Exact MPN, package, ratings, footprints and availability | BLOCKED |
+| 3.3 V LDO, fan, heatsink, fuse, connectors, OLED | DESIGN DECISION REQUIRED | Exact MPN and current/thermal/mechanical datasheet data | BLOCKED |
+| Thermal assembly | PHYSICAL VALIDATION REQUIRED | RθSA at defined airflow, TIM/interface, case/junction temperature | BLOCKED |
+| Current-sense full error budget | MEASUREMENT REQUIRED | Shunt TCR, ADC transfer/attenuation, Kelvin parasitic and calibration result | BLOCKED |
+| Gate drive | PHYSICAL VALIDATION REQUIRED | Required operating VGS, aggregate gate load, LM358B output swing/current and transient response | BLOCKED |
+| Loop stability | PHYSICAL VALIDATION REQUIRED | Complete schematic/compensation plus frequency response or validated model | BLOCKED |
+| Startup inhibit | DESIGN DECISION REQUIRED | Implemented schematic forcing gate-control OFF for OFF/reset/boot/brownout/fault | BLOCKED |
+| Fault strategy | DESIGN DECISION REQUIRED | Hardware fault path, latch/reset policy and test matrix | BLOCKED |
+| PCB stackup/routing | DESIGN DECISION REQUIRED | Fabricator stackup, trace/via calculations, Kelvin layout, connector/fuse/antenna review | BLOCKED |
+| Regulator power tree | MEASUREMENT REQUIRED | Worst-case rail currents, dropout and regulator temperatures | BLOCKED |
 
-| Item | Status | Required Action | Owner | Due Date |
-|------|--------|-----------------|-------|----------|
-| BUZ11 SOA Evaluation | OPEN | Evaluate DC SOA curve at design point (VDS≈15V, ID≈0.5A per device) with actual case temperature and duration | Hardware Engineer | TBD |
-| Shunt Resistor Selection | OPEN | Select exact part with tolerance and TCR specifications | Hardware Engineer | TBD |
-| INA180A3 Error Budget | OPEN | Characterize offset voltage, gain error, and bandwidth at operating point | Test Engineer | TBD |
-| MCP4725 Startup Mitigation | OPEN | Implement hardware inhibit or firmware mitigation for EEPROM midscale startup | Firmware Engineer | TBD |
-| LM358B Supply Validation | OPEN | Verify op-amp supply arrangement and output swing sufficient for gate drive | Hardware Engineer | TBD |
-| Heatsink Selection | OPEN | Select heatsink with measured RθSA ≤ 1.5 K/W at required airflow | Thermal Engineer | TBD |
-| Fan Selection | OPEN | Select PWM-controllable fan with sufficient airflow and current draw | Hardware Engineer | TBD |
-| Power Rail Measurement | OPEN | Measure actual currents drawn by ESP32, OLED, analog circuitry, and fan | Test Engineer | TBD |
-| Current-Sense Calibration | OPEN | Calibrate shunt, INA180A3, and ADC chain to characterize end-to-end accuracy | Test Engineer | TBD |
-| Startup Inhibit Circuit | OPEN | Design and validate hardware inhibit circuit to ensure power stage defaults OFF | Hardware Engineer | TBD |
+## Closed analytically in this campaign
 
-## Required Documents (Must be completed before PCB commit)
+- CP arithmetic and MATLAB implementation.
+- 15 V / 2 A power balance.
+- Thermal power partition and governing equations.
+- Source trace example and preliminary external-layer width calculation.
+- INA180A3 datasheet subtotal and partial uncalibrated error bound.
 
-| Item | Status | Required Action | Owner | Due Date |
-|------|--------|-----------------|-------|----------|
-| Schematic Capture | OPEN | Complete electrical schematic based on PCB requirements | Hardware Engineer | TBD |
-| PCB Layout | OPEN | Complete PCB layout meeting all requirements (clearances, trace widths, via stitching, etc.) | PCB Engineer | TBD |
-| Design Review | OPEN | Conduct formal design review of schematic and layout | Lead Engineer | TBD |
-| DFM Check | OPEN | Perform Design for Manufacturing check | Manufacturing Engineer | TBD |
-| Gerber Generation | OPEN | Generate fabrication files | PCB Engineer | TBD |
+## Physical test sequence
 
-## Measurements Required (Must be completed before PCB commit)
-
-| Item | Status | Required Action | Owner | Due Date |
-|------|--------|-----------------|-------|----------|
-| Shunt Resistance Measurement | OPEN | Measure actual resistance of selected shunt at operating temperature | Test Engineer | TBD |
-| INA180A3 Offset/Gain | OPEN | Measure offset voltage and gain error at operating point | Test Engineer | TBD |
-| ADC Characterization | OPEN | Measure ADC offset, gain, and linearity | Test Engineer | TBD |
-| Power Rail Currents | OPEN | Measure actual current draw from 5V and 3.3V rails under worst-case conditions | Test Engineer | TBD |
-| Thermal Resistance Validation | OPEN | Measure actual RθSA of selected heatsink with fan at specified airflow | Thermal Engineer | TBD |
-| MOSFET Junction Temp | OPEN | Validate junction temperature prediction with thermal camera or IR measurement | Thermal Engineer | TBD |
-
-## Firmware Tasks (Must be completed before PCB commit)
-
-| Item | Status | Required Action | Owner | Due Date |
-|------|--------|-----------------|-------|----------|
-| Current Limit Implementation | OPEN | Implement Icmd = min(Iset, Imax, Pmax/Vin, Pset/Vin) | Firmware Engineer | TBD |
-| Power Limit Implementation | OPEN | Implement Pmax/Vin limit | Firmware Engineer | TBD |
-| Derating Logic | OPEN | Implement fan high (60°C), derating start (75°C), shutdown (85°C) | Firmware Engineer | TBD |
-| Startup Sequence | OPEN | Ensure MCP4725 initialized to zero before enabling power stage | Firmware Engineer | TBD |
-| Fault Handling | OPEN | Implement over-current and over-temperature fault handling | Firmware Engineer | TBD |
-| Battery Tracking (Optional) | OPEN | Implement battery charge/energy tracking if required | Firmware Engineer | TBD |
-
-## Notes
-- All items marked as OPEN must be resolved before proceeding to PCB fabrication
-- Due dates should be assigned as items are planned
-- Status should be updated regularly (OPEN, IN PROGRESS, RESOLVED, VERIFIED)
-- Critical blockers prevent PCB commit; other items should be resolved before first article build
+1. Control electronics only, with MOSFETs removed.
+2. Current-sense calibration using a reference current.
+3. One MOSFET at 10 V/0.2 A.
+4. Four MOSFET staged points: 10 V/0.5 A, 12 V/1 A, 15 V/1.5 A, then 15 V/2 A.
+5. Temperature, sharing, SOA-duration, startup-inhibit, fault and loop-response tests.

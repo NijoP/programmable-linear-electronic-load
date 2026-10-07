@@ -47,3 +47,14 @@ SLOS068AB recommended operating conditions and LM358B electrical characteristics
 The onsemi candidate datasheet's Figure 4, PDF page 4 / printed page 3, includes a forward-bias SOA plot with a DC curve, labeled at case temperature 25 C. Figure 3 gives transient thermal impedance; Figure 1 gives a case-temperature-dependent power multiplier. The source PDF's approximate Rjc=1.67 C/W agrees numerically with this candidate document, but does not establish the manufacturer's identity for purchased devices.
 
 The approximately 14.93 V, 0.5 A per branch nominal peak point must be checked against the exact purchased-device DC SOA at actual case temperature, duration and unequal sharing. Do not infer a numerical SOA margin from a headline current rating, a different vendor's BUZ11, a pulsed output-characteristic curve, or a room-temperature graph alone. SOA approval and continuous-power approval remain TBD.
+
+## Extracted values used by the closure calculation
+
+The following values were transcribed from the exact PDFs identified above; they are datasheet evidence, not measured hardware values:
+
+- **INA180A3 / SBOS741H:** A3 gain = 100 V/V; maximum input offset = ±500 µV over the stated temperature range; maximum gain error = ±1%; maximum gain drift = 20 ppm/°C; A3 bandwidth = 150 kHz with 10 pF load; maximum INA180 supply current = 260 µA. Candidate ordering MPN `INA180A3IDBVR` is SOT-23-5/DBV.
+- **LM358B / SLOS068AB:** typical GBW = 1.2 MHz; typical slew rate = 0.5 V/µs in the B electrical-characteristics table; output swing is load-dependent and is not rail-to-rail. Candidate ordering MPN `LM358BIDR` is SOIC-8/D.
+- **MCP4725 / DS22039D:** supply current maximum = 400 µA; offset error maximum = 0.75% FSR; gain error maximum = ±2% FSR; POR/EEPROM behavior as described above. Candidate ordering MPN `MCP4725A0T-E/CH` is SOT-23-6/CH.
+- **BUZ11/D:** input capacitance CISS is specified as a range at the stated test condition (1500–2000 pF in the candidate document); this is not a substitute for the exact assembled gate-load measurement. Figure 4 is a 25 °C case-temperature SOA graph and does not qualify hot continuous operation.
+
+These candidate ordering MPNs require procurement and footprint verification before they become final selections.

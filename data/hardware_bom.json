@@ -147,8 +147,8 @@
   {
     "component": "Current Sense Amplifier",
     "manufacturer": "Texas Instruments",
-    "exact_mpn": "INA180A3",
-    "package": "TBD",
+    "exact_mpn": "INA180A3IDBVR (candidate ordering MPN)",
+    "package": "SOT-23-5 (DBV)",
     "datasheet_url": "https://www.ti.com/lit/ds/symlink/ina180.pdf",
     "datasheet_revision": "SBOS741H, July 2022",
     "parameters": [
@@ -225,8 +225,8 @@
   {
     "component": "DAC",
     "manufacturer": "Microchip",
-    "exact_mpn": "MCP4725",
-    "package": "TBD",
+    "exact_mpn": "MCP4725A0T-E/CH (candidate ordering MPN)",
+    "package": "SOT-23-6 (CH)",
     "datasheet_url": "https://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf",
     "datasheet_revision": "DS22039D, 2009",
     "parameters": [
@@ -292,8 +292,8 @@
   {
     "component": "Op-Amp",
     "manufacturer": "Texas Instruments",
-    "exact_mpn": "LM358B",
-    "package": "TBD",
+    "exact_mpn": "LM358BIDR (candidate ordering MPN)",
+    "package": "SOIC-8 (D)",
     "datasheet_url": "https://www.ti.com/lit/ds/symlink/lm358.pdf",
     "datasheet_revision": "SLOS068AB, October 2024",
     "parameters": [

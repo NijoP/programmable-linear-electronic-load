@@ -67,29 +67,36 @@ function test_electrical()
         sprintf('CC command at 12 V: expected 1.5 A, got %g A', Icmd));
     fprintf('PASS: CC command at 12 V = %.5f A (expected 1.5 A)\n', Icmd);
 
-    % Test 9: CP command
-    % Source §23: At Pset=20W, Vin=15V: Ireq = 20/15 = 1.333 A
-    Icmd = plel_cp_command(20, 2, 30, 15);
-    expected = 20/15;
-    assert(abs(Icmd - expected) < 1e-9, ...
-        sprintf('CP command: expected %.4f A, got %g A', expected, Icmd));
-    fprintf('PASS: CP command at 15 V = %.4f A (expected %.4f A)\n', Icmd, expected);
+    % Tests 9-11: CP command at all required operating voltages.
+    % Source §23: Icmd = min(Imax, Pmax/Vin, Pset/Vin).
+    cp_vin = [15, 12, 10];
+    cp_expected = [20/15, 20/12, 2.0];
+    cp_labels = {'15', '12', '10'};
+    for k = 1:numel(cp_vin)
+        Icmd = plel_cp_command(20, 2, 30, cp_vin(k));
+        assert(abs(Icmd - cp_expected(k)) < 1e-9, ...
+            sprintf('CP command at %s V: expected %.4f A, got %g A', ...
+            cp_labels{k}, cp_expected(k), Icmd));
+        fprintf('PASS: CP command at %s V = %.4f A (expected %.4f A)\n', ...
+            cp_labels{k}, Icmd, cp_expected(k));
+    end
 
-    % Test 10: CP command at 12 V
-    Icmd = plel_cp_command(20, 2, 30, 12);
-    expected = 20/12;
-    assert(abs(Icmd - expected) < 1e-9, ...
-        sprintf('CP command at 12 V: expected %.4f A, got %g A', expected, Icmd));
-    fprintf('PASS: CP command at 12 V = %.4f A (expected %.4f A)\n', Icmd, expected);
+    % Test 12: power balance at the 15 V / 2 A / four-device design point.
+    Ibranch = 2 / 4;
+    Vshunt = 2 * 0.01;
+    Pshunt = 2^2 * 0.01;
+    Pballast_each = Ibranch^2 * 0.1;
+    Vds = 15 - Vshunt - Ibranch * 0.1;
+    Pmosfet_each = Vds * Ibranch;
+    assert(abs(Pshunt - 0.04) < 1e-12);
+    assert(abs(Pballast_each - 0.025) < 1e-12);
+    assert(abs(Pmosfet_each - 7.465) < 1e-12);
+    assert(abs(4 * Pmosfet_each + 4 * Pballast_each + Pshunt - 30) < 1e-12);
+    fprintf('PASS: power balance = %.3f W (MOSFET %.3f W + ballast %.3f W + shunt %.3f W)\n', ...
+        4 * Pmosfet_each + 4 * Pballast_each + Pshunt, 4 * Pmosfet_each, ...
+        4 * Pballast_each, Pshunt);
 
-    % Test 11: CP command at 10 V
-    Icmd = plel_cp_command(20, 2, 30, 10);
-    expected = 20/10;
-    assert(abs(Icmd - expected) < 1e-9, ...
-        sprintf('CP command at 10 V: expected %.4f A, got %g A', expected, Icmd));
-    fprintf('PASS: CP command at 10 V = %.4f A (expected %.4f A)\n', Icmd, expected);
-
-    % Test 12: CR command
+    % Test 13: CR command
     % Source §24: At Vin=15V, Rset=15 ohm: Ireq = 15/15 = 1 A
     Icmd = plel_cr_command(15, 15, 2, 30);
     assert(abs(Icmd - 1.0) < 1e-15, ...
