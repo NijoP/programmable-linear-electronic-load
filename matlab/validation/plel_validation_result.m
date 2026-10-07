@@ -1,0 +1,6 @@
+function result = plel_validation_result(item,status,value,limit,margin,provenance,evidence,physical_test_required,release_impact)
+%PLEL_VALIDATION_RESULT Create a uniform pre-fabrication validation record.
+    result = struct('item',item,'status',status,'value',value,'limit',limit, ...
+        'margin',margin,'provenance',provenance,'evidence',evidence, ...
+        'physical_test_required',physical_test_required,'release_impact',release_impact);
+end
